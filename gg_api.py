@@ -60,7 +60,43 @@ def get_hosts(year):
 def get_awards(year):
     '''Awards is a list of strings. Do NOT change the name
     of this function or what it returns.'''
-    # Your code here
+    try:
+        f = open('gg' + str(year) + '.json')
+    except:
+        f = open('../Data/gg' + str(year) + '.json')
+    data = json.load(f)
+    hashtag_dict = {}
+    award_names_dict = {}
+
+    for tweet in data:
+        tweet_text = " " + tweet['text'] + " "
+  
+        # populating hashtag dict
+        if ("#" in tweet_text):
+            hashtags = re.findall(" #\w+ ", tweet_text)
+            for hashtag in hashtags:
+                if hashtag not in hashtag_dict:
+                    hashtag_dict[hashtag] = 1
+                else:
+                    hashtag_dict[hashtag] += 1
+
+        topics = ['comedy', 'drama', 'television', 'tv', 'series', 'picture', 'film', 'movie']
+        tweet = tweet['text'].lower().split()
+        if 'tv' in tweet:
+            tweet[tweet.index('tv')] = 'television'
+        if ('best' in tweet):
+            for topic in topics:
+                if (topic in tweet):
+                    if tweet.index('best') < tweet.index(topic):
+                        ## add to dic or update
+                        item = tweet[tweet.index('best'):tweet.index(topic) + 1 ]
+                        item_str = " ".join(item)
+                        if item_str not in award_names_dict:
+                            award_names_dict[item_str] = 1
+                        else:
+                            award_names_dict[item_str] += 1
+    print(dict(sorted(award_names_dict.items(), key=lambda item: item[1])))  
+    awards = "work to be done still."
     return awards
 
 def get_nominees(year):
