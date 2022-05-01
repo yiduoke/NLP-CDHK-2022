@@ -3,11 +3,59 @@
 OFFICIAL_AWARDS_1315 = ['cecil b. demille award', 'best motion picture - drama', 'best performance by an actress in a motion picture - drama', 'best performance by an actor in a motion picture - drama', 'best motion picture - comedy or musical', 'best performance by an actress in a motion picture - comedy or musical', 'best performance by an actor in a motion picture - comedy or musical', 'best animated feature film', 'best foreign language film', 'best performance by an actress in a supporting role in a motion picture', 'best performance by an actor in a supporting role in a motion picture', 'best director - motion picture', 'best screenplay - motion picture', 'best original score - motion picture', 'best original song - motion picture', 'best television series - drama', 'best performance by an actress in a television series - drama', 'best performance by an actor in a television series - drama', 'best television series - comedy or musical', 'best performance by an actress in a television series - comedy or musical', 'best performance by an actor in a television series - comedy or musical', 'best mini-series or motion picture made for television', 'best performance by an actress in a mini-series or motion picture made for television', 'best performance by an actor in a mini-series or motion picture made for television', 'best performance by an actress in a supporting role in a series, mini-series or motion picture made for television', 'best performance by an actor in a supporting role in a series, mini-series or motion picture made for television']
 OFFICIAL_AWARDS_1819 = ['best motion picture - drama', 'best motion picture - musical or comedy', 'best performance by an actress in a motion picture - drama', 'best performance by an actor in a motion picture - drama', 'best performance by an actress in a motion picture - musical or comedy', 'best performance by an actor in a motion picture - musical or comedy', 'best performance by an actress in a supporting role in any motion picture', 'best performance by an actor in a supporting role in any motion picture', 'best director - motion picture', 'best screenplay - motion picture', 'best motion picture - animated', 'best motion picture - foreign language', 'best original score - motion picture', 'best original song - motion picture', 'best television series - drama', 'best television series - musical or comedy', 'best television limited series or motion picture made for television', 'best performance by an actress in a limited series or a motion picture made for television', 'best performance by an actor in a limited series or a motion picture made for television', 'best performance by an actress in a television series - drama', 'best performance by an actor in a television series - drama', 'best performance by an actress in a television series - musical or comedy', 'best performance by an actor in a television series - musical or comedy', 'best performance by an actress in a supporting role in a series, limited series or motion picture made for television', 'best performance by an actor in a supporting role in a series, limited series or motion picture made for television', 'cecil b. demille award']
 
+def isHypothetical(text):
+    if '?' in text or 'last year' in text or 'hope' in text or 'hoping' in text or 'bet' in text or 'betting' in text:
+        return True
+    return False
+
+def isHistorical(text):
+    if re.findall(r"\d\d\d\d", text) and '2015' not in text and '2014' not in text:
+        return True
+    return False
+
+def isReasonable(text):
+    if not isHypothetical(text) and not isHistorical(text):
+        return True
+    return False
+
+
 def get_hosts(year):
     '''Hosts is a list of one or more strings. Do NOT change the name
     of this function or what it returns.'''
-    # Your code here
-    return hosts
+    import json
+    import re
+
+    # Opening JSON file
+    fname = 'gg' + str(year) + '.json'
+    f = open('gg2015.json')
+
+    # returns JSON object as
+    # a dictionary
+    data = json.load(f)
+
+
+    matches = []
+    namePattern = r"[A-Z][a-z]+ [A-Z][a-z]+"
+
+    #finding tweets that contain 'host'
+    for i, tweet in enumerate(data):
+        if 'host' in tweet['text'].lower() and isReasonable(tweet['text'].lower()):
+            matches.append(re.findall(namePattern, tweet['text']))
+
+    namesDict = {}
+    for match in matches:
+        for name in match:
+            if name in namesDict.keys():
+                namesDict[name] += 1
+            else:
+                namesDict[name] = 1
+
+    counts = (sorted(namesDict.items(), key=lambda item: 1/item[1]))
+    hosts = []
+    hosts.append(counts[0][0].lower())
+    hosts.append(counts[1][0].lower())
+    print(hosts)
+    f.close()
 
 def get_awards(year):
     '''Awards is a list of strings. Do NOT change the name
@@ -51,7 +99,9 @@ def main():
     and then run gg_api.main(). This is the second thing the TA will
     run when grading. Do NOT change the name of this function or
     what it returns.'''
-    # Your code here
+    pass
+
+
     return
 
 if __name__ == '__main__':
