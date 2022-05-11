@@ -344,9 +344,9 @@ class HashtagParser(object):
             tweets_filtered.append(tweet)
 
         # enforce uniqueness of tweets and join with ~ as a special token --> can search on regex without iterating
-        tweets_filtered = list(set(tweets_filtered))
+        tweets_filtered_list = list(set(tweets_filtered))
         tweets_full_reduce = '~'.join([tweet_to_alphanumeric(t) for t in tweets_filtered])
-        tweets_filtered = ' ' + ' ~ '.join(tweets_filtered) + ' '
+        tweets_filtered = ' ' + ' ~ '.join(tweets_filtered_list) + ' '
 
         # form a dictionary that maps from the text of a hashtag to related NL utterances, hashtags seen in data
         hash_to_concept = {}
@@ -398,10 +398,8 @@ class HashtagParser(object):
                 else:
                     for key in value:
                         recursively_get_all_keys(value, running_list.append(value))
-        
+
         recursively_get_all_keys(hash_to_award, [])
-
-
         bests, awards = [], []
         chunk_counter = Counter()
         for k, v in hash_to_award.items():
@@ -499,6 +497,7 @@ class HashtagParser(object):
 
                 tag_counter = dict(sorted(tag_counter.items(), key=lambda item: item[1], reverse=True))
                 nl_counter = dict(sorted(nl_counter.items(), key=lambda item: item[1], reverse=True))
+
                 hash_to_concept[k] = {
                     'utterance': nl_top_utterance,
                     'utterance_forms': nl_counter,
@@ -511,6 +510,27 @@ class HashtagParser(object):
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_concept = {k: v for k, v in sorted(hash_to_concept.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
 
+        for k, v in hash_to_concept.items():
+            best_counter = {}
+            for _, best_v in bests_clean:
+                best_str = best_v['utterance']
+                best_counter[best_str] = 0
+
+            for tweet in tweets_filtered_list:
+                tweet = tweet.lower()
+                if not any([utt in tweet for utt in v['utterance_forms']]):
+                    continue
+                if not any([hash in tweet for hash in v['hashtag_forms']]):
+                    continue
+
+                for _, best_v in bests_clean:
+                    best_utt = best_v['utterance']
+                    if any([best_str in tweet for best_str in best_v['utterance_forms']]):
+                        best_counter[best_utt] += 1
+
+            best_counter = {k: v for k, v in sorted(best_counter.items(), key=lambda item: item[1], reverse=True) if v != 0}
+            hash_to_concept[k]['bests'] = best_counter
+
         print('\n' + '---' * 20)
         print('general hashtags\n')
         for k, v in hash_to_concept.items():
@@ -518,6 +538,7 @@ class HashtagParser(object):
                   (v['utterance'], v['utterance_total'], v['hashtag'], v['hashtag_total']))
             print('\tutterances:', v['utterance_forms'])
             print('\thashtags:', v['hashtag_forms'])
+            print('\tbests:', v['bests'])
             print()
 
         return hash_to_concept
