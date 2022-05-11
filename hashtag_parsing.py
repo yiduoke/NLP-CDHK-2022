@@ -397,7 +397,6 @@ class HashtagParser(object):
 
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_award = {k: v for k, v in sorted(hash_to_award.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
-<<<<<<< HEAD
         print(hash_to_award.keys())
         print("checkpoint")
         for key in hash_to_award.keys():
@@ -441,18 +440,6 @@ class HashtagParser(object):
         print("celebration party party party levvy not needed")
 
 
-=======
-        print("","","",hash_to_award.keys())
-        all_hash_to_award_keys = []
-
-        def recursively_get_all_keys(dictionary, running_list):
-            for key, value in hash_to_award:
-                if type(value) != dict:
-                    return running_list
-                else:
-                    for key in value:
-                        recursively_get_all_keys(value, running_list.append(value))
->>>>>>> 28c9e1780e98f7b369da1603acb8e748cf26dea6
 
         # recursively_get_all_keys(hash_to_award, [])
         bests, awards = [], []
