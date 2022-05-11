@@ -1,0 +1,271 @@
+------------------------------------------------------------
+"best" in hashtag:
+best actor (total uses: 5783, 7 unique patterns found); top hashtag: #BestActor (total uses: 335, 6 unique hashtags found)
+	- all utterances (and their counts): {'best actor': 5619, 'best actor.': 142, 'best #actor': 14, 'bestactor': 5, 'best. actor': 1, 'best! actor': 1, 'best-actor': 1}
+	best actor comedy (total uses: 87, 13 unique patterns found); top hashtag: #BestActorComedy (total uses: 2, 1 unique hashtags found)
+		- all utterances (and their counts): {'best actor comedy': 28, 'best actor, comedy': 26, 'best actor (comedy': 12, 'best actor - comedy': 4, 'best actor/ comedy': 3, 'best actor: comedy': 3, 'best actor – comedy': 3, 'best actor/comedy': 2, 'best actor comedy.': 2, 'best actor- comedy': 1, 'best actor — comedy': 1, 'best actor-comedy': 1, 'best actor / comedy': 1}
+	best actor - drama (total uses: 243, 18 unique patterns found); top hashtag: #BestActorDrama (total uses: 11, 2 unique hashtags found)
+		- all utterances (and their counts): {'best actor - drama': 80, 'best actor drama': 72, 'best actor, drama': 40, 'best actor (drama': 14, 'best actor drama.': 7, 'best actor-drama': 7, 'best actor – drama': 5, 'best actor - drama.': 4, 'best actor-drama.': 3, 'best actor, drama.': 2, 'best actor: drama': 2, 'best actor/drama': 1, 'best actor- drama': 1, 'best actor — drama': 1, 'best actor -drama.': 1, 'best actor / drama': 1, 'best actor/ drama': 1, 'best actor,drama': 1}
+		best actor in a tv drama (total uses: 251, 3 unique patterns found); top hashtag: #BestActorinaTVDrama (total uses: 1, 1 unique hashtags found)
+			- all utterances (and their counts): {'best actor in a tv drama': 237, 'best actor in a tv drama.': 13, 'best #actor in a #tv #drama': 1}
+			best actor in a tv series, drama (total uses: 328, 36 unique patterns found); top hashtag: #BestActorTVSeriesDrama (total uses: 6, 4 unique hashtags found)
+				- all utterances (and their counts): {'best actor tv series drama': 14, 'best actor, tv series, drama': 13, 'best actor, tv series drama': 6, 'best actor tv series, drama': 6, 'best actor tv series - drama': 4, 'best actor - tv series - drama': 3, 'best actor tv series/drama': 3, 'best actor tv series (drama': 3, 'best actor tv series drama.': 2, 'best actor, tv series/drama': 2, 'best actor - tv series (drama': 2, 'best actor - tv series, drama': 2, 'best actor (tv series -drama': 1, 'best actor t.v series drama': 1, 'best actor, tv series-drama': 1, 'best actor, tv series (drama': 1, 'best actor (tv series, drama': 1, 'best actor- tv series- drama': 1, 'best actor - tv series drama': 1, 'best #actor #tvseries #drama': 1, 'best actor- tv series drama': 1, 'best actor in a tv series, drama': 178, 'best actor in a tv series drama': 27, 'best actor in a tv series (drama': 17, 'best actor in a tv series - drama': 14, 'best actor in a tv series-drama': 6, 'best actor in a tv series, drama.': 4, 'best actor in a tv series- drama': 2, 'best actor in a tv series - drama.': 2, 'best actor in a tv series: drama': 2, 'best actor in a tv series,\xa0drama': 2, 'best actor in a tv series: drama.': 1, 'best actor in a tv series,drama': 1, 'best actor in a #tv series (drama': 1, 'best actor in a tv series drama.': 1, 'best actor in a tv series / drama': 1}
+	best actor, tv (total uses: 266, 12 unique patterns found); top hashtag: #BestActorTV (total uses: 4, 1 unique hashtags found)
+		- all utterances (and their counts): {'best actor, tv': 106, 'best actor tv': 101, 'best actor - tv': 28, 'best actor (tv': 12, 'best actor – tv': 7, 'best actor- tv': 4, 'best actor--tv': 2, 'best actor/tv': 2, 'best actor -- tv': 1, 'best actor t.v': 1, 'best actor -tv': 1, 'best actor/ tv': 1}
+		best supporting actor tv (total uses: 54, 7 unique patterns found); top hashtag: #BestSupportingActorTV (total uses: 1, 1 unique hashtags found)
+			- all utterances (and their counts): {'best supporting actor tv': 32, 'best supporting actor, tv': 10, 'best supporting actor - tv': 5, 'best supporting actor (tv': 4, 'best supporting actor- tv': 1, 'best supporting actor/ tv': 1, 'best supporting actor #tv': 1}
+		best actor in a tv movie (total uses: 96, 2 unique patterns found); top hashtag: #BestActorInATVMovie (total uses: 1, 1 unique hashtags found)
+			- all utterances (and their counts): {'best actor in a tv movie': 95, 'best actor in a #tv movie': 1}
+		best actor tv series (total uses: 114, 10 unique patterns found); top hashtag: #BestActorTVSeries (total uses: 8, 2 unique hashtags found)
+			- all utterances (and their counts): {'best actor tv series': 48, 'best actor, tv series': 36, 'best actor - tv series': 15, 'best actor (tv series': 6, 'best actor- tv series': 4, 'best actor--tv series': 1, 'best actor – tv series': 1, 'best actor t.v series': 1, 'best actor -tv series': 1, 'best #actor #tvseries': 1}
+	best actor in a mini-series (total uses: 271, 7 unique patterns found); top hashtag: #BestActorinaMiniseries (total uses: 1, 1 unique hashtags found)
+		- all utterances (and their counts): {'best actor in a mini-series': 128, 'best actor in a miniseries': 113, 'best actor in a mini series': 19, 'best actor in a mini-series.': 5, 'best actor in a miniseries.': 4, 'best actor in a\xa0miniseries': 1, 'best actor in a mini series.': 1}
+	best supporting actor (total uses: 1727, 8 unique patterns found); top hashtag: #BestSupportingActor (total uses: 114, 3 unique hashtags found)
+		- all utterances (and their counts): {'best supporting actor': 1657, 'best supporting actor.': 60, 'best #supportingactor': 3, 'best-supporting actor': 2, 'best supporting #actor': 2, 'best support ing actor.': 1, 'best supporting\xa0actor': 1, 'bestsupporting actor': 1}
+best actress (total uses: 4912, 6 unique patterns found); top hashtag: #BestActress (total uses: 317, 2 unique hashtags found)
+	- all utterances (and their counts): {'best actress': 4810, 'best actress.': 79, 'best #actress': 19, 'bestactress': 2, 'best "actress': 1, "best actres… : 's.": 1}
+	best actress in a comedy (total uses: 325, 15 unique patterns found); top hashtag: #BestActressComedy (total uses: 8, 5 unique hashtags found)
+		- all utterances (and their counts): {'best actress - comedy': 36, 'best actress comedy': 27, 'best actress, comedy': 26, 'best actress (comedy': 9, 'best actress – comedy': 4, 'best actress-comedy': 4, 'best actress — comedy': 1, 'best actress comedy.': 1, 'best actress- comedy': 1, 'best actress / comedy': 1, 'best actress/comedy': 1, 'best actress: comedy': 1, 'best actress, comedy.': 1, 'best actress in a comedy': 206, 'best actress in a comedy.': 6}
+		best actress in a tv comedy (total uses: 119, 2 unique patterns found); top hashtag: #BestActressInATVComedy (total uses: 1, 1 unique hashtags found)
+			- all utterances (and their counts): {'best actress in a tv comedy': 105, 'best actress in a tv comedy.': 14}
+	best actress in a drama (total uses: 348, 17 unique patterns found); top hashtag: #BestActressinaDrama (total uses: 4, 2 unique hashtags found)
+		- all utterances (and their counts): {'best actress in a drama': 143, 'best actress in a drama.': 8, 'best actress - drama': 73, 'best actress drama': 48, 'best actress (drama': 25, 'best actress, drama': 25, 'best actress – drama': 6, 'best actress drama.': 6, 'best actress-drama': 4, 'best #actress #drama': 2, 'best actress - drama.': 2, 'best actress : drama': 1, 'best actress/ drama': 1, 'best actress: drama': 1, 'best actress-- drama': 1, 'best actress , drama': 1, 'best actress: drama.': 1}
+		best actress tv drama (total uses: 54, 11 unique patterns found); top hashtag: #BestActressTVDrama (total uses: 2, 1 unique hashtags found)
+			- all utterances (and their counts): {'best actress tv drama': 23, 'best actress, tv drama': 19, 'best actress--tv drama': 3, 'best actress/tv drama': 2, 'best actress - tv drama': 1, 'best actress (tv, drama': 1, 'best actress/ tv drama': 1, 'best actress - tv drama.': 1, 'best actress, tv, drama': 1, 'best actress – tv drama.': 1, 'best actress-tv drama': 1}
+			best actress in a tv series, drama (total uses: 215, 37 unique patterns found); top hashtag: #BestActressTVSeriesDrama (total uses: 5, 4 unique hashtags found)
+				- all utterances (and their counts): {'best actress tv series drama': 12, 'best actress, tv series, drama': 9, 'best actress tv series, drama': 5, 'best actress, tv series drama': 3, 'best actress - tv series drama': 3, 'best actress tv series- drama': 2, 'best actress, tv series - drama': 2, 'best actress - tv series - drama': 2, 'best actress tv series (drama': 2, 'best actress, tv series (drama': 2, 'best actress tv series - drama.': 1, 'best actress, tv series/drama': 1, 'best actress- tv series-drama': 1, 'best actress- tv series, drama': 1, 'best actress - tv series, drama': 1, 'best actress - tv series (drama': 1, 'best actress (tv series drama': 1, 'best actress tv series - drama': 1, 'best actress tv series-drama': 1, 'best actress, tv series-drama': 1, 'best actress tv series/drama': 1, 'best actress in a tv series, drama': 90, 'best actress in a tv series drama': 26, 'best actress in a tv series (drama': 17, 'best actress in a tv series - drama': 11, 'best actress in a tv series, drama.': 3, 'best actress in a tv series: drama': 3, 'best actress in a tv series- drama': 2, 'best actress in a tv series-drama': 2, 'best #actress in a #tv series - drama': 1, 'best actress in a tv series / drama': 1, 'best actress in a tv series- drama.': 1, 'best actress in a tv series,\xa0drama': 1, 'best actress in a tv series - drama.': 1, 'best #actress in a #tv series #drama': 1, 'best actress in a tv series -drama': 1, 'best actress in a tv series,drama': 1}
+	best actress in a tv (total uses: 1142, 17 unique patterns found); top hashtag: #BestActressTV (total uses: 2, 2 unique hashtags found)
+		- all utterances (and their counts): {'best actress tv': 115, 'best actress, tv': 90, 'best actress - tv': 28, 'best actress (tv': 8, 'best actress – tv': 7, 'best actress/tv': 5, 'best actress--tv': 4, 'best actress-tv': 3, 'best actress- tv': 3, 'best actress/ tv': 2, 'best #actress tv': 2, 'best actress: tv': 1, 'best actress in a tv': 869, 'best #actress in a #tv': 2, 'best actress in a t.v': 1, 'best #actress in a tv': 1, 'best actress in a #tv': 1}
+		best supporting actress, tv (total uses: 47, 8 unique patterns found); top hashtag: #BestSupportingActressTV (total uses: 4, 1 unique hashtags found)
+			- all utterances (and their counts): {'best supporting actress, tv': 14, 'best supporting actress tv': 13, 'best supporting actress (tv': 9, 'best supporting actress - tv': 7, 'best supporting actress - #tv': 1, 'best supporting actress- tv': 1, 'best supporting actress/ tv': 1, 'best supporting actress tv.': 1}
+		best tv series actress (total uses: 196, 9 unique patterns found); top hashtag: #BestActressTVSeries (total uses: 6, 2 unique hashtags found)
+			- all utterances (and their counts): {'best tv series actress': 80, 'best actress tv series': 44, 'best actress, tv series': 42, 'best actress - tv series': 20, 'best actress (tv series': 5, 'best actress- tv series': 2, 'best actress tv series.': 1, 'best actress-tv series': 1, 'best actress--tv series': 1}
+	best supporting actress (total uses: 1616, 8 unique patterns found); top hashtag: #BestSupportingActress (total uses: 76, 3 unique hashtags found)
+		- all utterances (and their counts): {'best supporting actress': 1568, 'best supporting actress.': 39, 'best supporting\xa0actress': 3, 'best supporting #actress': 2, 'best #supporting #actress': 1, 'best-supporting-actress': 1, 'best, supporting actress': 1, 'best "supporting" actress': 1}
+best supporting (total uses: 3611, 8 unique patterns found); top hashtag: #BestSupporting (total uses: 9, 2 unique hashtags found)
+	- all utterances (and their counts): {'best supporting': 3601, 'best-supporting': 3, 'bestsupporting': 2, 'best #supporting': 1, 'best support ing': 1, 'best supporting.': 1, 'best, supporting': 1, 'best "supporting': 1}
+best tv (total uses: 2454, 5 unique patterns found); top hashtag: #bestTV (total uses: 1, 1 unique hashtags found)
+	- all utterances (and their counts): {'best tv': 2436, 'best #tv': 9, 'best t.v.': 5, 'best t.v': 2, 'best tv.': 2}
+	best tv miniseries (total uses: 79, 8 unique patterns found); top hashtag: #BestTVMiniSeries (total uses: 1, 1 unique hashtags found)
+		- all utterances (and their counts): {'best tv miniseries': 62, 'best tv mini-series': 8, 'best tv mini series': 4, 'best tv. miniseries': 1, 'best tv miniseries.': 1, 'best tv/mini series.': 1, 'best #tv mini-series': 1, 'best tv mini-series.': 1}
+	best tv drama (total uses: 483, 5 unique patterns found); top hashtag: #BestTVDrama (total uses: 20, 4 unique hashtags found)
+		- all utterances (and their counts): {'best tv drama': 430, 'best tv drama.': 47, 'best tv\xa0drama': 3, 'best #tv drama': 2, 'best tv, drama': 1}
+		best tv series, drama (total uses: 368, 27 unique patterns found); top hashtag: #BestTVSeriesDrama (total uses: 13, 4 unique hashtags found)
+			- all utterances (and their counts): {'best tv series, drama': 148, 'best tv series drama': 87, 'best tv series - drama': 27, 'best tv series (drama': 18, 'best tv series – drama': 17, 'best tv series drama.': 16, 'best tv series, drama.': 13, 'best tv series-drama': 6, 'best tv series - drama.': 5, 'best tv series- drama': 5, 'best tv series/drama': 5, 'best tv series: drama': 3, 'best tv series,drama.': 2, 'best tv series-drama.': 2, 'best tv series –\xa0drama': 2, 'best tv series / drama': 1, 'best tv series \x96 drama': 1, 'best tv series,\xa0drama': 1, 'best t.v series drama': 1, 'best tv series\xa0drama': 1, 'best tv series. (drama': 1, 'best tvseries drama': 1, 'best #tvseries #drama': 1, 'best tv series- drama.': 1, 'best tv series -drama': 1, 'best tv/series drama': 1, 'best tv series/drama.': 1}
+	best tv series (total uses: 991, 10 unique patterns found); top hashtag: #BestTVSeries (total uses: 23, 3 unique hashtags found)
+		- all utterances (and their counts): {'best tv series': 958, 'best tv series.': 14, 'best #tvseries': 5, 'best tv-series': 4, 'best #tv series': 3, 'best t.v series': 2, 'best t.v. series': 2, 'best tv, series': 1, 'best tvseries': 1, 'best tv/series': 1}
+		best tv comedy series (total uses: 62, 2 unique patterns found); top hashtag: #bestTVcomedyseries (total uses: 2, 1 unique hashtags found)
+			- all utterances (and their counts): {'best tv comedy series': 61, 'best tv comedy series.': 1}
+best motion (total uses: 2030, 1 unique patterns found); top hashtag: #BestMotion (total uses: 1, 1 unique hashtags found)
+	- all utterances (and their counts): {'best motion': 2030}
+	best motion picture (total uses: 1954, 4 unique patterns found); top hashtag: #BestMotionPicture (total uses: 24, 2 unique hashtags found)
+		- all utterances (and their counts): {'best motion picture': 1923, 'best motion picture.': 27, 'best #motionpicture': 3, 'best motion\xa0picture': 1}
+		best screenplay, motion picture (total uses: 104, 14 unique patterns found); top hashtag: #BestScreenplayMotionPicture (total uses: 7, 1 unique hashtags found)
+			- all utterances (and their counts): {'best screenplay, motion picture': 41, 'best screenplay - motion picture': 37, 'best screenplay – motion picture': 6, 'best screenplay (motion picture': 4, 'best screenplay - motion picture.': 3, 'best screenplay-motion picture': 2, 'best screenplay--motion picture': 2, 'best screenplay, motion picture.': 2, 'best screenplay/motion picture': 2, 'best screen play - motion picture': 1, 'best screenplay motion picture': 1, 'best screenplay -motion picture.': 1, 'best screenplay, motion\xa0picture': 1, 'best screen play, motion picture.': 1}
+		best actress in a motion picture (total uses: 903, 17 unique patterns found); top hashtag: #BestActressMotionPicture (total uses: 6, 2 unique hashtags found)
+			- all utterances (and their counts): {'best actress, motion picture': 51, 'best actress motion picture': 42, 'best actress — motion picture': 28, 'best actress - motion picture': 20, 'best actress – motion picture': 3, 'best actress (motion picture': 3, 'best #actress #motionpicture': 2, 'best actress-motion picture': 1, 'best actress--motion picture': 1, 'best #actress? #motionpicture': 1, 'best actress � motion picture': 1, 'best actress motion picture.': 1, 'best actress in a motion picture': 742, 'best actress in a motion picture.': 4, 'best actress in a #motionpicture': 1, 'best #actress in a #motionpicture': 1, 'best #actress in a motion picture': 1}
+			best actress in a motion picture, drama (total uses: 445, 35 unique patterns found); top hashtag: #BestActressinaMotionPictureDrama (total uses: 14, 7 unique hashtags found)
+				- all utterances (and their counts): {'best actress, motion picture drama': 16, 'best actress motion picture drama': 15, 'best actress - motion picture - drama': 5, 'best actress - motion picture, drama': 3, 'best actress motion picture, drama': 3, 'best actress, motion picture, drama': 2, 'best actress, motion picture (drama': 2, 'best actress, motion picture – drama': 2, 'best actress - motion picture drama': 2, 'best actress, motion picture - drama': 2, 'best actress – motion picture drama': 2, 'best actress (motion picture, drama': 2, 'best #actress? #motionpicture #drama': 1, 'best actress motion picture/drama': 1, 'best actress, motion picture drama.': 1, 'best actress motion picture (drama': 1, 'best actress motion picture - drama': 1, 'best actress--motion picture--drama': 1, 'best actress, motion picture, drama.': 1, 'best #actress #motionpicture #drama': 1, 'best actress in a motion picture, drama': 161, 'best actress in a motion picture - drama': 105, 'best actress in a motion picture drama': 79, 'best actress in a motion picture (drama': 17, 'best actress in a motion picture-drama': 4, 'best actress in a motion picture - drama.': 2, 'best actress in a motion picture,\xa0drama': 2, 'best actress in a motion picture-drama.': 2, 'best actress in a motion picture drama.': 2, 'best actress in a motion picture, drama.': 2, 'best actress in a motion picture: drama': 1, 'best actress in a motion picture- drama': 1, 'best actress in a motion picture – drama': 1, 'best actress in a motion picture -drama': 1, 'best #actress in a motion picture, drama': 1}
+			best supporting actress in a motion picture (total uses: 321, 4 unique patterns found); top hashtag: #BestSupportingActressinamotionpicture (total uses: 6, 3 unique hashtags found)
+				- all utterances (and their counts): {'best supporting actress in a motion picture': 308, 'best supporting actress in a motion picture.': 10, 'best supporting actress in a motion\xa0picture': 2, 'bestsupportingactressinamotionpicture.': 1}
+		best director, motion picture (total uses: 170, 14 unique patterns found); top hashtag: #BestDirectorMotionPicture (total uses: 4, 1 unique hashtags found)
+			- all utterances (and their counts): {'best director, motion picture': 75, 'best director - motion picture': 63, 'best director motion picture': 13, 'best director (motion picture': 4, 'best director – motion picture': 4, 'best director, motion\xa0picture': 2, 'best director- motion picture': 2, 'best director, #motionpicture': 1, 'best director - motion picture.': 1, 'best #director - #motionpicture': 1, 'best director--motion picture': 1, 'best director -motion picture': 1, 'best director: motion picture': 1, 'best director, motion picture.': 1}
+		best motion picture, comedy (total uses: 469, 14 unique patterns found); top hashtag: #BestMotionPictureComedy (total uses: 5, 2 unique hashtags found)
+			- all utterances (and their counts): {'best motion picture, comedy': 178, 'best motion picture - comedy': 155, 'best motion picture comedy': 64, 'best motion picture (comedy': 28, 'best motion picture – comedy': 17, 'best motion picture- comedy': 10, 'best motion picture-comedy': 6, 'best motion picture, comedy.': 2, 'best motion picture: comedy': 2, 'best motion picture -comedy': 2, 'best motion picture comedy.': 2, 'best #motionpicture, comedy': 1, 'best motion picture -- comedy': 1, 'best motion picture \x96 comedy': 1}
+		best actor in a motion picture (total uses: 807, 3 unique patterns found); top hashtag: #BestActorInaMotionPicture (total uses: 1, 1 unique hashtags found)
+			- all utterances (and their counts): {'best actor in a motion picture': 802, 'best actor in a motion picture.': 4, 'best actor in a #motionpicture': 1}
+			best actor in a motion picture, drama (total uses: 505, 38 unique patterns found); top hashtag: #BestActorinaMotionPictureDrama (total uses: 5, 3 unique hashtags found)
+				- all utterances (and their counts): {'best actor, motion picture drama': 20, 'best actor motion picture drama': 14, 'best actor, motion picture, drama': 5, 'best actor - motion picture - drama': 5, 'best actor (motion picture - drama': 3, 'best actor motion picture drama.': 3, 'best actor motion picture, drama': 2, 'best actor, motion picture – drama': 2, 'best actor--motion picture, drama': 2, 'best actor motion picture - drama': 1, 'best actor,motion picture, drama': 1, 'best #actor #motionpicture #drama': 1, 'best actor, motion picture drama.': 1, 'best actor motion picture-drama': 1, 'best actor, motion picture - drama': 1, 'best actor - motion picture, drama': 1, 'best actor – motion picture drama': 1, 'best actor motion picture (drama': 1, 'best actor, motion picture (drama': 1, 'best actor in a motion picture, drama': 173, 'best actor in a motion picture - drama': 129, 'best actor in a motion picture drama': 89, 'best actor in a motion picture (drama': 22, 'best actor in a motion picture-drama': 3, 'best actor in a motion picture-drama.': 3, 'best actor in a motion picture, drama.': 3, 'best actor in a motion picture,\xa0drama': 2, 'best actor in a motion picture\xa0drama': 2, 'best actor in a motion picture -drama': 2, 'best actor in a motion picture - drama.': 2, 'best actor in a motion picture – drama': 2, 'best actor in a motion picture: drama': 1, 'best actor in a motion picture... drama': 1, 'best actor in a motion picture // drama': 1, 'best actor in a motion picture,drama': 1, 'best actor in a motion picture- drama': 1, 'best actor in a motion picture drama.': 1, 'best actor in a #motionpicture, drama': 1}
+			best supporting actor in a motion picture (total uses: 301, 6 unique patterns found); top hashtag: #BestSupportingActorInAMotionPicture (total uses: 8, 3 unique hashtags found)
+				- all utterances (and their counts): {'best supporting actor in a motion picture': 279, 'best supporting actor in a motion picture.': 17, 'best supporting actor in a motion\xa0picture': 2, 'best-supporting actor in a motion picture': 1, 'best supporting #actor in a #motionpicture': 1, 'best supporting actor, in a motion picture': 1}
+		best motion picture, drama (total uses: 899, 24 unique patterns found); top hashtag: #BestMotionPictureDrama (total uses: 31, 3 unique hashtags found)
+			- all utterances (and their counts): {'best motion picture, drama': 341, 'best motion picture - drama': 214, 'best motion picture drama': 183, 'best motion picture, drama.': 29, 'best motion picture (drama': 29, 'best motion picture drama.': 25, 'best motion picture – drama': 23, 'best motion picture - drama.': 13, 'best motion picture- drama': 9, 'best motion picture-drama.': 6, 'best motion picture: drama': 4, 'best motion picture-drama': 4, 'best motion picture- drama.': 3, 'best motion picture,\xa0drama': 3, 'best motion picture/drama': 2, 'best motion picture #drama': 2, 'best motion picture — drama': 2, 'best motion picture – drama.': 1, 'best motion picture, #drama': 1, 'best motion picture –\xa0drama': 1, 'best #motionpicture #drama': 1, 'best motion picture -drama': 1, 'best motion picture/drama.': 1, 'best motion picture:\n-drama': 1}
+best picture (total uses: 1548, 5 unique patterns found); top hashtag: #BestPicture (total uses: 131, 4 unique hashtags found)
+	- all utterances (and their counts): {'best picture': 1393, 'best picture.': 147, 'best-picture': 5, 'bestpicture': 2, 'best\xa0picture': 1}
+	best picture, comedy (total uses: 160, 11 unique patterns found); top hashtag: #BestPictureComedy (total uses: 9, 2 unique hashtags found)
+		- all utterances (and their counts): {'best picture, comedy': 69, 'best picture comedy': 39, 'best picture - comedy': 26, 'best picture (comedy': 17, 'best picture comedy.': 3, 'best picture -comedy': 1, 'best picture-comedy': 1, 'best picture, (comedy': 1, 'best picture- comedy': 1, 'best picture: comedy': 1, 'best picture/ comedy': 1}
+	best picture, drama (total uses: 314, 19 unique patterns found); top hashtag: #BestPictureDrama (total uses: 12, 3 unique hashtags found)
+		- all utterances (and their counts): {'best picture, drama': 122, 'best picture - drama': 61, 'best picture drama': 56, 'best picture (drama': 14, 'best picture – drama': 11, 'best picture - drama.': 11, 'best picture-drama.': 9, 'best picture-drama': 7, 'best picture, drama.': 5, 'best picture drama.': 4, 'best picture- drama': 3, 'best picture: drama': 3, 'best picture- drama.': 2, 'best picture –\xa0drama': 1, 'best picture -drama.': 1, 'best picture/drama': 1, 'best picture/drama.': 1, 'best picture,\xa0drama': 1, 'best picture/ drama': 1}
+best director (total uses: 1431, 4 unique patterns found); top hashtag: #BestDirector (total uses: 101, 2 unique hashtags found)
+	- all utterances (and their counts): {'best director': 1323, 'best director.': 101, 'best #director': 5, 'bestdirector': 2}
+best animated (total uses: 1350, 3 unique patterns found); top hashtag: #BestAnimated (total uses: 7, 2 unique hashtags found)
+	- all utterances (and their counts): {'best animated': 1340, 'best animated.': 6, 'best #animated': 4}
+	best animated movie (total uses: 88, 2 unique patterns found); top hashtag: #BestAnimatedMovie (total uses: 3, 1 unique hashtags found)
+		- all utterances (and their counts): {'best animated movie': 79, 'best animated movie.': 9}
+	best animated film (total uses: 383, 6 unique patterns found); top hashtag: #BestAnimatedFilm (total uses: 18, 3 unique hashtags found)
+		- all utterances (and their counts): {'best animated film': 317, 'best animated film.': 60, 'best animated\xa0film': 2, 'best #animatedfilm': 2, 'best #animatedfilm.': 1, 'best #animated film.': 1}
+		best animated feature film (total uses: 433, 6 unique patterns found); top hashtag: #BestAnimatedFeatureFilm (total uses: 14, 2 unique hashtags found)
+			- all utterances (and their counts): {'best animated feature film': 383, 'best animated feature film.': 44, 'best animated feature\xa0film': 2, 'best #animated feature #film': 2, 'best animated featurefilm': 1, 'best #animated #feature #film': 1}
+	best animated feature (total uses: 678, 5 unique patterns found); top hashtag: #BestAnimatedFeature (total uses: 18, 2 unique hashtags found)
+		- all utterances (and their counts): {'best animated feature': 643, 'best animated feature.': 31, 'best #animated feature': 2, 'best #animated #feature': 1, 'best #animatedfeature': 1}
+best drama (total uses: 984, 3 unique patterns found); top hashtag: #BestDrama (total uses: 67, 2 unique hashtags found)
+	- all utterances (and their counts): {'best drama': 910, 'best drama.': 73, 'best (drama': 1}
+	best film drama (total uses: 52, 9 unique patterns found); top hashtag: #BestFilmDrama (total uses: 8, 1 unique hashtags found)
+		- all utterances (and their counts): {'best film drama': 30, 'best film - drama': 6, 'best film (drama': 5, 'best film, drama': 5, 'best film - drama.': 2, 'best film drama.': 1, 'best film – drama': 1, 'best film, drama.': 1, 'best film: drama.': 1}
+	best movie, drama (total uses: 98, 9 unique patterns found); top hashtag: #BestMovieDrama (total uses: 2, 1 unique hashtags found)
+		- all utterances (and their counts): {'best movie, drama': 71, 'best movie drama': 18, 'best movie drama.': 2, 'best movie - drama.': 2, 'best movie (drama': 1, 'best movie,\xa0drama': 1, 'best movie, drama.': 1, 'best movie - drama': 1, 'best movie-drama': 1}
+	best drama series (total uses: 146, 3 unique patterns found); top hashtag: #BestDramaSeries (total uses: 3, 1 unique hashtags found)
+		- all utterances (and their counts): {'best drama series': 125, 'best drama series.': 19, 'best drama\xa0series': 2}
+best screenplay (total uses: 850, 7 unique patterns found); top hashtag: #BestScreenplay (total uses: 130, 4 unique hashtags found)
+	- all utterances (and their counts): {'best screenplay': 718, 'best screenplay.': 105, 'best screen play': 18, 'best #screenplay': 3, 'best screen play.': 2, 'bestscreenplay': 2, 'best\xa0screenplay': 2}
+best miniseries (total uses: 553, 7 unique patterns found); top hashtag: #BestMiniseries (total uses: 24, 3 unique hashtags found)
+	- all utterances (and their counts): {'best miniseries': 273, 'best mini-series': 171, 'best mini series': 69, 'best miniseries.': 17, 'best mini-series.': 15, 'best mini series.': 6, 'best mini- series': 2}
+best movie (total uses: 530, 3 unique patterns found); top hashtag: #BestMovie (total uses: 25, 2 unique hashtags found)
+	- all utterances (and their counts): {'best movie': 509, 'best movie.': 20, 'bestmovie': 1}
+best song (total uses: 369, 5 unique patterns found); top hashtag: #BestSong (total uses: 46, 2 unique hashtags found)
+	- all utterances (and their counts): {'best song': 313, 'best song.': 52, 'bestsong': 2, 'best\xa0song': 1, 'best. song.': 1}
+	best original song (total uses: 1550, 7 unique patterns found); top hashtag: #BestOriginalSong (total uses: 220, 3 unique hashtags found)
+		- all utterances (and their counts): {'best original song': 1451, 'best original song.': 88, 'best original\xa0song': 3, 'best "original song': 3, 'best original #song': 2, 'best #originalsong': 2, 'bestoriginal song': 1}
+best score (total uses: 202, 2 unique patterns found); top hashtag: #BestScore (total uses: 17, 2 unique hashtags found)
+	- all utterances (and their counts): {'best score': 165, 'best score.': 37}
+	best original score (total uses: 494, 5 unique patterns found); top hashtag: #BestOriginalScore (total uses: 31, 2 unique hashtags found)
+		- all utterances (and their counts): {'best original score': 445, 'best original score.': 45, 'best original #score': 2, 'best #originalscore': 1, 'best #original score': 1}
+100%|██████████| 1469/1469 [00:21<00:00, 69.37it/s]
+
+------------------------------------------------------------
+"award" in hashtag:
+
+award (?): golden globe award ............
+golden globe award (total uses: 1780); hashtag: #goldenglobeaward (total uses: 84)
+	all matching utterances (and their counts): {'golden globe award': 1656, 'golden globe award.': 111, 'golden globe\xa0award': 2, 'golden globe/award': 2, 'golden globe® award': 2, 'golden globe "award': 1, 'golden globe \n award': 1, 'goldenglobe award': 1, 'golden globe! #award': 1, 'golden globe "award.': 1, 'goldenglobe award.': 1, 'golden. globe award.': 1}
+	all matching hashtags (and their counts): {'#GoldenGlobeAward': 81, '#GoldenGlobeaward': 2, '#goldenglobeaward': 1}
+
+award (?): lifetime achievement award ............
+lifetime achievement award (total uses: 683); hashtag: #lifetimeachievementaward (total uses: 21)
+	all matching utterances (and their counts): {'lifetime achievement award': 498, 'lifetime achievement award.': 161, 'life time achievement award': 19, 'life time achievement award.': 3, 'lifetime achievement\xa0award': 1, 'lifetime achievement #award': 1}
+	all matching hashtags (and their counts): {'#LifetimeAchievementAward': 14, '#lifetimeachievementaward': 6, '#LifetimeAchievementaward': 1}
+
+award (?): demille award ............
+demille award (total uses: 629); hashtag: #demilleaward (total uses: 53)
+	all matching utterances (and their counts): {'demille award': 537, 'demille award.': 87, 'de mille award': 2, 'demille\xa0award': 1, 'demille. award.': 1, 'de mille award.': 1}
+	all matching hashtags (and their counts): {'#DeMilleAward': 37, '#DemilleAward': 11, '#demilleaward': 4, '#deMilleaward': 1}
+
+award (?): globes award ............
+globes award (total uses: 581); hashtag: #globesaward (total uses: 1)
+	all matching utterances (and their counts): {'globes award': 535, 'globes award.': 24, 'globes\xa0award': 5, 'globes, award': 2, "globe 's award": 2, 'globes. award': 2, 'globes/award': 2, 'globes! award': 2, 'globes: … award': 1, 'globes? award': 1, 'globes??? award': 1, 'globes: award': 1, 'globes\naward': 1, 'globes...\n\n...\n\n...award.': 1, 'globes" award': 1}
+	all matching hashtags (and their counts): {'#GlobesAward': 1}
+
+award (?): cecil b. demille award ............
+cecil b. demille award (total uses: 481); hashtag: #cecilbdemilleaward (total uses: 65)
+	all matching utterances (and their counts): {'cecil b. demille award': 340, 'cecil b demille award': 65, 'cecil b. demille award.': 48, 'cecil b demille award.': 19, 'cecil b.demille award': 3, 'cecil b. de mille award': 2, 'cecil.b. demille award.': 1, 'cecil b demille. award.': 1, 'cecil .b. demille award.': 1, 'cecil.b.demille award.': 1}
+	all matching hashtags (and their counts): {'#CecilBDeMilleAward': 38, '#cecilbdemilleaward': 13, '#CecilBDemilleAward': 11, '#CecilbDemilleAward': 1, '#CecilBDemilleaward': 1, '#CecilBDeMilleaward': 1}
+
+award (?): first award ............
+first award (total uses: 397); hashtag: #firstaward (total uses: 1)
+	all matching utterances (and their counts): {'first award': 382, 'first award.': 15}
+	all matching hashtags (and their counts): {'#FirstAward': 1}
+
+award (?): best actor award ............
+best actor award (total uses: 98); hashtag: #bestactoraward (total uses: 11)
+	all matching utterances (and their counts): {'best actor award': 84, 'best actor award.': 14}
+	all matching hashtags (and their counts): {'#BestActoraward': 9, '#BestActorAward': 2}
+
+award (?): another award ............
+another award (total uses: 79); hashtag: #anotheraward (total uses: 1)
+	all matching utterances (and their counts): {'another award': 73, 'another award.': 6}
+	all matching hashtags (and their counts): {'#AnotherAward': 1}
+
+award (?): tony award ............
+tony award (total uses: 6); hashtag: #tonyaward (total uses: 61)
+	all matching utterances (and their counts): {'tony award': 6}
+	all matching hashtags (and their counts): {'#TonyAward': 61}
+
+award (?): academy award ............
+academy award (total uses: 58); hashtag: #academyaward (total uses: 2)
+	all matching utterances (and their counts): {'academy award': 50, 'academy award.': 8}
+	all matching hashtags (and their counts): {'#AcademyAward': 2}
+
+award (?): 2015 golden globe award ............
+2015 golden globe award (total uses: 44); hashtag: #2015goldenglobeaward (total uses: 1)
+	all matching utterances (and their counts): {'2015 golden globe award': 42, '2015 #goldenglobe award': 2}
+	all matching hashtags (and their counts): {'#2015GoldenGlobeAward': 1}
+
+award (?): lifetime award ............
+lifetime award (total uses: 41); hashtag: #lifetimeaward (total uses: 1)
+	all matching utterances (and their counts): {'lifetime award': 39, 'lifetime award.': 2}
+	all matching hashtags (and their counts): {'#LifetimeAward': 1}
+
+award (?): deserves every award ............
+deserves every award (total uses: 37); hashtag: #deserveseveryaward (total uses: 1)
+	all matching utterances (and their counts): {'deserves every award': 34, 'deserves every award.': 3}
+	all matching hashtags (and their counts): {'#DeservesEveryAward': 1}
+
+award (?): demille lifetime achievement award ............
+demille lifetime achievement award (total uses: 26); hashtag: #demillelifetimeachievementaward (total uses: 1)
+	all matching utterances (and their counts): {'demille lifetime achievement award': 19, 'demille lifetime achievement award.': 4, 'de mille lifetime achievement award': 1, 'demille - lifetime achievement award.': 1, 'dem ille lifetime achievement award': 1}
+	all matching hashtags (and their counts): {'#DeMilleLifetimeAchievementAward': 1}
+
+award (?): best dressed award ............
+best dressed award (total uses: 19); hashtag: #bestdressedaward (total uses: 2)
+	all matching utterances (and their counts): {'best dressed award': 16, 'best dressed award.': 2, 'best-dressed award': 1}
+	all matching hashtags (and their counts): {'#BestDressedAward': 1, '#bestdressedaward': 1}
+
+award (?): george clooney lifetime achievement award ............
+george clooney lifetime achievement award (total uses: 11); hashtag: #georgeclooneylifetimeachievementaward (total uses: 2)
+	all matching utterances (and their counts): {'george clooney lifetime achievement award': 8, 'george clooney life time achievement award': 2, 'george clooney: lifetime achievement award': 1}
+	all matching hashtags (and their counts): {'#GeorgeClooneyLifetimeAchievementAward': 2}
+
+award (?): cecil award ............
+cecil award (total uses: 5); hashtag: #cecilaward (total uses: 7)
+	all matching utterances (and their counts): {'cecil award': 3, 'cecil award.': 2}
+	all matching hashtags (and their counts): {'#CecilAward': 7}
+
+award (?): cecile b. demille award ............
+cecile b. demille award (total uses: 10); hashtag: #cecilebdemilleaward (total uses: 2)
+	all matching utterances (and their counts): {'cecile b. demille award': 5, 'cecile b demille award': 4, 'cecile b. demille award.': 1}
+	all matching hashtags (and their counts): {'#CecileBDemilleAward': 1, '#cecilebdemilleaward': 1}
+
+award (?): humanitarian award ............
+humanitarian award (total uses: 11); hashtag: #humanitarianaward (total uses: 1)
+	all matching utterances (and their counts): {'humanitarian award': 9, 'humanitarian award.': 2}
+	all matching hashtags (and their counts): {'#HumanitarianAward': 1}
+
+award (?): cecil b demile award ............
+cecil b demile award (total uses: 3); hashtag: #cecilbdemileaward (total uses: 8)
+	all matching utterances (and their counts): {'cecil b demile award': 2, 'cecil b. demile award': 1}
+	all matching hashtags (and their counts): {'#CecilBDemileAward': 8}
+
+award (?): best award speech ............
+best award speech (total uses: 9); hashtag: #bestawardspeech (total uses: 2)
+	all matching utterances (and their counts): {'best award speech': 8, 'best #award speech': 1}
+	all matching hashtags (and their counts): {'#BestAwardSpeech': 2}
+
+award (?): cecil demille award ............
+cecil demille award (total uses: 6); hashtag: #cecildemilleaward (total uses: 3)
+	all matching utterances (and their counts): {'cecil demille award': 5, 'cecil demille award.': 1}
+	all matching hashtags (and their counts): {'#CecilDeMilleAward': 1, '#CecilDeMilleaward': 1, '#cecildemilleaward': 1}
+
+award (?): lifetime acheivement award ............
+lifetime acheivement award (total uses: 5); hashtag: #lifetimeacheivementaward (total uses: 2)
+	all matching utterances (and their counts): {'lifetime acheivement award': 4, 'lifetime acheivement award.': 1}
+	all matching hashtags (and their counts): {'#LifeTimeAcheivementAward': 1, '#LifetimeAcheivementAward': 1}
+
+award (?): 72nd golden globe award ............
+72nd golden globe award (total uses: 6); hashtag: #72ndgoldenglobeaward (total uses: 1)
+	all matching utterances (and their counts): {'72nd golden globe award': 5, '72nd #goldenglobe award.': 1}
+	all matching hashtags (and their counts): {'#72ndGoldenGlobeAward': 1}
+
+award (?): most important award ............
+most important award (total uses: 5); hashtag: #mostimportantaward (total uses: 1)
+	all matching utterances (and their counts): {'most important award': 4, 'most "important" award': 1}
+	all matching hashtags (and their counts): {'#MostImportantAward': 1}
+
+award (?): grammy award ............
+grammy award (total uses: 4); hashtag: #grammyaward (total uses: 1)
+	all matching utterances (and their counts): {'grammy award': 4}
+	all matching hashtags (and their counts): {'#GrammyAward': 1}
+
+award (?): de ville award ............
+de ville award (total uses: 1); hashtag: #devilleaward (total uses: 2)
+	all matching utterances (and their counts): {'de ville award': 1}
+	all matching hashtags (and their counts): {'#DeVilleAward': 2}
+
+award (?): career achievement award ............
+career achievement award (total uses: 2); hashtag: #careerachievementaward (total uses: 1)
+	all matching utterances (and their counts): {'career achievement award': 2}
+	all matching hashtags (and their counts): {'#CareerAchievementAward': 1}
+
+award (?): tv show award ............
+tv show award (total uses: 2); hashtag: #tvshowaward (total uses: 1)
+	all matching utterances (and their counts): {'tv show award': 1, 'tv show award.': 1}
+	all matching hashtags (and their counts): {'#TVShowAward': 1}

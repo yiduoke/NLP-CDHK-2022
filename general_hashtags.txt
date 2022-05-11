@@ -1,0 +1,742 @@
+------------------------------------------------------------
+general hashtags
+
+boyhood (total uses: 2403); hashtag: #boyhood (total uses: 7006)
+	utterances: {'boyhood': 2214, 'boyhood.': 186, 'boy hood': 2, 'boy hood.': 1}
+	hashtags: {'#Boyhood': 6441, '#boyhood': 371, '#BOYHOOD': 166, '#BoyHood': 27, '#BOYhood': 1}
+
+transparent (total uses: 871); hashtag: #transparent (total uses: 6966)
+	utterances: {'transparent': 801, 'transparent.': 67, 'trans parent.': 2, 'trans parent': 1}
+	hashtags: {'#Transparent': 6032, '#transparent': 743, '#TRANSPARENT': 180, '#TransParent': 11}
+
+george clooney (total uses: 1602); hashtag: #georgeclooney (total uses: 5907)
+	utterances: {'george clooney': 1506, 'george clooney.': 89, 'george #clooney': 6, 'george #clooney.': 1}
+	hashtags: {'#GeorgeClooney': 5652, '#georgeclooney': 229, '#GEORGECLOONEY': 23, '#Georgeclooney': 2, '#georgeClooney': 1}
+
+birdman (total uses: 1186); hashtag: #birdman (total uses: 4953)
+	utterances: {'birdman': 1050, 'birdman.': 130, 'bird man': 4, 'bird-man': 1, 'b i r d m a n': 1}
+	hashtags: {'#Birdman': 4531, '#birdman': 373, '#BIRDMAN': 40, '#BirdMan': 7, '#BIrdman': 2}
+
+the affair (total uses: 887); hashtag: #theaffair (total uses: 5096)
+	utterances: {'the affair': 808, 'the affair.': 74, 'theaffair': 4, 'the "affair': 1}
+	hashtags: {'#TheAffair': 4867, '#theaffair': 192, '#theAffair': 18, '#THEAFFAIR': 15, '#Theaffair': 4}
+
+selma movie (total uses: 6); hashtag: #selmamovie (total uses: 4690)
+	utterances: {'selma movie': 4, 'selmamovie': 2}
+	hashtags: {'#SelmaMovie': 4424, '#selmamovie': 259, '#SELMAmovie': 4, '#SELMAMOVIE': 2, '#SELMAMovie': 1}
+
+fargo (total uses: 761); hashtag: #fargo (total uses: 3587)
+	utterances: {'fargo': 685, 'fargo.': 74, 'far. . go': 1, 'far, go': 1}
+	hashtags: {'#Fargo': 3121, '#fargo': 407, '#FARGO': 59}
+
+prince (total uses: 871); hashtag: #prince (total uses: 3115)
+	utterances: {'prince': 813, 'prince.': 58}
+	hashtags: {'#Prince': 2297, '#prince': 543, '#PRINCE': 274, '#PRince': 1}
+
+emma stone (total uses: 536); hashtag: #emmastone (total uses: 3314)
+	utterances: {'emma stone': 503, 'emma stone.': 29, 'emmastone': 2, 'emma. stone.': 1, 'emma. stone': 1}
+	hashtags: {'#EmmaStone': 2956, '#emmastone': 316, '#Emmastone': 35, '#emmaStone': 4, '#EMMASTONE': 3}
+
+tina fey (total uses: 1421); hashtag: #tinafey (total uses: 2381)
+	utterances: {'tina fey': 1405, 'tina fey.': 15, 'tinafey': 1}
+	hashtags: {'#TinaFey': 1841, '#tinafey': 517, '#Tinafey': 12, '#TINAFEY': 6, '#TInaFey': 3, '#tinaFey': 2}
+
+amy adams (total uses: 1525); hashtag: #amyadams (total uses: 2113)
+	utterances: {'amy adams': 1487, 'amy adams.': 25, "amy adam 's": 9, 'amy #adams': 2, 'amyadams': 2}
+	hashtags: {'#AmyAdams': 1865, '#amyadams': 224, '#Amyadams': 14, '#AMYADAMS': 7, '#amyAdams': 2, '#aMYaDAMS': 1}
+
+amy poehler (total uses: 1153); hashtag: #amypoehler (total uses: 2372)
+	utterances: {'amy poehler': 1110, 'amy poehler.': 41, 'amypoehler': 1, 'amy #poehler': 1}
+	hashtags: {'#AmyPoehler': 2225, '#amypoehler': 142, '#Amypoehler': 3, '#amyPoehler': 1, '#AMYPOEHLER': 1}
+
+eddie redmayne (total uses: 1727); hashtag: #eddieredmayne (total uses: 1705)
+	utterances: {'eddie redmayne': 1676, 'eddie redmayne.': 48, 'eddie!!!!!!!!!!!!!!!!! #redmayne': 1, 'eddieredmayne': 1, 'eddie #redmayne.': 1}
+	hashtags: {'#EddieRedmayne': 1639, '#eddieredmayne': 59, '#Eddieredmayne': 2, '#EddieRedMayne': 2, '#EDDIEREDMAYNE': 2, '#EddieRedMAYNE': 1}
+
+gina rodriguez (total uses: 1206); hashtag: #ginarodriguez (total uses: 1976)
+	utterances: {'gina rodriguez': 1182, 'gina rodriguez.': 21, 'gina #rodriguez': 1, 'gina. rodriguez.': 1, 'gina · rodriguez': 1}
+	hashtags: {'#GinaRodriguez': 1907, '#ginarodriguez': 62, '#ginaRodriguez': 3, '#GInaRodriguez': 2, '#GINARODRIGUEZ': 1, '#Ginarodriguez': 1}
+
+kevin spacey (total uses: 1379); hashtag: #kevinspacey (total uses: 1787)
+	utterances: {'kevin spacey': 1337, 'kevin spacey.': 36, 'kevinspacey': 5, 'kevin. spacey': 1}
+	hashtags: {'#KevinSpacey': 1667, '#kevinspacey': 112, '#Kevinspacey': 3, '#KEVINSPACEY': 3, '#kevinSpacey': 2}
+
+common (total uses: 1191); hashtag: #common (total uses: 1932)
+	utterances: {'common': 1133, 'common.': 58}
+	hashtags: {'#Common': 1770, '#common': 153, '#COMMON': 9}
+
+tina and amy (total uses: 481); hashtag: #tinaandamy (total uses: 2372)
+	utterances: {'tina and amy': 444, 'tina and amy.': 37}
+	hashtags: {'#TinaandAmy': 1863, '#TinaAndAmy': 427, '#tinaandamy': 64, '#TINAandAMY': 9, '#TINAANDAMY': 8, '#Tinaandamy': 1}
+
+matt bomer (total uses: 792); hashtag: #mattbomer (total uses: 1819)
+	utterances: {'matt bomer': 774, 'matt bomer.': 17, 'mattbomer': 1}
+	hashtags: {'#MattBomer': 1540, '#mattbomer': 273, '#MATTBOMER': 3, '#Mattbomer': 1, '#MattBOMER': 1, '#MattBOmer': 1}
+
+still alice (total uses: 363); hashtag: #stillalice (total uses: 2092)
+	utterances: {'still alice': 293, 'still alice.': 67, 'still, alice.': 1, 'still #alice': 1, 'stillalice.': 1}
+	hashtags: {'#StillAlice': 2069, '#stillalice': 19, '#STILLALICE': 4}
+
+michael keaton (total uses: 1252); hashtag: #michaelkeaton (total uses: 1191)
+	utterances: {'michael keaton': 1206, 'michael keaton.': 38, 'michaelkeaton': 6, 'michael\nkeaton': 1, 'm i c h a e l k e a t o n': 1}
+	hashtags: {'#MichaelKeaton': 1058, '#michaelkeaton': 66, '#michaelKeaton': 56, '#MICHAELKEATON': 8, '#MIchaelKeaton': 2, '#Michaelkeaton': 1}
+
+julianne moore (total uses: 1336); hashtag: #juliannemoore (total uses: 1092)
+	utterances: {'julianne moore': 1297, 'julianne moore.': 37, 'juliannemoore': 1, 'juliannemoore.': 1}
+	hashtags: {'#JulianneMoore': 908, '#juliannemoore': 180, '#julianneMoore': 2, '#Juliannemoore': 1, '#JULIANNEMOORE': 1}
+
+the grand budapest hotel (total uses: 856); hashtag: #thegrandbudapesthotel (total uses: 1502)
+	utterances: {'the grand budapest hotel': 768, 'the grand budapest hotel.': 81, 'the #grandbudapesthotel': 2, 'the grand #budapest hotel': 2, 'the grandbudapest hotel': 1, 'the #grand #budapest #hotel': 1, 'thegrandbudapesthotel': 1}
+	hashtags: {'#TheGrandBudapestHotel': 1470, '#thegrandbudapesthotel': 16, '#THEGRANDBUDAPESTHOTEL': 9, '#theGrandBudapestHotel': 2, '#Thegrandbudapesthotel': 2, '#ThegrandBudapesthotel': 2, '#TheGrandBudapesthotel': 1}
+
+kate hudson (total uses: 590); hashtag: #katehudson (total uses: 1694)
+	utterances: {'kate hudson': 540, 'kate hudson.': 30, 'katehudson': 19, 'kate. hudson.': 1}
+	hashtags: {'#KateHudson': 1318, '#katehudson': 358, '#kateHudson': 8, '#Katehudson': 6, '#KATEHUDSON': 4}
+
+jennifer aniston (total uses: 404); hashtag: #jenniferaniston (total uses: 1830)
+	utterances: {'jennifer aniston': 385, 'jennifer aniston.': 18, 'jenniferaniston': 1}
+	hashtags: {'#JenniferAniston': 1711, '#jenniferaniston': 101, '#JENNIFERANISTON': 10, '#jenniferAniston': 7, '#Jenniferaniston': 1}
+
+glory (total uses: 246); hashtag: #glory (total uses: 1883)
+	utterances: {'glory': 228, 'glory.': 18}
+	hashtags: {'#Glory': 1651, '#glory': 144, '#GLORY': 88}
+
+j.k. simmons (total uses: 1441); hashtag: #jksimmons (total uses: 571)
+	utterances: {'j.k. simmons': 803, 'jk simmons': 462, 'j.k simmons': 72, 'j. k. simmons': 30, 'j.k. simmons.': 23, 'j k simmons': 16, 'jk simmons.': 15, 'j.k simmons.': 7, 'j.k.simmons': 5, 'jk, simmons': 2, 'jksimmons': 2, 'j,k simmons': 1, 'jk #simmons': 1, 'j.k. #simmons': 1, 'jk. simmons.': 1}
+	hashtags: {'#JKSimmons': 414, '#jksimmons': 137, '#JKsimmons': 6, '#JkSimmons': 5, '#JKSIMMONS': 4, '#Jksimmons': 3, '#JKSImmons': 2}
+
+the theory of everything (total uses: 689); hashtag: #thetheoryofeverything (total uses: 1272)
+	utterances: {'the theory of everything': 577, 'the theory of everything.': 100, 'the #theoryofeverything': 6, 'the "theory of everything': 2, 'the #theoryofeverything.': 2, 'thetheoryofeverything': 1, "the 'theory of everything": 1}
+	hashtags: {'#TheTheoryofEverything': 1075, '#TheTheoryOfEverything': 169, '#thetheoryofeverything': 19, '#Thetheoryofeverything': 5, '#THETHEORYOFEVERYTHING': 4}
+
+how to train your dragon 2 (total uses: 652); hashtag: #howtotrainyourdragon2 (total uses: 1228)
+	utterances: {'how to train your dragon 2': 621, 'how to train your dragon 2.': 30, 'how to train your dragon2': 1}
+	hashtags: {'#HowToTrainYourDragon2': 578, '#HowtoTrainYourDragon2': 530, '#howtotrainyourdragon2': 109, '#HOWTOTRAINYOURDRAGON2': 4, '#Howtotrainyourdragon2': 3, '#HowtoTrainyourDragon2': 2, '#HowTotrainYourDragon2': 1, '#HowtotrainYourDragon2': 1}
+
+big eyes (total uses: 350); hashtag: #bigeyes (total uses: 1528)
+	utterances: {'big eyes': 295, 'big eyes.': 55}
+	hashtags: {'#BigEyes': 1456, '#bigeyes': 65, '#BIGEYES': 5, '#bigEyes': 1, '#Bigeyes': 1}
+
+john legend (total uses: 1147); hashtag: #johnlegend (total uses: 646)
+	utterances: {'john legend': 1122, 'john legend.': 17, 'johnlegend': 8}
+	hashtags: {'#JohnLegend': 553, '#johnlegend': 82, '#Johnlegend': 5, '#JOHNLEGEND': 3, '#johnLegend': 3}
+
+amal clooney (total uses: 325); hashtag: #amalclooney (total uses: 1449)
+	utterances: {'amal clooney': 307, 'amal clooney.': 8, 'amal/clooney': 3, 'amal & clooney': 2, 'amal #clooney.': 1, 'amal / clooney': 1, 'amalclooney': 1, 'amal #clooney': 1, 'amal&clooney': 1}
+	hashtags: {'#AmalClooney': 1385, '#amalclooney': 62, '#amalClooney': 1, '#Amalclooney': 1}
+
+whiplash (total uses: 430); hashtag: #whiplash (total uses: 1337)
+	utterances: {'whiplash': 337, 'whiplash.': 93}
+	hashtags: {'#Whiplash': 1224, '#whiplash': 94, '#WHIPLASH': 16, '#WhipLash': 3}
+
+richard linklater (total uses: 1128); hashtag: #richardlinklater (total uses: 462)
+	utterances: {'richard linklater': 1107, 'richard linklater.': 18, 'richard. linklater.': 1, 'richardlinklater': 1, 'richard #linklater': 1}
+	hashtags: {'#RichardLinklater': 313, '#richardlinklater': 143, '#RichardLinkLater': 2, '#RIchardLinklater': 2, '#Richardlinklater': 2}
+
+jennifer lopez (total uses: 411); hashtag: #jenniferlopez (total uses: 1025)
+	utterances: {'jennifer lopez': 402, 'jennifer lopez.': 7, 'jennifer. lopez.': 1, 'jenniferlopez': 1}
+	hashtags: {'#JenniferLopez': 809, '#jenniferlopez': 203, '#JENNIFERLOPEZ': 6, '#jenniferLopez': 4, '#Jenniferlopez': 3}
+
+patricia arquette (total uses: 940); hashtag: #patriciaarquette (total uses: 475)
+	utterances: {'patricia arquette': 916, 'patricia arquette.': 23, 'patriciaarquette': 1}
+	hashtags: {'#PatriciaArquette': 347, '#patriciaarquette': 128}
+
+hollywood (total uses: 625); hashtag: #hollywood (total uses: 770)
+	utterances: {'hollywood': 599, 'hollywood.': 25, 'holly wood': 1}
+	hashtags: {'#Hollywood': 506, '#hollywood': 261, '#HOLLYWOOD': 3}
+
+bill cosby (total uses: 289); hashtag: #billcosby (total uses: 1026)
+	utterances: {'bill cosby': 280, 'bill cosby.': 8, 'bill #cosby': 1}
+	hashtags: {'#BillCosby': 934, '#billcosby': 73, '#BILLCOSBY': 17, '#Billcosby': 1, '#BIllCosby': 1}
+
+jamie dornan (total uses: 128); hashtag: #jamiedornan (total uses: 1159)
+	utterances: {'jamie dornan': 125, 'jamie dornan.': 2, 'jamiedornan': 1}
+	hashtags: {'#JamieDornan': 1047, '#jamiedornan': 89, '#Jamiedornan': 19, '#jamieDornan': 3, '#JAMIEDORNAN': 1}
+
+ruth wilson (total uses: 742); hashtag: #ruthwilson (total uses: 517)
+	utterances: {'ruth wilson': 732, 'ruth wilson.': 9, 'ruthwilson': 1}
+	hashtags: {'#RuthWilson': 431, '#ruthwilson': 81, '#RuthWIlson': 2, '#Ruthwilson': 2, '#ruthWilson': 1}
+
+award season (total uses: 632); hashtag: #awardseason (total uses: 585)
+	utterances: {'award season': 537, 'award season.': 78, 'award-season': 17}
+	hashtags: {'#AwardSeason': 426, '#awardseason': 123, '#Awardseason': 36}
+
+lana del rey (total uses: 481); hashtag: #lanadelrey (total uses: 710)
+	utterances: {'lana del rey': 479, 'lana del rey.': 2}
+	hashtags: {'#LanaDelRey': 504, '#lanadelrey': 196, '#LanadelRey': 4, '#LANADELREY': 3, '#lanaDelRey': 2, '#Lanadelrey': 1}
+
+meryl streep (total uses: 315); hashtag: #merylstreep (total uses: 863)
+	utterances: {'meryl streep': 297, 'meryl streep.': 17, 'meryl\xa0streep': 1}
+	hashtags: {'#MerylStreep': 817, '#merylstreep': 39, '#MERYLSTREEP': 5, '#merylStreep': 2}
+
+emily blunt (total uses: 267); hashtag: #emilyblunt (total uses: 871)
+	utterances: {'emily blunt': 253, 'emily blunt.': 13, 'emilyblunt': 1}
+	hashtags: {'#EmilyBlunt': 795, '#emilyblunt': 74, '#EMILYBLUNT': 1, '#emilyBlunt': 1}
+
+jeffrey tambor (total uses: 771); hashtag: #jeffreytambor (total uses: 348)
+	utterances: {'jeffrey tambor': 749, 'jeffrey tambor.': 21, 'jeffreytambor': 1}
+	hashtags: {'#JeffreyTambor': 284, '#jeffreytambor': 61, '#Jeffreytambor': 2, '#jeffreyTambor': 1}
+
+jared leto (total uses: 178); hashtag: #jaredleto (total uses: 932)
+	utterances: {'jared leto': 166, 'jared leto.': 12}
+	hashtags: {'#JaredLeto': 564, '#jaredleto': 361, '#Jaredleto': 5, '#JAREDLETO': 2}
+
+birdman movie (total uses: 8); hashtag: #birdmanmovie (total uses: 1080)
+	utterances: {'birdman movie': 7, 'birdman movie.': 1}
+	hashtags: {'#BirdmanMovie': 1072, '#birdmanmovie': 4, '#BIRDMANMOVIE': 2, '#BIrdmanMovie': 2}
+
+maggie gyllenhaal (total uses: 535); hashtag: #maggiegyllenhaal (total uses: 521)
+	utterances: {'maggie gyllenhaal': 524, 'maggie gyllenhaal.': 9, 'maggie #gyllenhaal': 1, 'maggiegyllenhaal': 1}
+	hashtags: {'#MaggieGyllenhaal': 483, '#maggiegyllenhaal': 37, '#maggieGyllenhaal': 1}
+
+red carpet #goldenglobes (total uses: 106); hashtag: #redcarpetgoldenglobes (total uses: 942)
+	utterances: {'red carpet #goldenglobes': 50, 'red carpet. #goldenglobes': 17, 'red carpet golden globes': 12, 'red carpet? #goldenglobes': 7, 'red carpet! #goldenglobes': 5, 'red carpet, golden globes': 2, 'red carpet! 😘 #goldenglobes': 1, 'red carpet. golden globes.': 1, 'red carpet 😍😍 #goldenglobes': 1, 'red carpet : #goldenglobes': 1, 'red carpet: #goldenglobes': 1, 'red carpet.\n\n#goldenglobes': 1, 'red carpet• #goldenglobes': 1, 'red carpet @ #goldenglobes': 1, 'red carpet.😂😂😂💓💓💓 \ngolden globes': 1, 'red carpet!" #goldenglobes': 1, 'red carpet! golden globes': 1, 'red carpet - golden globes': 1, 'red carpet" #goldenglobes': 1}
+	hashtags: {'#Redcarpetgoldenglobes': 899, '#RedCarpetGoldenGlobes': 26, '#redcarpetgoldenglobes': 16, '#RedcarpetGoldenGlobes': 1}
+
+dynawardsnightin (total uses: 2); hashtag: #dynawardsnightin (total uses: 1039)
+	utterances: {'dynawardsnightin': 2}
+	hashtags: {'#DYNAwardsNightIn': 1038, '#DYNAwardsNightin': 1}
+
+well deserved (total uses: 855); hashtag: #welldeserved (total uses: 179)
+	utterances: {'well deserved': 568, 'well deserved.': 154, 'well-deserved': 104, 'well-deserved.': 25, 'well, deserved': 2, 'well- deserved': 1, 'well #deserved': 1}
+	hashtags: {'#WellDeserved': 106, '#welldeserved': 61, '#WELLdeserved': 10, '#WELLDESERVED': 1, '#Welldeserved': 1}
+
+wes anderson (total uses: 372); hashtag: #wesanderson (total uses: 606)
+	utterances: {'wes anderson': 341, 'wes anderson.': 29, 'wesanderson': 2}
+	hashtags: {'#WesAnderson': 574, '#wesanderson': 30, '#WESANDERSON': 2}
+
+joanne froggatt (total uses: 586); hashtag: #joannefroggatt (total uses: 392)
+	utterances: {'joanne froggatt': 577, 'joanne froggatt.': 9}
+	hashtags: {'#JoanneFroggatt': 271, '#joannefroggatt': 116, '#Joannefroggatt': 5}
+
+true detective (total uses: 166); hashtag: #truedetective (total uses: 804)
+	utterances: {'true detective': 145, 'true detective.': 21}
+	hashtags: {'#TrueDetective': 671, '#TRUEDETECTIVE': 82, '#truedetective': 49, '#Truedetective': 2}
+
+instyle (total uses: 247); hashtag: #instyle (total uses: 721)
+	utterances: {'instyle': 241, 'in style': 3, 'in style.': 2, 'instyle.': 1}
+	hashtags: {'#InStyle': 443, '#instyle': 269, '#Instyle': 8, '#inStyle': 1}
+
+jessica chastain (total uses: 334); hashtag: #jessicachastain (total uses: 605)
+	utterances: {'jessica chastain': 317, 'jessica chastain.': 16, 'jessicachastain': 1}
+	hashtags: {'#JessicaChastain': 446, '#jessicachastain': 155, '#jessicaChastain': 2, '#Jessicachastain': 2}
+
+rosamund pike (total uses: 292); hashtag: #rosamundpike (total uses: 593)
+	utterances: {'rosamund pike': 286, 'rosamund pike.': 5, 'rosamund, pike': 1}
+	hashtags: {'#RosamundPike': 553, '#rosamundpike': 37, '#Rosamundpike': 2, '#rosamundPike': 1}
+
+gone girl (total uses: 138); hashtag: #gonegirl (total uses: 737)
+	utterances: {'gone girl': 126, 'gone girl.': 12}
+	hashtags: {'#GoneGirl': 683, '#gonegirl': 51, '#Gonegirl': 2, '#GONEGIRL': 1}
+
+leviathan (total uses: 365); hashtag: #leviathan (total uses: 482)
+	utterances: {'leviathan': 351, 'leviathan.': 13, 'levia than': 1}
+	hashtags: {'#Leviathan': 460, '#leviathan': 11, '#LEVIATHAN': 11}
+
+the cw (total uses: 157); hashtag: #thecw (total uses: 658)
+	utterances: {'the cw': 142, 'the cw.': 9, 'the #cw': 3, 'thecw': 1, "the 'cw": 1, 'thecw.': 1}
+	hashtags: {'#TheCW': 386, '#thecw': 269, '#TheCw': 2, '#THECW': 1}
+
+naomi watts (total uses: 248); hashtag: #naomiwatts (total uses: 527)
+	utterances: {'naomi watts': 240, 'naomi watts.': 6, "naomi watt 's": 2}
+	hashtags: {'#NaomiWatts': 363, '#naomiwatts': 151, '#Naomiwatts': 11, '#naomiWatts': 2}
+
+amazon (total uses: 505); hashtag: #amazon (total uses: 248)
+	utterances: {'amazon': 486, 'amazon.': 19}
+	hashtags: {'#Amazon': 215, '#amazon': 32, '#AMAZON': 1}
+
+into the woods (total uses: 78); hashtag: #intothewoods (total uses: 659)
+	utterances: {'into the woods': 75, 'into the woods.': 3}
+	hashtags: {'#IntoTheWoods': 504, '#IntotheWoods': 115, '#intothewoods': 36, '#INTOTHEWOODS': 3, '#Intothewoods': 1}
+
+the imitation game (total uses: 81); hashtag: #theimitationgame (total uses: 629)
+	utterances: {'the imitation game': 75, 'the imitation game.': 5, 'the #imitationgame': 1}
+	hashtags: {'#TheImitationGame': 620, '#theimitationgame': 3, '#THEIMITATIONGAME': 3, '#theImitationGame': 1, '#TheimitationGame': 1, '#Theimitationgame': 1}
+
+oscars (total uses: 281); hashtag: #oscars (total uses: 428)
+	utterances: {'oscars': 206, 'oscars.': 70, "oscar 's": 5}
+	hashtags: {'#Oscars': 380, '#oscars': 46, '#OSCArS': 1, '#OSCARS': 1}
+
+boyhoodmovie (total uses: 5); hashtag: #boyhoodmovie (total uses: 699)
+	utterances: {'boyhoodmovie': 4, 'boyhood movie': 1}
+	hashtags: {'#Boyhoodmovie': 628, '#BoyhoodMovie': 65, '#boyhoodmovie': 4, '#BoyHoodMovie': 2}
+
+game of thrones (total uses: 134); hashtag: #gameofthrones (total uses: 569)
+	utterances: {'game of thrones': 132, 'game of thrones.': 2}
+	hashtags: {'#GameOfThrones': 486, '#GameofThrones': 53, '#gameofthrones': 23, '#GAMEOFTHRONES': 6, '#Gameofthrones': 1}
+
+adam levine (total uses: 136); hashtag: #adamlevine (total uses: 560)
+	utterances: {'adam levine': 129, 'adam levine.': 4, 'adamlevine': 3}
+	hashtags: {'#AdamLevine': 505, '#adamlevine': 54, '#ADAMLEVINE': 1}
+
+beverly hills (total uses: 588); hashtag: #beverlyhills (total uses: 98)
+	utterances: {'beverly hills': 506, 'beverly hills.': 76, 'beverlyhills': 6}
+	hashtags: {'#BeverlyHills': 68, '#beverlyhills': 30}
+
+versace (total uses: 163); hashtag: #versace (total uses: 508)
+	utterances: {'versace': 151, 'versace.': 12}
+	hashtags: {'#Versace': 315, '#versace': 192, '#VERSACE': 1}
+
+diane kruger (total uses: 173); hashtag: #dianekruger (total uses: 486)
+	utterances: {'diane kruger': 167, 'diane kruger.': 6}
+	hashtags: {'#DianeKruger': 401, '#dianekruger': 80, '#Dianekruger': 5}
+
+cecil b. demille (total uses: 551); hashtag: #cecilbdemille (total uses: 80)
+	utterances: {'cecil b. demille': 444, 'cecil b demille': 96, 'cecil b.demille': 3, 'cecil b. de mille': 2, 'cecil.b. demille': 1, 'cecil b demille.': 1, 'cecil b de mille': 1, 'cecil .b. demille': 1, 'cecil.b.demille': 1, 'cecil b. dem ille': 1}
+	hashtags: {'#CecilBDeMille': 45, '#cecilbdemille': 20, '#CecilBDemille': 10, '#CecilBdeMille': 3, '#CecilbDemille': 2}
+
+jeremy renner (total uses: 169); hashtag: #jeremyrenner (total uses: 451)
+	utterances: {'jeremy renner': 157, 'jeremy renner.': 11, 'jeremyrenner': 1}
+	hashtags: {'#JeremyRenner': 386, '#jeremyrenner': 47, '#jeremyRenner': 9, '#JEREMYRENNER': 6, '#Jeremyrenner': 3}
+
+the lego movie (total uses: 190); hashtag: #thelegomovie (total uses: 403)
+	utterances: {'the lego movie': 177, 'the lego movie.': 9, 'the #legomovie': 3, 'thelegomovie': 1}
+	hashtags: {'#TheLegoMovie': 355, '#TheLEGOMovie': 39, '#thelegomovie': 4, '#THELEGOMOVIE': 4, '#theLEGOmovie': 1}
+
+jake gyllenhaal (total uses: 125); hashtag: #jakegyllenhaal (total uses: 459)
+	utterances: {'jake gyllenhaal': 119, 'jake gyllenhaal.': 6}
+	hashtags: {'#JakeGyllenhaal': 398, '#jakegyllenhaal': 55, '#JAKEGYLLENHAAL': 6}
+
+kate beckinsale (total uses: 177); hashtag: #katebeckinsale (total uses: 401)
+	utterances: {'kate beckinsale': 170, 'kate beckinsale.': 5, 'katebeckinsale': 2}
+	hashtags: {'#KateBeckinsale': 300, '#katebeckinsale': 99, '#kateBeckinsale': 1, '#KateBeckinsalE': 1}
+
+allison williams (total uses: 193); hashtag: #allisonwilliams (total uses: 362)
+	utterances: {'allison williams': 189, 'allison williams.': 4}
+	hashtags: {'#AllisonWilliams': 290, '#allisonwilliams': 67, '#allisonWilliams': 4, '#Allisonwilliams': 1}
+
+keira knightley (total uses: 124); hashtag: #keiraknightley (total uses: 415)
+	utterances: {'keira knightley': 122, 'keira #knightley': 1, 'keira knightley.': 1}
+	hashtags: {'#KeiraKnightley': 375, '#keiraknightley': 33, '#keiraKnightley': 6, '#Keiraknightley': 1}
+
+batman (total uses: 268); hashtag: #batman (total uses: 269)
+	utterances: {'batman': 234, 'batman.': 34}
+	hashtags: {'#Batman': 231, '#batman': 32, '#BATMAN': 6}
+
+ricky gervais (total uses: 197); hashtag: #rickygervais (total uses: 339)
+	utterances: {'ricky gervais': 182, 'ricky gervais.': 11, 'rickygervais': 4}
+	hashtags: {'#RickyGervais': 262, '#rickygervais': 76, '#Rickygervais': 1}
+
+salma hayek (total uses: 97); hashtag: #salmahayek (total uses: 437)
+	utterances: {'salma hayek': 95, 'salma hayek.': 2}
+	hashtags: {'#SalmaHayek': 405, '#salmahayek': 15, '#salmaHayek': 12, '#SALMAHAYEK': 4, '#Salmahayek': 1}
+
+lupita nyong'o (total uses: 231); hashtag: #lupitanyongo (total uses: 301)
+	utterances: {"lupita nyong'o": 142, 'lupita nyong’o': 62, 'lupita nyongo': 15, "lupita n'yongo": 4, "lupita nyong'o.": 4, 'lupitanyongo': 3, "lupita n'yongo.": 1}
+	hashtags: {'#LupitaNyongo': 258, '#lupitanyongo': 38, '#Lupitanyongo': 3, '#lupitaNyongo': 1, '#LupitaNyongO': 1}
+
+kristen wiig (total uses: 205); hashtag: #kristenwiig (total uses: 324)
+	utterances: {'kristen wiig': 199, 'kristen wiig.': 6}
+	hashtags: {'#KristenWiig': 162, '#kristenwiig': 161, '#Kristenwiig': 1}
+
+the honorable woman (total uses: 107); hashtag: #thehonorablewoman (total uses: 417)
+	utterances: {'the honorable woman': 85, 'the honorable woman.': 21, 'the honorable #woman': 1}
+	hashtags: {'#TheHonorableWoman': 416, '#thehonorablewoman': 1}
+
+jane fonda (total uses: 97); hashtag: #janefonda (total uses: 423)
+	utterances: {'jane fonda': 95, 'janefonda': 1, 'jane fonda.': 1}
+	hashtags: {'#JaneFonda': 268, '#janefonda': 151, '#Janefonda': 2, '#janeFonda': 1, '#JANEFONDA': 1}
+
+beverly hilton (total uses: 316); hashtag: #beverlyhilton (total uses: 197)
+	utterances: {'beverly hilton': 315, 'beverly hilton.': 1}
+	hashtags: {'#BeverlyHilton': 146, '#beverlyhilton': 49, '#Beverlyhilton': 1, '#beverlyHilton': 1}
+
+kerry washington (total uses: 141); hashtag: #kerrywashington (total uses: 367)
+	utterances: {'kerry washington': 139, 'kerry washington.': 2}
+	hashtags: {'#KerryWashington': 317, '#kerrywashington': 47, '#Kerrywashington': 2, '#kerryWashington': 1}
+
+viola davis (total uses: 202); hashtag: #violadavis (total uses: 304)
+	utterances: {'viola davis': 193, 'viola davis.': 9}
+	hashtags: {'#ViolaDavis': 231, '#violadavis': 65, '#violaDavis': 4, '#VIOLADAVIS': 3, '#Violadavis': 1}
+
+sienna miller (total uses: 150); hashtag: #siennamiller (total uses: 354)
+	utterances: {'sienna miller': 142, 'sienna miller.': 7, 'siennamiller': 1}
+	hashtags: {'#SiennaMiller': 250, '#siennamiller': 98, '#Siennamiller': 3, '#siennaMiller': 2, '#SIENNAMILLER': 1}
+
+matthew mcconaughey (total uses: 143); hashtag: #matthewmcconaughey (total uses: 339)
+	utterances: {'matthew mcconaughey': 137, 'matthew mcconaughey.': 6}
+	hashtags: {'#MatthewMcConaughey': 297, '#matthewmcconaughey': 25, '#MatthewMcconaughey': 15, '#matthewMcConaughey': 2}
+
+bill murray (total uses: 217); hashtag: #billmurray (total uses: 222)
+	utterances: {'bill murray': 208, 'bill murray.': 9}
+	hashtags: {'#BillMurray': 199, '#billmurray': 23}
+
+bill hader (total uses: 184); hashtag: #billhader (total uses: 253)
+	utterances: {'bill hader': 175, 'bill hader.': 9}
+	hashtags: {'#BillHader': 150, '#billhader': 98, '#Billhader': 4, '#BIllHader': 1}
+
+kevin hart (total uses: 103); hashtag: #kevinhart (total uses: 330)
+	utterances: {'kevin hart': 96, 'kevin hart.': 6, 'kevin. hart.': 1}
+	hashtags: {'#KevinHart': 198, '#kevinhart': 129, '#kevinHart': 1, '#Kevinhart': 1, '#KEVINHART': 1}
+
+behati prinsloo (total uses: 40); hashtag: #behatiprinsloo (total uses: 391)
+	utterances: {'behati prinsloo': 40}
+	hashtags: {'#BehatiPrinsloo': 343, '#behatiprinsloo': 48}
+
+oprah (total uses: 130); hashtag: #oprah (total uses: 283)
+	utterances: {'oprah': 126, 'oprah.': 4}
+	hashtags: {'#Oprah': 237, '#oprah': 40, '#OPRAH': 6}
+
+helen mirren (total uses: 105); hashtag: #helenmirren (total uses: 303)
+	utterances: {'helen mirren': 104, 'helen mirren.': 1}
+	hashtags: {'#HelenMirren': 224, '#helenmirren': 78, '#helenMirren': 1}
+
+reese witherspoon (total uses: 172); hashtag: #reesewitherspoon (total uses: 229)
+	utterances: {'reese witherspoon': 168, 'reese witherspoon.': 4}
+	hashtags: {'#ReeseWitherspoon': 183, '#reesewitherspoon': 34, '#Reesewitherspoon': 11, '#ReeseWitherSpoon': 1}
+
+chris pratt (total uses: 122); hashtag: #chrispratt (total uses: 276)
+	utterances: {'chris pratt': 116, 'chris pratt.': 6}
+	hashtags: {'#ChrisPratt': 249, '#chrispratt': 26, '#CHRISPRATT': 1}
+
+orange is the new black (total uses: 65); hashtag: #orangeisthenewblack (total uses: 331)
+	utterances: {'orange is the new black': 63, 'orange is the new black.': 2}
+	hashtags: {'#OrangeIsTheNewBlack': 296, '#orangeisthenewblack': 26, '#OrangeistheNewBlack': 5, '#Orangeisthenewblack': 2, '#orangeISthenewblack': 1, '#OrangeIstheNewBlack': 1}
+
+entourage movie (total uses: 4); hashtag: #entouragemovie (total uses: 390)
+	utterances: {'entourage movie': 4}
+	hashtags: {'#EntourageMovie': 339, '#entouragemovie': 50, '#ENTOURAGEMOVIE': 1}
+
+channing tatum (total uses: 157); hashtag: #channingtatum (total uses: 216)
+	utterances: {'channing tatum': 152, 'channing tatum.': 5}
+	hashtags: {'#ChanningTatum': 183, '#channingtatum': 32, '#Channingtatum': 1}
+
+big hero 6 (total uses: 76); hashtag: #bighero6 (total uses: 292)
+	utterances: {'big hero 6': 71, 'bighero6': 3, 'big hero 6.': 2}
+	hashtags: {'#BigHero6': 281, '#bighero6': 10, '#Bighero6': 1}
+
+lena dunham (total uses: 135); hashtag: #lenadunham (total uses: 232)
+	utterances: {'lena dunham': 129, 'lena dunham.': 6}
+	hashtags: {'#LenaDunham': 201, '#lenadunham': 27, '#Lenadunham': 3, '#lenaDunham': 1}
+
+beverly hilton hotel (total uses: 243); hashtag: #beverlyhiltonhotel (total uses: 122)
+	utterances: {'beverly hilton hotel': 239, 'beverly hilton hotel.': 4}
+	hashtags: {'#BeverlyHiltonHotel': 105, '#beverlyhiltonhotel': 17}
+
+los angeles (total uses: 142); hashtag: #losangeles (total uses: 222)
+	utterances: {'los angeles': 140, 'los angeles.': 2}
+	hashtags: {'#LosAngeles': 134, '#losangeles': 86, '#LOSANGELES': 2}
+
+jessica lange (total uses: 116); hashtag: #jessicalange (total uses: 245)
+	utterances: {'jessica lange': 115, 'jessica lange.': 1}
+	hashtags: {'#JessicaLange': 221, '#jessicalange': 20, '#JESSICALANGE': 2, '#jessicaLange': 2}
+
+believe (total uses: 251); hashtag: #believe (total uses: 104)
+	utterances: {'believe': 249, 'believe.': 2}
+	hashtags: {'#Believe': 100, '#believe': 2, '#BELIEVE': 2}
+
+anna faris (total uses: 87); hashtag: #annafaris (total uses: 265)
+	utterances: {'anna faris': 86, 'anna faris.': 1}
+	hashtags: {'#AnnaFaris': 248, '#annafaris': 15, '#Annafaris': 2}
+
+amal alamuddin (total uses: 90); hashtag: #amalalamuddin (total uses: 254)
+	utterances: {'amal alamuddin': 85, 'amal alamuddin.': 5}
+	hashtags: {'#AmalAlamuddin': 230, '#amalalamuddin': 22, '#Amalalamuddin': 2}
+
+claire danes (total uses: 111); hashtag: #clairedanes (total uses: 225)
+	utterances: {'claire danes': 106, 'claire danes.': 3, "claire dane 's": 2}
+	hashtags: {'#ClaireDanes': 165, '#clairedanes': 59, '#claireDanes': 1}
+
+classy (total uses: 99); hashtag: #classy (total uses: 235)
+	utterances: {'classy': 81, 'classy.': 18}
+	hashtags: {'#Classy': 133, '#classy': 102}
+
+uzo aduba (total uses: 56); hashtag: #uzoaduba (total uses: 277)
+	utterances: {'uzo aduba': 53, 'uzo aduba.': 3}
+	hashtags: {'#UzoAduba': 257, '#uzoaduba': 20}
+
+anna kendrick (total uses: 173); hashtag: #annakendrick (total uses: 157)
+	utterances: {'anna kendrick': 167, 'anna kendrick.': 6}
+	hashtags: {'#AnnaKendrick': 131, '#annakendrick': 26}
+
+chrissy teigen (total uses: 132); hashtag: #chrissyteigen (total uses: 196)
+	utterances: {'chrissy teigen': 127, 'chrissy teigen.': 5}
+	hashtags: {'#ChrissyTeigen': 118, '#chrissyteigen': 76, '#chrissyTeigen': 1, '#Chrissyteigen': 1}
+
+melissa mccarthy (total uses: 78); hashtag: #melissamccarthy (total uses: 235)
+	utterances: {'melissa mccarthy': 70, 'melissa mccarthy.': 7, 'melissa\xa0mccarthy': 1}
+	hashtags: {'#MelissaMcCarthy': 214, '#melissamccarthy': 17, '#mELISSAMcCarthy': 2, '#melissamcCarthy': 1, '#MelissaMccarthy': 1}
+
+felicity jones (total uses: 120); hashtag: #felicityjones (total uses: 193)
+	utterances: {'felicity jones': 108, 'felicity jones.': 12}
+	hashtags: {'#FelicityJones': 172, '#felicityjones': 21}
+
+gucci (total uses: 54); hashtag: #gucci (total uses: 256)
+	utterances: {'gucci': 54}
+	hashtags: {'#Gucci': 221, '#gucci': 35}
+
+star guild awards (total uses: 26); hashtag: #starguildawards (total uses: 281)
+	utterances: {'star guild awards': 26}
+	hashtags: {'#StarGuildAwards': 253, '#starGuildawards': 28}
+
+warner bros. (total uses: 202); hashtag: #warnerbros (total uses: 104)
+	utterances: {'warner bros.': 194, 'warner bros': 8}
+	hashtags: {'#WarnerBros': 98, '#warnerbros': 6}
+
+james spader (total uses: 42); hashtag: #jamesspader (total uses: 252)
+	utterances: {'james spader': 41, 'james spader.': 1}
+	hashtags: {'#JamesSpader': 181, '#jamesspader': 69, '#Jamesspader': 2}
+
+taylor swift (total uses: 37); hashtag: #taylorswift (total uses: 256)
+	utterances: {'taylor swift': 37}
+	hashtags: {'#TaylorSwift': 242, '#taylorswift': 14}
+
+whiplash movie (total uses: 1); hashtag: #whiplashmovie (total uses: 289)
+	utterances: {'whiplash movie': 1}
+	hashtags: {'#WhiplashMovie': 286, '#whiplashmovie': 3}
+
+north korea (total uses: 87); hashtag: #northkorea (total uses: 203)
+	utterances: {'north korea': 83, 'north korea.': 4}
+	hashtags: {'#NorthKorea': 175, '#northkorea': 28}
+
+cumberbatch photo bomb (total uses: 29); hashtag: #cumberbatchphotobomb (total uses: 260)
+	utterances: {'cumberbatch photo bomb': 15, 'cumberbatch photobomb': 10, 'cumberbatch photobomb.': 4}
+	hashtags: {'#CumberbatchPhotobomb': 251, '#CumberbatchPhotoBomb': 7, '#Cumberbatchphotobomb': 1, '#cumberbatchphotobomb': 1}
+
+free speech (total uses: 27); hashtag: #freespeech (total uses: 256)
+	utterances: {'free speech': 26, 'free speech.': 1}
+	hashtags: {'#FreeSpeech': 213, '#freespeech': 38, '#Freespeech': 4, '#freeSpeech': 1}
+
+chicago (total uses: 27); hashtag: #chicago (total uses: 255)
+	utterances: {'chicago': 27}
+	hashtags: {'#Chicago': 169, '#chicago': 84, '#CHICAGO': 2}
+
+katie holmes (total uses: 98); hashtag: #katieholmes (total uses: 184)
+	utterances: {'katie holmes': 91, 'katie holmes.': 7}
+	hashtags: {'#KatieHolmes': 138, '#katieholmes': 42, '#katieHolmes': 3, '#Katieholmes': 1}
+
+stephen hawking (total uses: 100); hashtag: #stephenhawking (total uses: 182)
+	utterances: {'stephen hawking': 81, 'stephen hawking.': 18, 'stephenhawking': 1}
+	hashtags: {'#StephenHawking': 178, '#stephenhawking': 4}
+
+taylor schilling (total uses: 78); hashtag: #taylorschilling (total uses: 201)
+	utterances: {'taylor schilling': 77, 'taylor schilling.': 1}
+	hashtags: {'#TaylorSchilling': 145, '#taylorschilling': 54, '#Taylorschilling': 1, '#TAYLORSCHILLING': 1}
+
+behind the scenes (total uses: 30); hashtag: #behindthescenes (total uses: 235)
+	utterances: {'behind the scenes': 22, 'behind-the-scenes': 8}
+	hashtags: {'#BehindtheScenes': 118, '#BehindTheScenes': 101, '#behindthescenes': 13, '#Behindthescenes': 3}
+
+conchita wurst (total uses: 53); hashtag: #conchitawurst (total uses: 209)
+	utterances: {'conchita wurst': 53}
+	hashtags: {'#ConchitaWurst': 114, '#conchitawurst': 95}
+
+zuhair murad (total uses: 57); hashtag: #zuhairmurad (total uses: 204)
+	utterances: {'zuhair murad': 52, 'zuhair murad.': 5}
+	hashtags: {'#ZuhairMurad': 126, '#zuhairmurad': 74, '#Zuhairmurad': 3, '#zuhairMurad': 1}
+
+paul rudd (total uses: 59); hashtag: #paulrudd (total uses: 197)
+	utterances: {'paul rudd': 56, 'paul rudd.': 3}
+	hashtags: {'#PaulRudd': 166, '#paulrudd': 30, '#PAULRUDD': 1}
+
+god bless (total uses: 33); hashtag: #godbless (total uses: 210)
+	utterances: {'god bless': 31, 'god bless.': 2}
+	hashtags: {'#GodBless': 201, '#godbless': 8, '#GODBLESS': 1}
+
+colin firth (total uses: 24); hashtag: #colinfirth (total uses: 216)
+	utterances: {'colin firth': 22, 'colinfirth': 1, 'colin firth.': 1}
+	hashtags: {'#ColinFirth': 125, '#colinfirth': 90, '#Colinfirth': 1}
+
+new york (total uses: 102); hashtag: #newyork (total uses: 134)
+	utterances: {'new york': 102}
+	hashtags: {'#NewYork': 112, '#newyork': 22}
+
+george and amal (total uses: 97); hashtag: #georgeandamal (total uses: 138)
+	utterances: {'george and amal': 93, 'george and amal.': 3, 'georgeandamal': 1}
+	hashtags: {'#GeorgeandAmal': 111, '#georgeandamal': 19, '#GeorgeAndAmal': 7, '#GEORGEANDAMAL': 1}
+
+interstellar (total uses: 109); hashtag: #interstellar (total uses: 121)
+	utterances: {'interstellar': 104, 'interstellar.': 5}
+	hashtags: {'#Interstellar': 114, '#interstellar': 6, '#INTERSTELLAR': 1}
+
+chanel (total uses: 44); hashtag: #chanel (total uses: 184)
+	utterances: {'chanel': 43, 'chanel.': 1}
+	hashtags: {'#Chanel': 125, '#chanel': 33, '#CHANEL': 26}
+
+margaret cho (total uses: 53); hashtag: #margaretcho (total uses: 174)
+	utterances: {'margaret cho': 44, 'margaret cho.': 9}
+	hashtags: {'#MargaretCho': 150, '#margaretcho': 21, '#MargaretCHO': 1, '#MargaretChO': 1, '#Margaretcho': 1}
+
+powerful (total uses: 106); hashtag: #powerful (total uses: 119)
+	utterances: {'powerful': 98, 'powerful.': 8}
+	hashtags: {'#Powerful': 101, '#powerful': 14, '#POWERFUL': 4}
+
+katherine heigl (total uses: 75); hashtag: #katherineheigl (total uses: 147)
+	utterances: {'katherine heigl': 71, 'katherine heigl.': 4}
+	hashtags: {'#KatherineHeigl': 116, '#katherineheigl': 30, '#Katherineheigl': 1}
+
+the oscars (total uses: 200); hashtag: #theoscars (total uses: 22)
+	utterances: {'the oscars': 126, 'the oscars.': 50, 'the #oscars': 14, 'the #oscars.': 8, "the oscar 's": 2}
+	hashtags: {'#TheOscars': 19, '#theoscars': 3}
+
+history (total uses: 183); hashtag: #history (total uses: 32)
+	utterances: {'history': 158, 'history.': 25}
+	hashtags: {'#History': 19, '#history': 11, '#HISTORY': 2}
+
+academy awards (total uses: 173); hashtag: #academyawards (total uses: 41)
+	utterances: {'academy awards': 145, 'academy awards.': 28}
+	hashtags: {'#AcademyAwards': 38, '#academyawards': 3}
+
+joshua jackson (total uses: 71); hashtag: #joshuajackson (total uses: 135)
+	utterances: {'joshua jackson': 67, 'joshua jackson.': 4}
+	hashtags: {'#JoshuaJackson': 129, '#joshuajackson': 6}
+
+wild (total uses: 26); hashtag: #wild (total uses: 175)
+	utterances: {'wild': 22, 'wild.': 4}
+	hashtags: {'#Wild': 115, '#wild': 49, '#WILD': 10, '#WIld': 1}
+
+heidi klum (total uses: 57); hashtag: #heidiklum (total uses: 144)
+	utterances: {'heidi klum': 53, 'heidi klum.': 3, 'heidi! klum': 1}
+	hashtags: {'#HeidiKlum': 104, '#heidiklum': 39, '#HEIDIKLUM': 1}
+
+ethan hawke (total uses: 63); hashtag: #ethanhawke (total uses: 138)
+	utterances: {'ethan hawke': 60, 'ethan hawke.': 3}
+	hashtags: {'#EthanHawke': 121, '#ethanhawke': 16, '#Ethanhawke': 1}
+
+award winner (total uses: 143); hashtag: #awardwinner (total uses: 47)
+	utterances: {'award winner': 133, 'award winner.': 8, 'award-winner.': 1, 'award-winner': 1}
+	hashtags: {'#AwardWinner': 42, '#awardwinner': 3, '#AWARDWINNER': 1, '#awardWinner': 1}
+
+the facts of life (total uses: 18); hashtag: #thefactsoflife (total uses: 171)
+	utterances: {'the facts of life': 12, 'the facts of life.': 3, 'the #factsoflife': 2, 'the "facts of life': 1}
+	hashtags: {'#TheFactsOfLife': 125, '#thefactsoflife': 32, '#TheFactsofLife': 12, '#theFactsofLife': 1, '#TheFactsOFLife': 1}
+
+laura prepon (total uses: 64); hashtag: #lauraprepon (total uses: 125)
+	utterances: {'laura prepon': 64}
+	hashtags: {'#LauraPrepon': 98, '#lauraprepon': 24, '#Lauraprepon': 2, '#lauraPrepon': 1}
+
+frank underwood (total uses: 69); hashtag: #frankunderwood (total uses: 118)
+	utterances: {'frank underwood': 67, 'frank underwood.': 2}
+	hashtags: {'#FrankUnderwood': 87, '#frankunderwood': 29, '#FRANKUNDERWOOD': 2}
+
+grammys (total uses: 51); hashtag: #grammys (total uses: 135)
+	utterances: {'grammys': 34, 'grammys.': 9, "grammy 's": 8}
+	hashtags: {'#GRAMMYs': 116, '#Grammys': 19}
+
+cake (total uses: 30); hashtag: #cake (total uses: 151)
+	utterances: {'cake': 26, 'cake.': 4}
+	hashtags: {'#Cake': 119, '#cake': 27, '#CAKE': 3, '#CaKe': 2}
+
+colin farrell (total uses: 31); hashtag: #colinfarrell (total uses: 150)
+	utterances: {'colin farrell': 30, 'colin farrell.': 1}
+	hashtags: {'#ColinFarrell': 144, '#colinfarrell': 5, '#COLINFARRELL': 1}
+
+harrison ford (total uses: 65); hashtag: #harrisonford (total uses: 114)
+	utterances: {'harrison ford': 63, 'harrison ford.': 2}
+	hashtags: {'#HarrisonFord': 80, '#harrisonford': 32, '#Harrisonford': 1, '#HARRISONFORD': 1}
+
+lily tomlin (total uses: 55); hashtag: #lilytomlin (total uses: 122)
+	utterances: {'lily tomlin': 53, 'lily tomlin.': 2}
+	hashtags: {'#LilyTomlin': 98, '#lilytomlin': 23, '#LILYTOMLIN': 1}
+
+lanvin (total uses: 42); hashtag: #lanvin (total uses: 134)
+	utterances: {'lanvin': 40, 'lanvin.': 2}
+	hashtags: {'#Lanvin': 69, '#lanvin': 60, '#LANVIN': 5}
+
+jenna dewan-tatum (total uses: 52); hashtag: #jennadewantatum (total uses: 123)
+	utterances: {'jenna dewan-tatum': 25, 'jenna dewan tatum': 24, 'jenna dewan-tatum.': 2, 'jenna dewantatum': 1}
+	hashtags: {'#JennaDewanTatum': 97, '#Jennadewantatum': 19, '#jennadewantatum': 7}
+
+class act (total uses: 32); hashtag: #classact (total uses: 139)
+	utterances: {'class act': 20, 'class act.': 12}
+	hashtags: {'#ClassAct': 78, '#classact': 56, '#Classact': 4, '#CLASSACT': 1}
+
+christian grey (total uses: 33); hashtag: #christiangrey (total uses: 137)
+	utterances: {'christian grey': 32, 'christian grey.': 1}
+	hashtags: {'#Christiangrey': 78, '#ChristianGrey': 52, '#christiangrey': 7}
+
+mark ruffalo (total uses: 50); hashtag: #markruffalo (total uses: 111)
+	utterances: {'mark ruffalo': 49, 'mark ruffalo.': 1}
+	hashtags: {'#MarkRuffalo': 86, '#markruffalo': 25}
+
+live blog (total uses: 143); hashtag: #liveblog (total uses: 17)
+	utterances: {'live blog': 110, 'liveblog': 18, 'live-blog': 12, 'live-blog.': 1, 'live\xa0blog': 1, 'live #blog': 1}
+	hashtags: {'#LiveBlog': 14, '#liveblog': 3}
+
+bigeyesmovie (total uses: 3); hashtag: #bigeyesmovie (total uses: 155)
+	utterances: {'bigeyesmovie': 2, 'big eyes movie': 1}
+	hashtags: {'#BigEyesMovie': 148, '#bigeyesmovie': 4, '#BigEyesmovie': 3}
+
+jack black (total uses: 41); hashtag: #jackblack (total uses: 117)
+	utterances: {'jack black': 40, 'jack black.': 1}
+	hashtags: {'#JackBlack': 97, '#jackblack': 20}
+
+joan rivers (total uses: 33); hashtag: #joanrivers (total uses: 122)
+	utterances: {'joan rivers': 30, 'joan rivers.': 3}
+	hashtags: {'#JoanRivers': 109, '#joanrivers': 13}
+
+zac posen (total uses: 44); hashtag: #zacposen (total uses: 111)
+	utterances: {'zac posen': 40, 'zac posen.': 3, 'zacposen': 1}
+	hashtags: {'#ZacPosen': 77, '#zacposen': 20, '#Zacposen': 14}
+
+quvenzhane wallis (total uses: 38); hashtag: #quvenzhanewallis (total uses: 116)
+	utterances: {'quvenzhane wallis': 36, "quvenzhane' wallis": 1, 'quvenzhane wallis.': 1}
+	hashtags: {'#QuvenzhaneWallis': 102, '#quvenzhanewallis': 12, '#Quvenzhanewallis': 2}
+
+ellie kemper (total uses: 31); hashtag: #elliekemper (total uses: 119)
+	utterances: {'ellie kemper': 30, 'ellie kemper.': 1}
+	hashtags: {'#EllieKemper': 114, '#elliekemper': 5}
+
+ralph fiennes (total uses: 27); hashtag: #ralphfiennes (total uses: 121)
+	utterances: {'ralph fiennes': 26, 'ralph fiennes.': 1}
+	hashtags: {'#Ralphfiennes': 76, '#RalphFiennes': 43, '#ralphfiennes': 2}
+
+hip hop (total uses: 30); hashtag: #hiphop (total uses: 113)
+	utterances: {'hip hop': 22, 'hip-hop': 7, 'hip hop.': 1}
+	hashtags: {'#HipHop': 42, '#hiphop': 34, '#HIPHOP': 33, '#Hiphop': 4}
+
+christine baranski (total uses: 19); hashtag: #christinebaranski (total uses: 123)
+	utterances: {'christine baranski': 17, 'christine baranski.': 2}
+	hashtags: {'#ChristineBaranski': 116, '#christinebaranski': 7}
+
+johann johannsson (total uses: 123); hashtag: #johannjohannsson (total uses: 14)
+	utterances: {'johann johannsson': 119, 'johann johannsson.': 4}
+	hashtags: {'#JohannJohannsson': 11, '#johannjohannsson': 3}
+
+exclusive (total uses: 24); hashtag: #exclusive (total uses: 111)
+	utterances: {'exclusive': 24}
+	hashtags: {'#Exclusive': 111}
+
+nightcrawler (total uses: 29); hashtag: #nightcrawler (total uses: 106)
+	utterances: {'nightcrawler': 22, 'nightcrawler.': 5, 'night crawler': 2}
+	hashtags: {'#Nightcrawler': 101, '#nightcrawler': 4, '#NightCrawler': 1}
+
+presenter (total uses: 116); hashtag: #presenter (total uses: 17)
+	utterances: {'presenter': 104, 'presenter.': 12}
+	hashtags: {'#Presenter': 10, '#presenter': 7}
+
+fun fact (total uses: 21); hashtag: #funfact (total uses: 111)
+	utterances: {'fun fact': 21}
+	hashtags: {'#FunFact': 82, '#funfact': 26, '#FUNFACT': 3}
+
+sag awards (total uses: 46); hashtag: #sagawards (total uses: 80)
+	utterances: {'sag awards': 31, 'sag awards.': 14, 'sagawards.': 1}
+	hashtags: {'#SAGAwards': 66, '#SAGawards': 8, '#sagawards': 5, '#SagAwards': 1}
+
+everything is not awesome (total uses: 15); hashtag: #everythingisnotawesome (total uses: 110)
+	utterances: {'everything is not awesome': 9, 'everything is not awesome.': 6}
+	hashtags: {'#EverythingIsNotAwesome': 94, '#everythingisNOTawesome': 5, '#everythingisnotawesome': 3, '#EverythingIsNOTAwesome': 2, '#EverythingisNOTAwesome': 2, '#EverythingisNotAwesome': 2, '#EverythingisNOTawesome': 2}
+
+jlaw (total uses: 11); hashtag: #jlaw (total uses: 106)
+	utterances: {'jlaw': 7, 'j.law': 2, 'j-law.': 1, 'j-law': 1}
+	hashtags: {'#Jlaw': 83, '#jlaw': 14, '#JLaw': 9}
+
+people 's choice awards (total uses: 57); hashtag: #peopleschoiceawards (total uses: 42)
+	utterances: {"people 's choice awards": 38, "people 's choice awards.": 9, 'peoples choice awards': 8, 'people’s choice awards': 2}
+	hashtags: {'#PeoplesChoiceAwards': 42}
+
+spirit awards (total uses: 8); hashtag: #spiritawards (total uses: 54)
+	utterances: {'spirit awards': 8}
+	hashtags: {'#SpiritAwards': 54}
+
+annie movie (total uses: 1); hashtag: #anniemovie (total uses: 28)
+	utterances: {'annie movie': 1}
+	hashtags: {'#AnnieMovie': 25, '#anniemovie': 3}
+
+stardust awards (total uses: 10); hashtag: #stardustawards (total uses: 14)
+	utterances: {'stardust awards': 7, 'stardust awards.': 3}
+	hashtags: {'#StardustAwards': 14}
+
+entourage the movie (total uses: 1); hashtag: #entouragethemovie (total uses: 15)
+	utterances: {'entourage the movie': 1}
+	hashtags: {'#EntourageTheMovie': 15}
