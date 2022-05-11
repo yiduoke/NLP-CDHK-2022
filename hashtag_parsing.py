@@ -7,6 +7,15 @@ from tqdm import tqdm
 from string_utils import parse_hashtags_from_tweet, parse_PascalCase_to_representations
 from string_utils import is_ascii, clean_tweet, is_award_hashtag, tweet_to_alphanumeric
 
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.cluster import dbscan
+
+from sklearn.cluster import AffinityPropagation
+import distance as dst
+
+
 
 class HashtagLogger(object):
     def __init__(self):
@@ -388,18 +397,48 @@ class HashtagParser(object):
 
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_award = {k: v for k, v in sorted(hash_to_award.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
-        print("","","",hash_to_award.keys())
-        all_hash_to_award_keys = []
-
-        def recursively_get_all_keys(dictionary, running_list):
-            for key, value in hash_to_award:
-                if type(value) != dict:
-                    return running_list
-                else:
-                    for key in value:
-                        recursively_get_all_keys(value, running_list.append(value))
+        print(hash_to_award.keys())
+        print("checkpoint")
+        for key in hash_to_award.keys():
+            print(key, hash_to_award[key]['hashtag_total'])
         
-        recursively_get_all_keys(hash_to_award, [])
+        keylist = []
+        for key in hash_to_award.keys():
+            keylist.append(key)
+            # for i in range(len(hash_to_award[key])):
+            #     keylist.append(key)
+
+        words = np.asarray(keylist) #So that indexing with a list will work
+        print("starting to build a matrix")
+        lev_similarity = -1*np.array([[dst.levenshtein(w1,w2) for w1 in words] for w2 in words])
+        print("doing the other stuff")
+        affprop = AffinityPropagation(affinity="precomputed", damping=0.5)
+        print("fitting")
+        affprop.fit(lev_similarity)
+        print("done fitting")
+        for cluster_id in tqdm(np.unique(affprop.labels_)):
+            print("this")
+            exemplar = words[affprop.cluster_centers_indices_[cluster_id]]
+            cluster = np.unique(words[np.nonzero(affprop.labels_==cluster_id)])
+            cluster_str = ", ".join(cluster)
+            print(" - *%s:* %s" % (exemplar, cluster_str))
+
+        
+        # keycolumn = np.arange(len(keylist)).reshape(-1,1)
+        # # dbscan(keycolumn, metric = distance)
+
+        # db = DBSCAN(eps=0.3, min_samples=10).fit(keycolumn)
+        # core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+        # core_samples_mask[db.core_sample_indices_] = True
+        # labels = db.labels_
+
+        # for i, label in enumerate(labels):
+        #     print(i, keycolumn[i], label[i])
+
+
+
+        print("celebration party party party levvy not needed")
+
 
 
         bests, awards = [], []
