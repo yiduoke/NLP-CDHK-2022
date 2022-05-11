@@ -440,105 +440,6 @@ class HashtagParser(object):
                   (v['utterance'], v['utterance_total'], len(v['utterance_forms']), v['hashtag'],
                    v['hashtag_total'], len(v['hashtag_forms'])))
             print((t - 1) * '\t' + '- all utterances (and their counts):', v['utterance_forms'])
-            # print('\tall hashtags (and their counts):', v['hashtag_forms'])
-
-
-        frequent_non_concepts = {}
-        for k in tqdm(self.hashtags.general_hashtags):
-            if k in tweets_full_reduce:
-                v = self.hashtags.general_hashtags[k]
-                tag_matches = [k] + v['children']  # TODO
-                # gather hashtags that map to uncased (ambiguous) form; compute total # occurrences of uncased hashtag
-                tag_counter = {'#' + tag: freq for tag, freq in self.raw_hashtag_counter.items() if tag.lower()}
-                tag_total = sum(tag_counter.values())
-
-                # wonky regex --> allow any spacing/symbols between alphanumeric characters when searching
-                #   - we want to resolve spacing/punctuation of mapping from hashtag to utterances in tweets
-                #   - (hashtags are not always easily parsed from capitalization of tweet; also no punctuation allowed)
-                # nl_regex = ''.join([char + r'[^\w~]*' for char in k[:-1]]) + k[-1] + r'\.?[\.,)(-"\'!:;]? '
-                nl_regex = r' (' + ''.join([char + r'[^\w~]*' for char in k[:-1]]) + k[-1] + r'\.?)[\.,\)\(\-"\'\!:;]? '
-                nl_counter = Counter(re.findall(nl_regex, tweets_filtered))
-                nl_total = sum(nl_counter.values())
-
-                try:
-                    nl_top_utterance = nl_counter.most_common(1)[0][0]
-                except IndexError:
-                    continue
-
-                if not any([hardcode in k for hardcode in self.award_words_hardcoded]):
-                    if not k.endswith('movie') or k == 'movie':
-                        if nl_total < self.frequent_utterance_threshold and tag_total < self.frequent_hashtag_threshold:
-                            continue
-                        elif nl_total / tag_total > self.keep_hashtag_nl_ratio or tag_total / (nl_total + 1) > self.keep_hashtag_nl_ratio:
-                            frequent_non_concepts[k] = {
-                                'utterance': nl_top_utterance,
-                                'utterance_forms': nl_counter,
-                                'utterance_total': nl_total,
-                                'hashtag': '#' + k,
-                                'hashtag_forms': tag_counter,
-                                'hashtag_total': tag_total
-                            }
-                            continue
-
-                tag_counter = dict(sorted(tag_counter.items(), key=lambda item: item[1], reverse=True))
-                nl_counter = dict(sorted(nl_counter.items(), key=lambda item: item[1], reverse=True))
-
-                hash_to_concept[k] = {
-                    'utterance': nl_top_utterance,
-                    'utterance_forms': nl_counter,
-                    'utterance_total': nl_total,
-                    'hashtag': '#' + k,
-                    'hashtag_forms': tag_counter,
-                    'hashtag_total': tag_total
-                }
-
-        # post-process: sort by sum of total hashtags and utterance counts
-        hash_to_concept = {k: v for k, v in sorted(hash_to_concept.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
-        bests, awards = [], []
-        chunk_counter = Counter()
-        for k, v in hash_to_concept.items():
-            nl = v['utterance']
-            if nl.startswith('best ') and v['utterance_total'] + v['hashtag_total'] > 50:
-                nl_clean = ' ' + nl.replace(',', '').replace('-', '') + ' '
-                for stopword in ['in', 'a', 'an', 'and', 'of', 'the']:
-                    nl_clean = nl_clean.replace(' ' + stopword + ' ', ' ')
-                nl_chunks = [chunk for chunk in nl_clean.split() if chunk != '']
-                chunk_counter.update(nl_chunks)
-                bests.append([set(nl_chunks), k, v])
-            elif nl.endswith(' award'):
-                awards.append([k, v])
-
-        bests_clean = []
-        bests_visited = []
-
-        for root in [best for best in bests if len(best[0]) == 2]:
-            bests_queue = [root]
-            while len(bests_queue):
-                chunks, k, v = bests_queue.pop(0)
-                if k in bests_visited:
-                    continue
-                bests_visited.append(k)
-                if any([chunk_counter[chunk] == 1 for chunk in chunks]):
-                    continue
-
-                chunk_concept = v
-                for chunks_, k_, v_ in bests:
-                    if k_ in bests_visited:
-                        continue
-                    if chunks == chunks_:
-                        bests_visited.append(k_)
-                        chunk_concept['utterance_total'] += v_['utterance_total']
-                        chunk_concept['hashtag_total'] += v_['hashtag_total']
-                        chunk_concept['utterance_forms'].update(v_['utterance_forms'])
-                        chunk_concept['hashtag_forms'].update(v_['hashtag_forms'])
-                    elif len(chunks_.difference(chunks)) == 1 and len(chunks_) - len(chunks) == 1:
-                        bests_queue = [[chunks_, k_, v_]] + bests_queue
-
-                utterances = chunk_concept['utterance_forms']
-                hashtags = chunk_concept['hashtag_forms']
-                chunk_concept['utterance'] = max(utterances, key=utterances.get)
-                chunk_concept['hashtag'] = max(hashtags, key=hashtags.get)
-                bests_clean.append([len(chunks), chunk_concept])
 
         print('\n' + '---' * 20)
         print('"award" in hashtag:')
@@ -550,6 +451,51 @@ class HashtagParser(object):
                   (v['utterance'], v['utterance_total'], v['hashtag'], v['hashtag_total']))
             print('\tall matching utterances (and their counts):', v['utterance_forms'])
             print('\tall matching hashtags (and their counts):', v['hashtag_forms'])
+
+        print('\n' + '---' * 20)
+        print('looking for hashtags that co-occur with "best" and/or "award"')
+        for k in tqdm(self.hashtags.general_hashtags):
+            if k in tweets_full_reduce:
+                v = self.hashtags.general_hashtags[k]
+                tag_matches = [k] + v['children']  # TODO
+                # gather hashtags that map to uncased (ambiguous) form; compute total # occurrences of uncased hashtag
+                tag_counter = {'#' + tag: freq for tag, freq in self.raw_hashtag_counter.items() if tag.lower() in tag_matches}
+                tag_total = sum(tag_counter.values())
+
+                # wonky regex --> allow any spacing/symbols between alphanumeric characters when searching
+                #   - we want to resolve spacing/punctuation of mapping from hashtag to utterances in tweets
+                #   - (hashtags are not always easily parsed from capitalization of tweet; also no punctuation allowed)
+                # nl_regex = ''.join([char + r'[^\w~]*' for char in k[:-1]]) + k[-1] + r'\.?[\.,)(-"\'!:;]? '
+
+                nl_counter = Counter()
+                for search_tag in tag_matches:
+                    nl_regex = r' (' + ''.join([char + r'[^\w~]*' for char in k[:-1]]) + k[-1] + r'\.?)[\.,\)\(\-"\'\!:;]? '
+                    nl_counter.update(re.findall(nl_regex, tweets_filtered))
+                nl_total = sum(nl_counter.values())
+
+                try:
+                    nl_top_utterance = nl_counter.most_common(1)[0][0]
+                except IndexError:
+                    continue
+
+                if nl_total < self.frequent_utterance_threshold and tag_total < self.frequent_hashtag_threshold:
+                    continue
+                if nl_total / tag_total > self.keep_hashtag_nl_ratio or tag_total / (nl_total + 1) > self.keep_hashtag_nl_ratio:
+                    continue
+
+                tag_counter = dict(sorted(tag_counter.items(), key=lambda item: item[1], reverse=True))
+                nl_counter = dict(sorted(nl_counter.items(), key=lambda item: item[1], reverse=True))
+                hash_to_concept[k] = {
+                    'utterance': nl_top_utterance,
+                    'utterance_forms': nl_counter,
+                    'utterance_total': nl_total,
+                    'hashtag': '#' + k,
+                    'hashtag_forms': tag_counter,
+                    'hashtag_total': tag_total
+                }
+
+        # post-process: sort by sum of total hashtags and utterance counts
+        hash_to_concept = {k: v for k, v in sorted(hash_to_concept.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
 
         print('\n' + '---' * 20)
         print('general hashtags\n')
