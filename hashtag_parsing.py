@@ -399,7 +399,7 @@ class HashtagParser(object):
                     for key in value:
                         recursively_get_all_keys(value, running_list.append(value))
 
-        recursively_get_all_keys(hash_to_award, [])
+        # recursively_get_all_keys(hash_to_award, [])
         bests, awards = [], []
         chunk_counter = Counter()
         for k, v in hash_to_award.items():
@@ -510,7 +510,7 @@ class HashtagParser(object):
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_concept = {k: v for k, v in sorted(hash_to_concept.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
 
-        for k, v in hash_to_concept.items():
+        for k, v in tqdm(hash_to_concept.items()):
             best_counter = {}
             for _, best_v in bests_clean:
                 best_str = best_v['utterance']
@@ -518,9 +518,7 @@ class HashtagParser(object):
 
             for tweet in tweets_filtered_list:
                 tweet = tweet.lower()
-                if not any([utt in tweet for utt in v['utterance_forms']]):
-                    continue
-                if not any([hash in tweet for hash in v['hashtag_forms']]):
+                if not any([utt in tweet for utt in v['utterance_forms']]) and v['hashtag'].lower().replace('#', '') not in tweet:
                     continue
 
                 for _, best_v in bests_clean:
