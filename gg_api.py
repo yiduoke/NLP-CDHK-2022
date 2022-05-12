@@ -5,6 +5,15 @@ OFFICIAL_AWARDS_1819 = ['best motion picture - drama', 'best motion picture - mu
 
 import re
 import json
+import spacy 
+
+nlp = spacy.load("en_core_web_sm")
+
+# string_with_names = "life of pi composer Mychael Danna or B.J. Novak in 20 years wins for best score at the golden globes."
+# doc = nlp(string_with_names)
+
+# for ent in doc.ents:
+#     print(ent.text, ent.start_char, ent.end_char, ent.label_)
 
 def isHypothetical(text):
     if '?' in text or 'last year' in text or 'hope' in text or 'hoping' in text or 'bet' in text or 'betting' in text:
@@ -30,7 +39,7 @@ def get_hosts(year):
 
     # Opening JSON file
     fname = 'gg' + str(year) + '.json'
-    f = open('gg2015.json')
+    f = open('../Data/gg2015.json')
 
     # returns JSON object as
     # a dictionary
@@ -73,32 +82,34 @@ def get_awards(year):
 
     for tweet in data:
         tweet_text = " " + tweet['text'] + " "
-  
-        # populating hashtag dict
-        if ("#" in tweet_text):
-            hashtags = re.findall(" #\w+ ", tweet_text)
-            for hashtag in hashtags:
-                if hashtag not in hashtag_dict:
-                    hashtag_dict[hashtag] = 1
-                else:
-                    hashtag_dict[hashtag] += 1
 
-        topics = ['comedy', 'drama', 'television', 'tv', 'series', 'picture', 'film', 'movie']
+        win_hints_1 = ['congratulations', 'congratz', 'congrats', 'win', 'wins', 'won']
+        win_hints_2 = []
         tweet = tweet['text'].lower().split()
-        if 'tv' in tweet:
-            tweet[tweet.index('tv')] = 'television'
-        if ('best' in tweet):
-            for topic in topics:
-                if (topic in tweet):
-                    if tweet.index('best') < tweet.index(topic):
-                        ## add to dic or update
-                        item = tweet[tweet.index('best'):tweet.index(topic) + 1 ]
-                        item_str = " ".join(item)
-                        if item_str not in award_names_dict:
-                            award_names_dict[item_str] = 1
-                        else:
-                            award_names_dict[item_str] += 1
-    print(dict(sorted(award_names_dict.items(), key=lambda item: item[1])))  
+        for hint in win_hints_1:
+             if (hint in tweet):
+                # print(tweet)
+                doc = nlp(tweet_text)
+                for ent in doc.ents:
+                    if ("globe" not in ent.text.lower()):
+                        print(ent.text, ent.start_char, ent.end_char, ent.label_)
+                # hint_index = tweet_text.index(hint)
+                # winner = tweet[hint_index]
+                # print("--------> winner: ", winner)
+
+                
+        # if ('best' in tweet):
+        #     for topic in topics:
+        #         if (topic in tweet):
+        #             if tweet.index('best') < tweet.index(topic):
+        #                 ## add to dic or update
+        #                 item = tweet[tweet.index('best'):tweet.index(topic) + 1 ]
+        #                 item_str = " ".join(item)
+        #                 if item_str not in award_names_dict:
+        #                     award_names_dict[item_str] = 1
+        #                 else:
+        #                     award_names_dict[item_str] += 1
+    # print(dict(sorted(award_names_dict.items(), key=lambda item: item[1])))  
     awards = "work to be done still."
     return awards
 
@@ -138,7 +149,7 @@ def main():
     and then run gg_api.main(). This is the second thing the TA will
     run when grading. Do NOT change the name of this function or
     what it returns.'''
-    pass
+    get_awards(2013)
 
 
     return
