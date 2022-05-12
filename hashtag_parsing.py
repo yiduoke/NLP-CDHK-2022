@@ -397,43 +397,6 @@ class HashtagParser(object):
 
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_award = {k: v for k, v in sorted(hash_to_award.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
-        print(hash_to_award.keys())
-        print("checkpoint")
-        for key in hash_to_award.keys():
-            print(key, hash_to_award[key]['hashtag_total'])
-        
-        keylist = []
-        for key in hash_to_award.keys():
-            keylist.append(key)
-            # for i in range(len(hash_to_award[key])):
-            #     keylist.append(key)
-
-        words = np.asarray(keylist) #So that indexing with a list will work
-        print("starting to build a matrix")
-        lev_similarity = -1*np.array([[dst.levenshtein(w1,w2) for w1 in words] for w2 in words])
-        print("doing the other stuff")
-        affprop = AffinityPropagation(affinity="precomputed", damping=0.5)
-        print("fitting")
-        affprop.fit(lev_similarity)
-        print("done fitting")
-        for cluster_id in tqdm(np.unique(affprop.labels_)):
-            print("this")
-            exemplar = words[affprop.cluster_centers_indices_[cluster_id]]
-            cluster = np.unique(words[np.nonzero(affprop.labels_==cluster_id)])
-            cluster_str = ", ".join(cluster)
-            print(" - *%s:* %s" % (exemplar, cluster_str))
-
-        
-        # keycolumn = np.arange(len(keylist)).reshape(-1,1)
-        # # dbscan(keycolumn, metric = distance)
-
-        # db = DBSCAN(eps=0.3, min_samples=10).fit(keycolumn)
-        # core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
-        # core_samples_mask[db.core_sample_indices_] = True
-        # labels = db.labels_
-
-        # for i, label in enumerate(labels):
-        #     print(i, keycolumn[i], label[i])
 
 
 
