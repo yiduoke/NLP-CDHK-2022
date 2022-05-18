@@ -1,4 +1,5 @@
 import re
+import json
 from collections import Counter
 from Levenshtein import distance
 from typing import List, Dict
@@ -6,15 +7,7 @@ from tqdm import tqdm
 
 from string_utils import parse_hashtags_from_tweet, parse_PascalCase_to_representations
 from string_utils import is_ascii, clean_tweet, is_award_hashtag, tweet_to_alphanumeric
-
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-from sklearn.cluster import dbscan
-
-from sklearn.cluster import AffinityPropagation
-import distance as dst
-
+from string_utils import clean_award_regex, split_award_regex
 
 
 class HashtagLogger(object):
@@ -27,6 +20,9 @@ class HashtagLogger(object):
             - superset-hashtag linking: #Selma <--> #SelmaMovie, #SelmaTheMovie, #TeamSelma, #Selma50, #SelmaIsNow
                 - but *not* related to #SelmaHayek, a misspelling of #SalmaHayek
         """
+        # initialization boolean
+        self.is_initialized = False
+
         # stopword data
         self.stopword_hashtags = []
         self.stopword_chunks = []
@@ -44,6 +40,7 @@ class HashtagLogger(object):
         # hashtag to parent -- dict that links "children" hashtags to parent hashtags
         #   e.g. #Selma50 --> #Selma; #Selma --> #Selma
         self.hashtag_to_parent = {}
+        self.all_hashtags = []
 
     def add_stopword_hashtag(self, hashtag, abbreviations, chunks):
         self.stopword_hashtags.append(hashtag)
@@ -57,7 +54,7 @@ class HashtagLogger(object):
         # self.hashtag_to_parent[hashtag] = hashtag
 
     def add_general_hashtag(self, hashtag, frequency, abbreviations, chunks):
-        if self.attempt_hashtag_linking(hashtag, abbreviations, chunks):
+        if self.attempt_hashtag_linking(hashtag, frequency, abbreviations, chunks):
             self.general_hashtags[hashtag] = {
                 'frequency': frequency, 'children': [], 'abbreviations': abbreviations, 'split': chunks
             }
@@ -76,7 +73,7 @@ class HashtagLogger(object):
         else:
             return 3
 
-    def add_child_to_parent(self, hashtag, abbreviations, parent):
+    def add_child_to_parent(self, hashtag, frequency, abbreviations, parent):
         """
         TODO
         :param hashtag:
@@ -86,11 +83,12 @@ class HashtagLogger(object):
         """
         self.hashtag_to_parent[hashtag] = parent
         self.general_hashtags[parent]['children'].append(hashtag)
+        self.general_hashtags[parent]['frequency'] += frequency
         for abbr in abbreviations:
             if abbr not in self.general_hashtags[parent]['abbreviations']:
                 self.general_hashtags[parent]['abbreviations'].append(abbr)
 
-    def attempt_hashtag_linking(self, hashtag, abbreviations, chunks):
+    def attempt_hashtag_linking(self, hashtag, frequency, abbreviations, chunks):
         # ignore if hashtag has small edit distance to another (dependent on hashtag length)
         edit_distance = self.get_edit_distance_rule(hashtag)
         close_tags = list(set([p for t, p in self.hashtag_to_parent.items() if distance(hashtag, t) <= edit_distance]))
@@ -115,11 +113,12 @@ class HashtagLogger(object):
                         # coalesce the multiple parents + their children
                         p_children = self.general_hashtags[p]['children'] + [p]
                         self.general_hashtags[parent]['children'].extend(p_children)
+                        self.general_hashtags[parent]['frequency'] += self.general_hashtags[p]['frequency']
                         for c in p_children:
                             self.hashtag_to_parent[c] = parent
             else:
                 parent = self.hashtag_to_parent[close_tags[0]]
-                self.add_child_to_parent(hashtag, abbreviations, parent)
+                self.add_child_to_parent(hashtag, frequency, abbreviations, parent)
             return False
 
         # check if a hashtag is a ***subset*** of more popular hashtags
@@ -130,7 +129,7 @@ class HashtagLogger(object):
         if len(superset_hashtags):
             if len(superset_hashtags) == 1:
                 parent = superset_hashtags[0]
-                self.add_child_to_parent(hashtag, abbreviations, parent)
+                self.add_child_to_parent(hashtag, frequency, abbreviations, parent)
                 return False
             else:
                 # throw out hashtag if more than one superset hashtag -- hashtags like #George
@@ -144,7 +143,7 @@ class HashtagLogger(object):
             if len(subset_hashtags) == 1:
                 # if the hashtag is a subset of only one hashtag, then group them together
                 parent = subset_hashtags[0]
-                self.add_child_to_parent(hashtag, abbreviations, parent)
+                self.add_child_to_parent(hashtag, frequency, abbreviations, parent)
             else:
                 # if superset of multiple hashtags, then don't group or reject the hashtag
                 #   - example: #accesshollywood --> #access, #hollywood
@@ -154,7 +153,7 @@ class HashtagLogger(object):
         return True
 
     def resolve_abbreviated_hashtags(self, abbreviated_hashtags):
-        for tag in abbreviated_hashtags:
+        for tag, freq in abbreviated_hashtags:
             # fix stopword abbreviations like RDJGG (robert downey jr. golden globes)
             tag_copy = tag[:]
             for abbr in self.stopword_abbreviations:
@@ -165,47 +164,113 @@ class HashtagLogger(object):
             candidate_references = [k for k, v in self.general_hashtags.items() if tag_copy in v['abbreviations'] and k != tag_copy]
             if len(candidate_references) == 1:
                 parent = candidate_references[0]
-                self.add_child_to_parent(tag, [tag_copy], parent)
+                self.add_child_to_parent(tag, freq, [tag_copy], parent)
                 children_references = {k: v for k, v in self.general_hashtags.items() if tag_copy in v['split']}
                 for k, v in children_references.items():
-                    self.add_child_to_parent(k, [], parent)
+                    self.add_child_to_parent(k, v['frequency'], [], parent)
                     for child in v['children']:
-                        self.add_child_to_parent(child, [], parent)
+                        self.add_child_to_parent(child, 0, [], parent)
+
+    def finalize(self):
+        """
+        Remove extraneous hashtags
+        TODO: write out a better docstring
+        :return:
+        """
+        all_parent_hashtags = list(set(self.hashtag_to_parent.values()))
+        del_hashtags = []
+        for candidate_hashtag in self.general_hashtags:
+            if candidate_hashtag not in all_parent_hashtags:
+                del_hashtags.append(candidate_hashtag)
+
+        for hashtag in del_hashtags:
+            del self.general_hashtags[hashtag]
+
+        self.all_hashtags = list(set(self.hashtag_to_parent.keys()))
+
+
 
 
 class HashtagParser(object):
-    def __init__(self, data=None):
+    def __init__(self, data=None, hashtag_parser_config_path='hashtag_parser_config.json',
+                 award_word_config_path='award_word_config.json'):
+
         # ---------- internal data structs ----------
         self.raw_hashtag_counter = Counter()
 
         self.hashtag_total_count = 0
         self.uncased_to_cased = None
+        self.uncased_ordered = None
         self.hashtags = HashtagLogger()
+        self.award_name_to_hashtags = None
 
-        # ---------- Hardcoded config ----------
-        self.award_words_hardcoded = ['best', 'award']
+        # ---------- Award words config ----------
+        with open(award_word_config_path) as f:
+            award_word_config = json.load(f)
+
+        # awards might start with "best"
+        self.awards_might_start_with = award_word_config['awards_might_start_with']
+        # awards might end with "award"
+        self.awards_might_end_with = award_word_config['awards_might_end_with']
+        # award-related words = both of the above
+        self.award_related_words = self.awards_might_start_with + self.awards_might_end_with
+
+        # award *winner*-related strings
+        #    award suffix phrases: phrases *after* an award name that might indicate winning
+        #      <award_name> suffix phrase <recipient> (e.g. <best hair> goes to <walker demel>)
+        #    award prefix phrases: phrases *before* an award name that might indicate winning
+        #      <recipient> prefix phrase <award_name> (e.g. <walker demel> takes home <best hair>)
+        self.award_suffix_phrases = award_word_config['award_suffix_phrases']
+        self.award_prefix_phrases = award_word_config['award_prefix_phrases']
+
+        # expand prefix phrase list with reasonable modifiers: <recipient> prefix phrase + modifier <award_name>
+        #   (e.g. <walker demel> takes home *the award for* <best hair>)
+        temp_prefix_phrases = []
+        for prefix_modifier in award_word_config['award_prefix_modifiers']:
+            temp_prefix_phrases.extend([phrase + prefix_modifier for phrase in self.award_suffix_phrases])
+        self.award_prefix_phrases = temp_prefix_phrases + self.award_prefix_phrases
+
+        # regex for awards might start/end with (current assumption: only one string in each)
+        self.award_suffix_regex = r'(' + self.awards_might_start_with[0] + r' [\w \-,/]+) '
+        self.award_prefix_starts_with_regex = r' ' + self.award_suffix_regex
+        self.award_prefix_ends_with_regex = r' ((?:[\w\-,/]| \w\. | )+ ' + self.awards_might_end_with[0] + r') '
+
+
+        # ---------- Hashtag filtering config ----------
+        with open(hashtag_parser_config_path) as f:
+            parser_config = json.load(f)
 
         # stopwords: hashtags that appear with more than 1% of all hashtags
-        self.stopword_proportion_threshold = 0.01
+        self.stopword_proportion_threshold = float(parser_config['stopword_proportion_threshold'])
 
-        # frequent: popular hashtags that appear occur more times than the "frequent hashtag threshold"
-        # infrequent: not-so-popular hashtags but appear more times than the "infrequent hashtag threshold"
-        self.frequent_hashtag_threshold = 100
-        self.infrequent_hashtag_threshold = 10
+        # frequent: popular hashtags that appear occur more times than the "frequent hashtag threshold" (100)
+        # infrequent: not-so-popular hashtags but appear more times than the "infrequent hashtag threshold" (10)
+        self.frequent_hashtag_threshold = int(parser_config['frequent_hashtag_threshold'])
+        self.infrequent_hashtag_threshold = int(parser_config['infrequent_hashtag_threshold'])
 
         # params related to keeping frequent hashtags
-        self.frequent_hashtag_len_min = 4
+        #   - a frequent hashtag must be at least 4 characters long to keep
+        self.frequent_hashtag_len_min = int(parser_config['frequent_hashtag_len_min'])
 
         # params related to keeping infrequent hashtags
-        self.keep_hashtag_subset_ratio = 10
-        self.infrequent_hashtag_len_min = 7
+        #   - keep hashtags that are possible children of others if they occur at least 1/10 times parent occurrence
+        #   - an infrequent hashtag must be at least 7 characters long to keep
+        self.keep_hashtag_subset_ratio = int(parser_config['keep_hashtag_subset_ratio'])
+        self.infrequent_hashtag_len_min = int(parser_config['infrequent_hashtag_len_min'])
 
         # params for tracking natural language utterances related to hashtags
-        self.frequent_utterance_threshold = 100
-        self.keep_hashtag_nl_ratio = 10
+        #   - a frequent utterance appears at least 100 times (just like hashtag threshold for "frequent")
+        #   - if the utterance appears more than 10x or less than 1/10x the hashtag occurrence, ignore it
+        self.frequent_utterance_threshold = int(parser_config['frequent_utterance_threshold'])
+        self.keep_hashtag_nl_ratio = int(parser_config['keep_hashtag_nl_ratio'])
+
+        # params for tracking candidate award names via win-related strings
+        self.award_winner_candidate_threshold_capture = int(parser_config['award_winner_candidate_threshold_capture'])
+        self.award_winner_candidate_threshold_filter = int(parser_config['award_winner_candidate_threshold_filter'])
 
         if data is not None:
             self.initialize_hashtag_counter(data)
+            self.initialize_uncased_mappings()
 
     def initialize_hashtag_counter(self, data: List[Dict]) -> None:
         """
@@ -213,7 +278,7 @@ class HashtagParser(object):
         :param data: List[Dict] of tweet instances, where Dict must have key='text'
         :return: None - update self.hashtag_counter
         """
-        for line in data:
+        for line in tqdm(data, desc='Counting all hashtags in the corpus'):
             tweet = line['text']
             self.raw_hashtag_counter.update(parse_hashtags_from_tweet(tweet))
 
@@ -225,7 +290,8 @@ class HashtagParser(object):
                                      , ...}
 
             example: 'grandbudapest': {'grandbudapest': 7, 'GrandBudapest': 17, 'GRANDBUDAPEST': 1, 'Grandbudapest': 1}
-        :return: sorted dictionary of aggregated lower-case hashtags (sorted by hashtag frequency sum over all casings)
+        :return: None, instead store mapping in self.uncased_ordered:
+            sorted dictionary of aggregated lower-case hashtags (sorted by hashtag frequency sum over all casings)
         """
         uncased_hashtags = list(set([tag.lower() for tag in self.raw_hashtag_counter.keys()]))
         uncased_counter = {tag: 0 for tag in uncased_hashtags}
@@ -235,11 +301,11 @@ class HashtagParser(object):
             uncased_counter[uncased_tag] += freq
             self.hashtag_total_count += freq
             self.uncased_to_cased[uncased_tag][tag] = freq
-        return dict(sorted(uncased_counter.items(), key=lambda item: item[1], reverse=True))
+        self.uncased_ordered = dict(sorted(uncased_counter.items(), key=lambda item: item[1], reverse=True))
 
-    def get_candidate_hashtags(self):
+    def get_candidate_hashtags(self, verbose: bool = False):
         """
-        Return a unique set of hashtags which are maybe important and might map to utterances outside of hashtags
+        Generate a unique set of hashtags which are maybe important and might map to utterances outside of hashtags
             + hashtag filtering:
                 - store all hashtags that start with "best" or end with "award" (only hardcoding used)
                 - ignore hashtags that are effectively "stopwords", adding no useful information (#GoldenGlobes)
@@ -247,18 +313,19 @@ class HashtagParser(object):
                 - ignore hashtags if too short (hardcoded, threshold is conditioned on how popular the hashtag is)
             + heuristics for combining concepts/entities:
                 (handled by HashtagLogger)
-
-        :return: List[str] - where each str is a hashtag without the preceding '#' and is lower-cased.
+        :param verbose: if True, print out general (i.e. not award-related) hashtags after filtering and linking
+        :return: None (instead, initialize self.hashtags)
         """
         # map hashtags (with collision) to lowercase - casing doesn't change semantics - then sort by frequency
-        uncased_sorted = self.initialize_uncased_mappings()
+        if self.uncased_ordered is None:
+            self.initialize_uncased_mappings()
 
         # clean hashtag set: since our mapping above is sorted by frequency, we sequentially encounter:
         #   - stopwords -- greater than 1% of all hashtag occurrences -- reject these hashtags
         #   - popular hashtags -- at least 100 occurrences -- less strict rules for filtering/rejection
         #   - infrequent hashtags -- at least 10 occurrences -- strict rules for filtering/rejection
         abbreviated_hashtags = []
-        for tag, freq in uncased_sorted.items():
+        for tag, freq in self.uncased_ordered.items():
             # get most frequent capitalization of hashtag
             cased_tag = max(self.uncased_to_cased[tag], key=self.uncased_to_cased[tag].get)
 
@@ -270,7 +337,7 @@ class HashtagParser(object):
                 if freq < self.infrequent_hashtag_threshold:
                     continue
                 # otherwise, pass on abbreviated hashtags for now - we'll try to resolve them later
-                abbreviated_hashtags.append(tag)
+                abbreviated_hashtags.append([tag, freq])
                 continue
             elif cased_tag.islower():
                 # reject a hashtag if it mainly appears in lowercase form
@@ -322,9 +389,230 @@ class HashtagParser(object):
             self.hashtags.add_general_hashtag(tag, freq, cased_abbreviations, cased_chunks)
 
         self.hashtags.resolve_abbreviated_hashtags(abbreviated_hashtags)
+        self.hashtags.finalize()
+        self.hashtags.is_initialized = True
+        if verbose:
+            for k, v in self.hashtags.general_hashtags.items():
+                print('Concept hashtag:', k, '\n\tlinked children hashtags:', v['children'])
 
-        for k, v in self.hashtags.general_hashtags.items():
-            print(k, v['children'])
+    def parse_award_names(self, data: List[Dict], verbose: bool = True) -> List[str]:
+        """
+        Leverages hashtag co-occurrence to generate a probable list of award names.
+
+        :param data: List[Dict], where Dict must have key='text'
+        :return: list of best-guess award names from the data.
+        """
+        if not self.hashtags.is_initialized:
+            self.get_candidate_hashtags()
+
+        # we want natural language (i.e. not hashtag) candidates for award names mined from tweets related to awards
+        #   - lowercase the tweets
+        #   - remove twitter account mentions (don't yet have a way of linking/interpreting them)
+        #   - ignore tweets without "best" or "award"
+        #       (set in 'award_word_config.json' --> saved to self.award_related_words)
+        # separate cleaned + filtered tweets into "retweets" and "non-retweet" lists
+        tweets_filtered_list = []
+        retweets_filtered_list = []
+        for line in tqdm(data, desc="Filtering tweets for award-related words"):
+            tweet = line['text'].lower()
+            tweet = clean_tweet(tweet, remove_hashtags=False)
+
+            if not any([award_word in tweet for award_word in self.award_related_words]):
+                continue
+
+            if tweet.startswith('"') or tweet.startswith('rt '):
+                retweets_filtered_list.append(' ' + tweet + ' ')
+            else:
+                tweets_filtered_list.append(' ' + tweet + ' ')
+
+        # enforce uniqueness of (non-retweet) tweets via set cast
+        tweets_filtered_list = list(set(tweets_filtered_list))
+
+        # get unfiltered list of candidate award names via win-related regular expressions
+        award_phrase_counter = Counter()
+        award_hashtags = {}
+        for tweet in tqdm(tweets_filtered_list + retweets_filtered_list,
+                          desc="Searching for award name candidates using win-related phrases"):
+            regex_found, award_regex = False, []
+
+            # search for award-winner suffix-related strings
+            for verb_phrase in self.award_suffix_phrases:
+                award_regex = re.findall(self.award_suffix_regex + verb_phrase, tweet)
+                if len(award_regex):
+                    award_regex = clean_award_regex(award_regex)
+                    award_phrase_counter.update(award_regex)
+                    regex_found = True
+                    break
+
+            # search for award-winner prefix-related strings (if suffix-related search failed)
+            if not regex_found:
+                for verb_phrase in self.award_prefix_phrases:
+                    award_regex = re.findall(verb_phrase + self.award_prefix_starts_with_regex, tweet)
+                    if len(award_regex):
+                        award_regex = clean_award_regex(award_regex)
+                        award_phrase_counter.update(award_regex)
+                        regex_found = True
+                        break
+                    else:
+                        award_regex = re.findall(verb_phrase + self.award_prefix_ends_with_regex, tweet)
+                        if len(award_regex):
+                            award_regex = clean_award_regex(award_regex)
+                            award_phrase_counter.update(award_regex)
+                            regex_found = True
+                            break
+
+            # if either step succeeded, then get co-occurring hashtags
+            if regex_found:
+                hashtags = parse_hashtags_from_tweet(tweet)
+                hashtags = [self.hashtags.hashtag_to_parent[tag] for tag in hashtags if tag in self.hashtags.all_hashtags]
+                hashtags = list(set(hashtags))
+                for award in award_regex:
+                    if award not in award_hashtags:
+                        award_hashtags[award] = Counter()
+                    award_hashtags[award].update(hashtags)
+
+        # filter through candidate award strings
+        award_counter = sorted(award_phrase_counter.items(), key=lambda item: item[1], reverse=True)
+        award_counter = [list(tup) for tup in award_counter]
+        kept_awards = []
+        for ix, (k, freq) in enumerate(tqdm(award_counter, desc="Performing initial filtering and linking of potential award names")):
+            # sorted list --> break will skip anything with less than 10 occurrences
+            # this initial filtering is more relaxed, permitting consolidation of award names in this first step
+            if freq < self.award_winner_candidate_threshold_capture:
+                continue
+            # ignore awards with our stopword chunks in them, e.g. "golden"
+            if any([' ' + stop + ' ' in k for stop in self.hashtags.stopword_chunks]):
+                continue
+
+            # regex might erroneously capture a trailing comma or period -- if true, remove it
+            if k.endswith(',') or k.endswith('.'):
+                k = k[:-1]
+
+            # check if award string's words are mostly stop-words -- if so, ignore
+            k_set = split_award_regex(k)
+            if len(k_set) == 0:
+                continue
+
+            # check if award string is a punctuation-insensitive match to already added award candidates -- if so, ignore
+            k_reduce = tweet_to_alphanumeric(k)
+            reject = False
+            for jx, (k_, _) in enumerate(kept_awards):
+                k_set_ = split_award_regex(k_)
+                if tweet_to_alphanumeric(k_) == k_reduce or k_set_ == k_set:
+                    reject = True
+                    kept_awards[jx][1] += freq
+                    award_hashtags[k_] += award_hashtags[k]
+                    break
+
+            # if not rejection boolean, then everything passed! add the candidate
+            if not reject:
+                kept_awards.append([k, freq])
+
+        # re-sort on frequency of candidate award strings
+        #   (since we might have perturbed frequency ordering by linking awards above)
+        kept_awards = sorted(kept_awards, key=lambda item: item[1], reverse=True)
+        filtered_award_hashtags = {}
+        for k, _ in kept_awards:
+            temp_hashtags = {}
+            children_to_parent = {}
+            temp_award_hashtags = sorted(award_hashtags[k].items(), key=lambda item: item[1], reverse=True)
+            for tag, freq in temp_award_hashtags:
+                # check if hashtag is a child of another hashtag
+                if tag in children_to_parent:
+                    parent = children_to_parent[tag]
+                    temp_hashtags[parent] += freq
+                    continue
+                # otherwise, keep it
+                temp_hashtags[tag] = freq
+                for child in self.hashtags.general_hashtags[tag]['children']:
+                    children_to_parent[child] = tag
+            filtered_award_hashtags[k] = Counter(temp_hashtags)
+
+        temp_kept = []
+        acceptable_set_differences = []
+        for ix, (k, freq) in enumerate(tqdm(kept_awards, desc="Performing final filtering and linking of award names")):
+            # filter on a more aggressive occurrence requirement for the award string (100 occurrences)
+            if freq < self.award_winner_candidate_threshold_filter:
+                continue
+            k_set = split_award_regex(k)
+            k_hash = filtered_award_hashtags[k]
+            reject = False
+            swap = False
+            all_subset_other = []
+            if not len(k_hash):
+                reject = True
+            else:
+                # if two awards are similar enough, check if they have similar co-occurring hashtags
+                top_hash = max(k_hash, key=k_hash.get)
+
+                # reject if
+                #   1. the award string has limited co-occurring hashtags
+                #   2. the award string co-occurs with top hashtag too much (likely noise, then!)
+                #   3. the top hashtag doesn't appear at least 250 times in full corpus (likely noise as well)
+                #   4. the award string appears less than 250 times and it's top hashtag co-occurs less than 10 times
+                if k_hash[top_hash] == 1 or k_hash[top_hash] >= freq * 0.9:
+                    continue
+                if self.hashtags.general_hashtags[top_hash]['frequency'] < 250:
+                    continue
+                if freq < 250 and k_hash[top_hash] < 10:
+                    continue
+
+                # track award name vs. other already added award names
+                for k_other, _ in temp_kept:
+                    k_set_other = split_award_regex(k_other)
+                    k_hash_other = filtered_award_hashtags[k_other]
+
+                    top_hash_other = max(k_hash_other, key=k_hash_other.get)
+                    if top_hash_other == top_hash or top_hash in k_hash_other or top_hash_other in k_hash:
+                        # true subset of other
+                        if not len(k_set.difference(k_set_other)):
+                            if k_set.difference(k_set_other) not in acceptable_set_differences:
+                                all_subset_other.append(k_other)
+                                reject = True
+                        # subset of other + not an acceptable difference
+                        elif not len(k_set_other.difference(k_set)):
+                            if k_set.difference(k_set_other) not in acceptable_set_differences:
+                                swap = k_other
+                                reject = True
+                                break
+                    else:
+                        # if hashtag sets are not related, then this is a permissible alteration of the award set
+                        if not len(k_set_other.difference(k_set)):
+                            acceptable_set_differences.append(k_set.difference(k_set_other))
+
+            if not reject:
+                temp_kept.append([k, freq])
+            elif swap:
+                # TODO: comment description of swapping procedure
+                for ix, (k_other, freq_other) in enumerate(temp_kept):
+                    if k_other == swap:
+                        temp_kept[ix] = [k, freq_other + freq]
+                        filtered_award_hashtags[k] += filtered_award_hashtags[k_other]
+            else:
+                if len(all_subset_other) == 1:
+                    for jx, (k_other, freq_other) in enumerate(temp_kept):
+                        if k_other == all_subset_other[0]:
+                            temp_kept[jx][1] += freq
+                            filtered_award_hashtags[k_other] += filtered_award_hashtags[k]
+                            break
+
+        if verbose:
+            print('internal use: award name strings + hashtag info')
+            print()
+            for k, v in temp_kept:
+                top_hash = max(filtered_award_hashtags[k], key=filtered_award_hashtags[k].get)
+                top_hash_global_info = self.hashtags.general_hashtags[top_hash]
+                print('\t' + '-'*30)
+                print('\taward name:', k)
+                print('\t\t.............. award name utterance frequency in corpus:', v)
+                print('\t\t... top co-occurring hashtags with award name utterance:', filtered_award_hashtags[k])
+                print('\t\t............... global corpus statistics on top hashtag:', top_hash)
+                print('\t\t          \t...  global frequency:', top_hash_global_info['frequency'])
+                print('\t\t          \t... children hashtags:', top_hash_global_info['children'])
+        award_name_list = [tup[0] for tup in temp_kept]
+        self.award_name_to_hashtags = {k: filtered_award_hashtags[k] for k in award_name_list}
+
+        return award_name_list
 
     def parse_hashtag_concepts(self, data: List[Dict]):
         """
@@ -333,34 +621,32 @@ class HashtagParser(object):
         :param data: List[Dict], where Dict must have key='text'
         :return: TODO
         """
-        self.get_candidate_hashtags()
+        if not self.hashtags.is_initialized:
+            self.get_candidate_hashtags()
 
         # we want "natural language" matches over a diverse set of tweets
-        #   - remove retweets and quote tweets (heuristic here: if important/true --> many unique tweets)
         #   - lowercase the tweets
-        #   - remove twitter account mentions + hashtags from the tweets
+        #   - remove twitter account mentions (don't yet have a way of linking/interpreting them)
         tweets_filtered = []
+        retweets_filtered = []
         for line in data:
             tweet = line['text'].lower()
-            # skip on quote tweets (fancy unicode open quotation mark) and retweets
-            #   heuristic here: if something is true/important then many people will tweet about it
-            #   TODO: arguably things that are most important get retweeted the most?
-            if tweet.startswith('\u201c@') or tweet.startswith('rt @'):
-                continue
-            if 'best' not in tweet and 'award' not in tweet:
-                continue
+            # # ignore tweets which don't include "best" or "award" -- significant speedup
+            # if 'best' not in tweet and 'award' not in tweet:
+            #     continue
             tweet = clean_tweet(tweet, remove_hashtags=False)
-            tweets_filtered.append(tweet)
+            if tweet.startswith('"') or tweet.startswith('rt '):
+                retweets_filtered.append(' ' + tweet + ' ')
+            else:
+                tweets_filtered.append(' ' + tweet + ' ')
 
         # enforce uniqueness of tweets and join with ~ as a special token --> can search on regex without iterating
         tweets_filtered_list = list(set(tweets_filtered))
+        # retweets_filtered_list = list(set(retweets_filtered))
+        retweets_filtered_list = retweets_filtered
         tweets_full_reduce = '~'.join([tweet_to_alphanumeric(t) for t in tweets_filtered])
-        tweets_filtered = ' ' + ' ~ '.join(tweets_filtered_list) + ' '
+        tweets_filtered = '~'.join(tweets_filtered_list)
 
-        # form a dictionary that maps from the text of a hashtag to related NL utterances, hashtags seen in data
-        hash_to_concept = {}
-        hash_to_award = {}
-        print('looking for hashtags related to "best" and/or "award"')
         for k in tqdm(self.hashtags.award_hashtags):
             if k in tweets_full_reduce:
                 tag_counter = {'#' + tag: freq for tag, freq in self.raw_hashtag_counter.items() if k == tag.lower()}
@@ -395,14 +681,20 @@ class HashtagParser(object):
                     'hashtag_total': tag_total
                 }
 
+
+
         # post-process: sort by sum of total hashtags and utterance counts
         hash_to_award = {k: v for k, v in sorted(hash_to_award.items(), key=lambda item: item[1]['utterance_total'] + item[1]['hashtag_total'], reverse=True)}
+        print("","","",hash_to_award.keys())
+        all_hash_to_award_keys = []
 
-
-
-        print("celebration party party party levvy not needed")
-
-
+        def recursively_get_all_keys(dictionary, running_list):
+            for key, value in hash_to_award:
+                if type(value) != dict:
+                    return running_list
+                else:
+                    for key in value:
+                        recursively_get_all_keys(value, running_list.append(value))
 
         # recursively_get_all_keys(hash_to_award, [])
         bests, awards = [], []

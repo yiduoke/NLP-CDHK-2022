@@ -1,5 +1,5 @@
 import re
-from typing import List
+from typing import List, Set
 
 # hardcoded regex rules
 ACCOUNT_REGEX = r"@[^\W]+"
@@ -24,6 +24,7 @@ def clean_tweet(tweet_string: str,
     tweet_string = tweet_string.replace('&amp;', '&')
     tweet_string = tweet_string.replace('“', '"').replace('”', '"')
     tweet_string = tweet_string.replace("'s", " 's")
+    tweet_string = tweet_string.replace('\t', ' ').replace('\n', ' ')
     if remove_account_tags:
         tweet_string = re.sub(ACCOUNT_REGEX, '', tweet_string)
     if remove_hashtags:
@@ -31,6 +32,9 @@ def clean_tweet(tweet_string: str,
     if remove_links:
         tweet_string = re.sub(LINK_REGEX, '', tweet_string)
     if remove_symbols:
+        strict_hyphens = re.findall(r'\w+\-\w+', tweet_string)
+        for h in strict_hyphens:
+            tweet_string = tweet_string.replace(h, h.replace('-', ''))
         tweet_string = re.sub(r'[^A-Za-z\d]', ' ', tweet_string)
     return re.sub(r' +', ' ', tweet_string).strip()
 
@@ -117,3 +121,33 @@ def is_award_hashtag(hashtag_string: str) -> bool:
     """
     return hashtag_string.startswith('best') or hashtag_string.endswith('award')
 
+
+def clean_award_regex(string_list: List[str]) -> List[str]:
+    # best X at the golden globes --> best X
+    string_list = [r.split(' at ')[0] for r in string_list]
+    # best X for their role in Y --> best X
+    # string_list = [r.split(' for ')[0] for r in string_list]
+    # best X at / best X for --> best X
+    for ix, string in enumerate(string_list):
+        if ' and ' in string:
+            string_list[ix] = ''
+        elif string.endswith(' at'):
+            # string_list[ix] = string[:-3]
+            string_list[ix] = ''
+        elif string.endswith(' for'):
+            # string_list[ix] = string[:-4]
+            string_list[ix] = ''
+        elif string.endswith(' a') or string.endswith(' an') or string.endswith(' or') or string.endswith(' and'):
+            string_list[ix] = ''
+        elif string.startswith('a ') or string.startswith('an '):
+            string_list[ix] = ''
+    return [string for string in string_list if len(string)]
+
+
+def split_award_regex(string: str) -> Set[str]:
+    string_split = clean_tweet(string, remove_symbols=True).split()
+    temp_set = set([chunk for chunk in string_split if chunk not in ['in', 'a', 'an', 'or', 'and', 'the', 'for', 'at', 'of', '']])
+    if len(temp_set) < 2:
+        return set()
+
+    return temp_set.difference({'best', 'award'})

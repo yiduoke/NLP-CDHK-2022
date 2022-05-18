@@ -1,0 +1,30 @@
+{
+    "awards_might_start_with":
+    [
+        "best"
+    ],
+    "awards_might_end_with":
+    [
+        "award"
+    ],
+    "award_suffix_phrases":
+    [
+        "goes to"
+    ],
+    "award_prefix_phrases":
+    [
+        "accepts",
+        "wins",
+        "receives",
+        "gets",
+        "earns",
+        "takes home",
+        "awarded",
+        "given"
+    ],
+    "award_prefix_modifiers":
+    [
+        " the award for",
+        " the"
+    ]
+}
