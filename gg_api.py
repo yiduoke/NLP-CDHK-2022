@@ -4,6 +4,8 @@ import json
 import csv
 import spacy 
 import pandas as pd
+from hashtag_parsing import HashtagParser
+from loading_utils import load_tweet_text_from_json
 
 # ----------------------------------- Global Variables -----------------------------------
 OFFICIAL_AWARDS_1315 = ['cecil b. demille award', 'best motion picture - drama', 'best performance by an actress in a motion picture - drama', 'best performance by an actor in a motion picture - drama', 'best motion picture - comedy or musical', 'best performance by an actress in a motion picture - comedy or musical', 'best performance by an actor in a motion picture - comedy or musical', 'best animated feature film', 'best foreign language film', 'best performance by an actress in a supporting role in a motion picture', 'best performance by an actor in a supporting role in a motion picture', 'best director - motion picture', 'best screenplay - motion picture', 'best original score - motion picture', 'best original song - motion picture', 'best television series - drama', 'best performance by an actress in a television series - drama', 'best performance by an actor in a television series - drama', 'best television series - comedy or musical', 'best performance by an actress in a television series - comedy or musical', 'best performance by an actor in a television series - comedy or musical', 'best mini-series or motion picture made for television', 'best performance by an actress in a mini-series or motion picture made for television', 'best performance by an actor in a mini-series or motion picture made for television', 'best performance by an actress in a supporting role in a series, mini-series or motion picture made for television', 'best performance by an actor in a supporting role in a series, mini-series or motion picture made for television']
@@ -188,31 +190,11 @@ def get_awards(year):
     of this function or what it returns.'''
     # Opening JSON file
     fname = 'gg' + str(year) + '.json'
-    f = open(fname)
-
-    # returns JSON object as
-    # a dictionary
-    data = json.load(f)
-    award_names_dict = {}
-    for tweet in data:
-        tweet_text = " " + tweet['text'] + " "
-        stop_words = ['comedy', 'drama', 'television', 'tv', 'series', 'picture', 'film', 'movie']
-        
-        tweet = tweet['text'].lower().split()
-        
-        if ('best' in tweet):
-            for topic in stop_words:
-                if (topic in tweet):
-                    if tweet.index('best') < tweet.index(topic):
-                        ## add to dic or update
-                        item = tweet[tweet.index('best'):tweet.index(topic) + 1 ]
-                        item_str = " ".join(item)
-                        if item_str not in award_names_dict:
-                            award_names_dict[item_str] = 1
-                        else:
-                            award_names_dict[item_str] += 1
-    #print(dict(sorted(award_names_dict.items(), key=lambda item: item[1])))  
-    return sorted(award_names_dict, key=award_names_dict.get, reverse=True)[:25]
+    data = load_tweet_text_from_json(fname)
+    hp = HashtagParser(data)
+    award_names = hp.parse_award_names(data, verbose=False)
+    return award_names
+   
 
 def get_nominees(year):
     '''Nominees is a dictionary with the hard coded award
@@ -258,10 +240,10 @@ def main():
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
-    awards = get_awards(year)
-    for i in range(25):
-        print(awards[i])
-
+    award_names = get_awards(year)
+    print('Found ' + str(len(award_names)) + ' award names:')
+    for name in award_names:
+        print('\t', name)
     print("\n**************************** Award Winners ****************************")
     ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
     # create list of award objects
