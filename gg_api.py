@@ -1,4 +1,5 @@
 '''Version 0.35'''
+from multiprocessing.connection import answer_challenge
 import re
 import json
 import csv
@@ -311,12 +312,14 @@ def main():
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
     hp = HashtagParser(hp_data)
 
+    
     print("\n**************************** hosts ****************************")
     hosts = get_hosts(tweet_list)
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
     award_names = get_awards(hp, hp_data)
+
     print('Found ' + str(len(award_names)) + ' award names:')
     for name in award_names:
         print('\t', name)
@@ -356,6 +359,7 @@ def main():
         print("Award name: ", canonical_name)
         print("\tPredicted winner: ", found_winner)
 
+    pplAwardDict = {}
     # find winners of people-related awards
     for ggAward in peopleAwards:
         print("----------------------------------------------------------------")
@@ -419,13 +423,16 @@ def main():
         winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
         try:
             print("predicted winner: ", winnerCounts[0][0])
+            pplAwardDict[ggAward] = winnerCounts[0][0]
         except:
             print("no answer found")
+            pplAwardDict[ggAward] = "we don't know"
 
     
     
     print("\n**************************** nominees ****************************")
     # AWARD NOMINEES:
+    pplNomDict = {}
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
     for t in tweet_list:
@@ -433,6 +440,7 @@ def main():
             ttr.append(t)
     # find winner of every award
     for ggAward in peopleAwards:
+        pplNomDict[ggAward] = []
         print("----------------------------------------------------------------")
         print("Award name: ", ggAward.name)
         winningTweets = []
@@ -498,14 +506,17 @@ def main():
             candWinners.pop(d)
         
         # sort by popularity then print winner
+
         winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
         try:
             print("predicted nominees: ")
             iter = 0
             for prediction in winnerCounts[:5]:
+
                 name = prediction[0]
                 if find_persons(name):
                     print(name)
+                    pplNomDict[ggAward].append(name)
                     iter += 1
                 if iter > 4:
                     break
@@ -514,6 +525,22 @@ def main():
 
     print("\n**************************** extras ****************************")
     get_extras(tweet_list)
+
+    
+    answers_dict = {}
+    answers_dict["hosts"] = hosts
+    answers_dict["awards"] = award_names
+    answers_dict["award_data"] = {}
+
+    for award in pplAwardDict:
+        answers_dict["award_data"][award]["winner"] = pplAwardDict[award]
+        answers_dict["award_data"][award]["nominees"] = pplNomDict[award]
+    for award in title_award_winners:
+        answers_dict["award_data"][award]["winner"] = title_award_winners[award]
+
+    with open('our_answers.json', 'w') as f: 
+        json.dump(answers_dict, f, indent=2)
+        
     return
 
 if __name__ == '__main__':
