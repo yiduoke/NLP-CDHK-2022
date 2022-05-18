@@ -279,9 +279,12 @@ def main():
 
     #filter to only awards that go to people. this info could go in a config file if we really needed to
     peopleAwards = []
+    titleAwards = []
     for ggAward in awardList:
         if 'performance' in ggAward.keywords or 'director' in ggAward.keywords or 'cecil' in ggAward.keywords:
             peopleAwards.append(ggAward)
+        else:
+            titleAwards.append(ggAward)
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
     for t in tweet_list:
@@ -358,15 +361,6 @@ def main():
     
     print("\n**************************** nominees ****************************")
     # AWARD NOMINEES:
-    
-
-    peopleAwards = []
-    titleAwards = []
-    for ggAward in awardList:
-        if 'performance' in ggAward.keywords or 'director' in ggAward.keywords or 'cecil' in ggAward.keywords:
-            peopleAwards.append(ggAward)
-        else:
-            titleAwards.append(ggAward)
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
     for t in tweet_list:
