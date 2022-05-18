@@ -234,6 +234,67 @@ def pre_ceremony():
     print("Pre-ceremony processing complete.")
     return
 
+def get_extras(tweet_list):
+
+    best_dressed = []
+    worse_dressed = []
+    funny_jokes = []
+    namePattern = r"[A-Z][a-z]+ [A-Z][a-z]+"
+
+    #finding tweets that contain 'host'
+    for i, tweet in enumerate(tqdm(tweet_list, desc='Searching for best/worse dressed and funniest jokes')):
+        tweet_lower = tweet.lower()
+        worse_dressed_hints = ['ugly', 'bad', 'awful', 'horrible', 'hate', 'gross', 'worse']
+        best_dressed_hints = ['gorgeous', 'stunning', 'beautiful', 'handsome', 'pretty']
+        best_jokes_hints = ['funny', 'joke', 'haha', 'funniest', 'hillarious']
+        for hint in best_dressed_hints:
+            if hint in tweet_lower:
+                best_dressed.append(re.findall(namePattern, tweet))
+        for hint in worse_dressed_hints:
+            if hint in tweet_lower:
+                worse_dressed.append(re.findall(namePattern, tweet))
+        for hint in best_jokes_hints:
+            if hint in tweet_lower:
+                funny_jokes.append(re.findall(namePattern, tweet))
+
+
+    namesDict_best_dressed = {}
+    for match in best_dressed:
+        for name in match:
+            if 'golden' in name.lower():
+                continue
+            else:
+                if name in namesDict_best_dressed.keys():
+                    namesDict_best_dressed[name] += 1
+                else:
+                    namesDict_best_dressed[name] = 1
+
+    namesDict_worse_dressed = {}
+    for match in worse_dressed:
+        for name in match:
+            if 'golden' in name.lower():
+                continue
+            else:
+                if name in namesDict_worse_dressed.keys():
+                    namesDict_worse_dressed[name] += 1
+                else:
+                    namesDict_worse_dressed[name] = 1
+
+    namesDict_funny = {}
+    for match in funny_jokes:
+        for name in match:
+            if name in namesDict_funny.keys():
+                namesDict_funny[name] += 1
+            else:
+                namesDict_funny[name] = 1
+    counts_best = (sorted(namesDict_best_dressed.items(), key=lambda item: 1/item[1]))
+    print("best dressed is: ", counts_best[0][0].lower())
+    counts_worse = (sorted(namesDict_worse_dressed.items(), key=lambda item: 1/item[1]))
+    print("worse dressed is: ", counts_worse[0][0].lower())
+    counts_funny = (sorted(namesDict_funny.items(), key=lambda item: 1/item[1]))
+    print("funniest is: ", counts_funny[0][0].lower())
+    
+
 def main():
     '''This function calls your program. Typing "python gg_api.py"
     will run this function. Or, in the interpreter, import gg_api
@@ -242,7 +303,9 @@ def main():
     what it returns.'''
     year = 2015 # <------- Change to another year. 
     tweet_list = tweet_cleaner(year)
+
     people_words_hardcode = ['actor', 'actress', 'director', 'cecil']
+
     ### some hashtag parser setup
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
     hp = HashtagParser(hp_data)
@@ -520,6 +583,8 @@ def main():
         except:
             print("no answer found")
 
+    print("\n**************************** extras ****************************")
+    get_extras(tweet_list)
     return
 
 if __name__ == '__main__':
