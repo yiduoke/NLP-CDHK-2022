@@ -249,7 +249,7 @@ def main():
     run when grading. Do NOT change the name of this function or
     what it returns.'''
     year = 2015 # <------- Change to another year. 
-    df_tweets = tweet_cleaner(year)
+    tweet_list = tweet_cleaner(year)
 
     ### some hashtag parser setup
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
@@ -284,8 +284,7 @@ def main():
             peopleAwards.append(ggAward)
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
-    tt = tweet_cleaner(year)
-    for t in tt:
+    for t in tweet_list:
         if isReasonable(t) and 'RT' not in t:
             ttr.append(t)
 
@@ -370,7 +369,7 @@ def main():
             titleAwards.append(ggAward)
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
-    for t in tt:
+    for t in tweet_list:
         if isHypothetical(t.lower()):
             ttr.append(t)
     # find winner of every award
