@@ -242,7 +242,7 @@ def main():
     what it returns.'''
     year = 2015 # <------- Change to another year. 
     tweet_list = tweet_cleaner(year)
-
+    people_words_hardcode = ['actor', 'actress', 'director', 'cecil']
     ### some hashtag parser setup
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
     hp = HashtagParser(hp_data)
@@ -273,7 +273,7 @@ def main():
     peopleAwards = []
     titleAwards = []
     for ggAward in awardList:
-        if 'performance' in ggAward.keywords or 'director' in ggAward.keywords or 'cecil' in ggAward.keywords:
+        if any([people_word in ggAward.keywords for people_word in people_words_hardcode]):
             peopleAwards.append(ggAward)
         else:
             titleAwards.append(ggAward)
