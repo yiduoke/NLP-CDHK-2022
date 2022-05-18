@@ -355,7 +355,7 @@ def main():
         print("----------------------------------------------------------------")
         print("Award name: ", canonical_name)
         print("\tPredicted winner: ", found_winner)
-        
+
     # find winners of people-related awards
     for ggAward in peopleAwards:
         print("----------------------------------------------------------------")
@@ -509,85 +509,6 @@ def main():
                     iter += 1
                 if iter > 4:
                     break
-        except:
-            print("no answer found")
-
-    # find winner of every award - TITLES
-    for ggAward in titleAwards:
-        print("----------------------------------------------------------------")
-        print("Award name: ", ggAward.name)
-        winningTweets = []
-        # iter over tweets and add tweets that could contain the answer to our question
-        for t in ttr:
-            if isNomTweet(t, ggAward.keywords, ggAward.tripwords):
-                winningTweets.append(t)
-        # in the case that we've been too restrictive, loosen constraints - no tripwords
-        if len(winningTweets) == 0:
-            print('no ideal tweets found, removing tripword requirement.')
-            for t in ttr:
-                if isNomTweet(t, ggAward.keywords):
-                    winningTweets.append(t)
-        
-
-        print("number of potential nominee tweets found: ", len(winningTweets))
-
-        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
-        candWinners = {}
-        # set for hash table speed
-        namesSet = set(())
-
-        for t in winningTweets:
-            films = find_films(t)
-
-            for f in films:
-                if '@' in f or 'RT' in f or 'golden' in f.lower():
-                    films = films.remove(f)
-            if not films:
-                continue
-            if films:
-                for f in films:
-                    if f in namesSet:
-                        candWinners[f] += 1
-                    else:
-                        candWinners[f] = 1
-                    namesSet.add(f)
-
-        # post processing - cleaning
-        toDelete = []
-        for name in candWinners.keys():
-            if '@' in name or 'golden' in name.lower():
-                # print("@ found")
-                toDelete.append(name)
-                continue
-            ns = name.lower().split()
-            # print("ns", ns)
-            nsl = 0
-            for i in ns:
-                # print(i, ' in ', ggAward.name, ' ? ')
-                # print(i in ggAward.name)
-                if i in ggAward.name:
-                    nsl += 1
-            if nsl > 1:
-                # print("mistaken award name for recipient")
-                toDelete.append(name)
-
-        for d in toDelete:
-            candWinners.pop(d)
-        
-        # sort by popularity then print winner
-        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
-        try:
-            print("predicted nominees: ")
-            iter = 0
-            for prediction in winnerCounts[:5]:
-                name = prediction[0]
-                if find_films(name) or 1:
-                    print(name)
-                    iter += 1
-                if iter > 4:
-                    break
-            if iter == 0:
-                print("no answer found")
         except:
             print("no answer found")
 
