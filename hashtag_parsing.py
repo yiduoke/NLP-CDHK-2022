@@ -614,6 +614,122 @@ class HashtagParser(object):
 
         return award_name_list
 
+    def get_title_award_to_winner(self, data, award_names_found, award_names_canonical, people_words_hardcode):
+        assert self.award_name_to_hashtags is not None, 'parse_award_names must be called before get_canonical_winner_utterances'
+        found_to_canonical = {}
+        canonical_to_found = {}
+        award_names_found = [name for name in award_names_found if not any([word in name for word in people_words_hardcode])]
+
+        def jaccard_similarity(s1: set, s2: set) -> float:
+            intersect = float(len(s1.intersection(s2)))
+            union = float(len(s1.union(s2)))
+            return intersect/union
+
+        # search for reduced string matches
+        reduced_to_canonical = {k: tweet_to_alphanumeric(k) for k in award_names_canonical}
+        for found_name in award_names_found:
+            reduced_found = tweet_to_alphanumeric(found_name)
+            if reduced_found in reduced_to_canonical:
+                canonical_name = reduced_to_canonical[reduced_found]
+                found_to_canonical[found_name] = canonical_name
+                canonical_to_found[canonical_name] = found_name
+
+        # search for word-chunk set matches, ignoring previously linked award names
+        set_to_canonical = [[k, split_award_regex(k)] for k in award_names_canonical if k not in canonical_to_found]
+        for found_name in award_names_found:
+            if found_name in found_to_canonical:
+                continue
+            found_set = split_award_regex(found_name)
+            filtered_set = [k for k, s in set_to_canonical if s == found_set]
+            if len(filtered_set) == 1:
+                canonical_name = filtered_set[0]
+                found_to_canonical[found_name] = canonical_name
+                canonical_to_found[canonical_name] = found_name
+
+        # search for word-chunk *best* but not exact set matches, ignoring previously linked award names
+        set_to_canonical = [[k, split_award_regex(k)] for k in award_names_canonical if k not in canonical_to_found]
+        for found_name in award_names_found:
+            if found_name in found_to_canonical:
+                continue
+            found_set = split_award_regex(found_name)
+            filtered_set = [[k, jaccard_similarity(found_set, s)] for k, s in set_to_canonical if k not in canonical_to_found]
+            if not len(filtered_set):
+                continue
+            best_canonical = max(filtered_set, key=lambda item: item[1])
+            best_canonical = best_canonical[0]
+            found_to_canonical[found_name] = best_canonical
+            canonical_to_found[best_canonical] = found_name
+
+        hashtags_to_resolve = []
+        canonical_to_hashtag = {}
+        for f, c in found_to_canonical.items():
+            co_occurring_hashtags = self.award_name_to_hashtags[f]
+            top_hash = max(co_occurring_hashtags, key=co_occurring_hashtags.get)
+            canonical_to_hashtag[c] = top_hash
+            if top_hash not in hashtags_to_resolve:
+                hashtags_to_resolve.append(top_hash)
+
+        remaining_canonical = [[c, split_award_regex(c, remove_award_hardcode=False)]
+                               for c in award_names_canonical if c not in canonical_to_found]
+
+        award_to_tweets = {tup[0]: [] for tup in remaining_canonical}
+        for line in tqdm(data, desc="Filtering tweets for missing canonical award names"):
+            tweet = line['text'].lower()
+            tweet = clean_tweet(tweet, remove_hashtags=False)
+
+            for c, c_set in remaining_canonical:
+                if all([c_chunk in tweet for c_chunk in c_set]):
+                    award_to_tweets[c].append(' ' + tweet + ' ')
+                    break
+
+        for c, tweet_list in award_to_tweets.items():
+            # enforce uniqueness of tweets via set cast
+            tweet_list = list(set(tweet_list))
+            c_hashtags = Counter()
+            for tweet in tqdm(tweet_list, desc='Parsing co-occurring hashtags for "' + c + '"'):
+                hashtags = parse_hashtags_from_tweet(tweet)
+                hashtags = [self.hashtags.hashtag_to_parent[tag] for tag in hashtags if
+                            tag in self.hashtags.all_hashtags]
+                hashtags = list(set(hashtags))
+                c_hashtags.update(hashtags)
+
+            top_hash = max(c_hashtags, key=c_hashtags.get)
+            canonical_to_hashtag[c] = top_hash
+            if top_hash not in hashtags_to_resolve:
+                hashtags_to_resolve.append(top_hash)
+
+        hashtag_to_tweets = {h: [] for h in hashtags_to_resolve}
+        for line in tqdm(data, desc="Filtering tweets for award winners found by hashtags"):
+            tweet = line['text'].lower()
+            tweet = clean_tweet(tweet, remove_hashtags=True)
+            reduced_tweet = tweet_to_alphanumeric(tweet)
+            for h in hashtags_to_resolve:
+                if h in reduced_tweet:
+                    hashtag_to_tweets[h].append(' ' + tweet + ' ')
+
+        award_to_winner = {}
+        for h, h_tweets in tqdm(hashtag_to_tweets.items(), desc='Mapping hashtags to most frequent utterance forms'):
+            h_tweets = '~'.join(h_tweets)
+
+            # wonky regex --> allow any spacing/symbols between alphanumeric characters when searching
+            #   - we want to resolve spacing/punctuation of mapping from hashtag to utterances in tweets
+            #   - (hashtags are not always easily parsed from capitalization of tweet; also no punctuation allowed)
+            nl_regex = r' (' + ''.join([char + r'[^\w~]*' for char in h[:-1]]) + h[-1] + r'\.?)[\.,\)\(\-"\'\!:;]? '
+            nl_counter = Counter(re.findall(nl_regex, h_tweets))
+            nl_total = sum(nl_counter.values())
+            try:
+                nl_top_utterance = nl_counter.most_common(1)[0][0]
+            except IndexError:
+                # error: unable to find the hashtag! this never happens (at least with gg2015)
+                nl_top_utterance = h
+
+            for c, tag in canonical_to_hashtag.items():
+                if h == tag:
+                    award_to_winner[c] = nl_top_utterance
+
+        return award_to_winner
+
+
     def parse_hashtag_concepts(self, data: List[Dict]):
         """
         TODO

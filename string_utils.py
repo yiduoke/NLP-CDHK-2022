@@ -144,10 +144,13 @@ def clean_award_regex(string_list: List[str]) -> List[str]:
     return [string for string in string_list if len(string)]
 
 
-def split_award_regex(string: str) -> Set[str]:
+def split_award_regex(string: str, remove_award_hardcode: bool = True) -> Set[str]:
     string_split = clean_tweet(string, remove_symbols=True).split()
     temp_set = set([chunk for chunk in string_split if chunk not in ['in', 'a', 'an', 'or', 'and', 'the', 'for', 'at', 'of', '']])
     if len(temp_set) < 2:
         return set()
 
-    return temp_set.difference({'best', 'award'})
+    if remove_award_hardcode:
+        return temp_set.difference({'best', 'award'})
+    else:
+        return temp_set
