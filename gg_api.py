@@ -162,33 +162,26 @@ def keyword_hits(words, array):
 
 
 # ----------------------------------- parsing functions -----------------------------------
-class award:
+class AwardObj:
     def __init__(self, name = "", keywords = [], tripwords = []):
         self.name = name
         self.keywords = keywords
         self.tripwords = tripwords
         self.winner = ""
 
-def get_hosts(year):
+def get_hosts(tweet_list):
     '''Hosts is a list of one or more strings. Do NOT change the name
     of this function or what it returns.'''
-
-    # Opening JSON file
-    fname = 'gg' + str(year) + '.json'
-    f = open(fname)
-
-    # returns JSON object as
-    # a dictionary
-    data = json.load(f)
-
 
     matches = []
     namePattern = r"[A-Z][a-z]+ [A-Z][a-z]+"
 
     #finding tweets that contain 'host'
-    for i, tweet in enumerate(tqdm(data, desc='Searching for hosts in tweets')):
-        if 'host' in tweet['text'].lower() and isReasonable(tweet['text'].lower()):
-            matches.append(re.findall(namePattern, tweet['text']))
+    for i, tweet in enumerate(tqdm(tweet_list, desc='Searching for hosts in tweets')):
+        tweet_lower = tweet.lower()
+        if 'host' in tweet_lower:
+            if isReasonable(tweet_lower):
+                matches.append(re.findall(namePattern, tweet))
 
     namesDict = {}
     for match in matches:
@@ -202,7 +195,6 @@ def get_hosts(year):
     hosts = []
     hosts.append(counts[0][0].lower())
     hosts.append(counts[1][0].lower())
-    f.close()
     return hosts
 
 def get_awards(hashtag_parser, data):
@@ -256,7 +248,7 @@ def main():
     hp = HashtagParser(hp_data)
 
     print("\n**************************** hosts ****************************")
-    hosts = get_hosts(year)
+    hosts = get_hosts(tweet_list)
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
@@ -271,11 +263,11 @@ def main():
     for a in OFFICIAL_AWARDS_1315:
         # print(a)
         # print(awardNameToKeywords(a))
-        awardList.append(award(name = a, keywords = awardNameToKeywords(a)))
+        awardList.append(AwardObj(name=a, keywords=awardNameToKeywords(a)))
 
     # find tripwords!
     for a in awardList:
-        a.tripwords = findTripwords(award = a, awardList = awardList)
+        a.tripwords = findTripwords(award=a, awardList=awardList)
 
     #filter to only awards that go to people. this info could go in a config file if we really needed to
     peopleAwards = []
@@ -288,8 +280,10 @@ def main():
 
     ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
     for t in tweet_list:
-        if isReasonable(t) and 'RT' not in t:
-            ttr.append(t)
+        if 'RT' not in t:
+            if isReasonable(t):
+                ttr.append(t)
+
 
     # find winner of every award
     for ggAward in peopleAwards:
