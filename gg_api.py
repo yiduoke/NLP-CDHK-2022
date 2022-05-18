@@ -4,6 +4,7 @@ import json
 import csv
 import spacy 
 import pandas as pd
+from tqdm import tqdm
 from hashtag_parsing import HashtagParser
 from loading_utils import load_tweet_text_from_json
 
@@ -144,12 +145,9 @@ def tweet_cleaner(year):
     f = open(fname)
     data = json.load(f)
     tt = []
-    # print first 100 tweets
-    for tweet in data:
-        # print(tweet['text'], data[99]['user']['screen_name'])
+    for tweet in tqdm(data, desc="Loading tweets from corpus"):
         tt.append(tweet['text'])
     del data
-    #df_tweets = pd.DataFrame(data, columns=['text'])
     f.close()
     return tt
 
@@ -188,7 +186,7 @@ def get_hosts(year):
     namePattern = r"[A-Z][a-z]+ [A-Z][a-z]+"
 
     #finding tweets that contain 'host'
-    for i, tweet in enumerate(data):
+    for i, tweet in enumerate(tqdm(data, desc='Searching for hosts in tweets')):
         if 'host' in tweet['text'].lower() and isReasonable(tweet['text'].lower()):
             matches.append(re.findall(namePattern, tweet['text']))
 
@@ -207,14 +205,10 @@ def get_hosts(year):
     f.close()
     return hosts
 
-def get_awards(year):
+def get_awards(hashtag_parser, data):
     '''Awards is a list of strings. Do NOT change the name
     of this function or what it returns.'''
-    # Opening JSON file
-    fname = 'gg' + str(year) + '.json'
-    data = load_tweet_text_from_json(fname)
-    hp = HashtagParser(data)
-    award_names = hp.parse_award_names(data, verbose=False)
+    award_names = hashtag_parser.parse_award_names(data, verbose=False)
     return award_names
    
 
@@ -257,12 +251,16 @@ def main():
     year = 2015 # <------- Change to another year. 
     df_tweets = tweet_cleaner(year)
 
+    ### some hashtag parser setup
+    hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
+    hp = HashtagParser(hp_data)
+
     print("\n**************************** hosts ****************************")
     hosts = get_hosts(year)
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
-    award_names = get_awards(year)
+    award_names = get_awards(hp, hp_data)
     print('Found ' + str(len(award_names)) + ' award names:')
     for name in award_names:
         print('\t', name)
