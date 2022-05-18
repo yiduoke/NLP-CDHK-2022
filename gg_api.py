@@ -33,7 +33,7 @@ def find_films(text):
     return films
 
 def isHypothetical(text):
-    indicator = r"\?|\bhope\b|\bhoping\b|\bbet|\bthink|\bwill\b|\bpredict|\bgoing to\b|\bgonna\b|\bshould|\bif\b"
+    indicator = r"\?|\bhope\b|\bhoping\b|\bbet|\bthink|\bwill\b|\bpredict|\bgoing to\b|\bgonna\b|\bshould|\bif\b|\bnomin"
     if re.search(indicator, text):
         return True
     return False
@@ -80,6 +80,28 @@ def isWinningTweet(text, awardIndicators, trips = []):
 
     # does not contain an indicator of a winning tweet
     return False
+
+def isNomTweet(text, awardIndicators, trips = []):
+    """
+        <text> = tweet text
+        <award> = list of indicators that belong to a given award
+    """
+    text = text.lower()
+    missingWordCount = 0
+    
+    for a in awardIndicators:
+        if a not in text:
+            # return False # we want an indication of our relevant award
+            missingWordCount += 1
+
+    if float(missingWordCount) > 0.5 * float(len(awardIndicators)): #no missing words allowed from 4-word award, 1 missing word allowed from 6-word award
+        return False # not enough of our award indicator words in tweet
+
+    for t in trips:
+        if t in text:
+            return False # we do not want indication of a tripword
+
+    return True
 
 def awardNameToKeywords(text):
     stops = ['by', 'an', 'a', 'or', 'in', 'for', '-']
