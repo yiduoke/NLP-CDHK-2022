@@ -30,17 +30,9 @@ def find_films(text):
 
     return films
 
-def hasStopWord(x):
-    stopWords = set(['Also', 'Sunday', 'Happy', 'Show', 'Best', 'Current', 'Tv', 'Award', 'No', 'It', 'What', 'Are', 'To', 'Win', 'My', \
-        'Will', 'On', 'This', 'So', 'Here', 'Go', 'Actors', 'And', 'Who', 'Have', 'These', 'Is', 'Did', 'Be', 'She', 'He', 'With', 'The', 'A'])
-    for word in stopWords:
-        if word in x:
-            return True
-    return False
-
 def isHypothetical(text):
-    if '?' in text or 'last year' in text or 'hope' in text or 'hoping' in text or 'bet' in text or \
-        'think' in text or 'will' in text or 'predict' in text or 'going to' in text or 'gonna' in text or 'should' in text:
+    indicator = r"\?|\bhope\b|\bhoping\b|\bbet|\bthink|\bwill\b|\bpredict|\bgoing to\b|\bgonna\b|\bshould|\bif\b"
+    if re.search(indicator, text):
         return True
     return False
 
@@ -50,8 +42,15 @@ def isHistorical(text):
     return False
 
 def isReasonable(text):
-    if not isHypothetical(text) and not isHistorical(text):
+    if not isHypothetical(text.lower()) and not isHistorical(text.lower()):
         return True
+    return False
+
+def indicatesWin(text):
+    winIndicators = ['won', 'win', 'congrat', 'goes to', 'went to', 'snag', 'takes home', 'took home']
+    for word in winIndicators:
+        if word in text:
+            return True
     return False
 
 def isWinningTweet(text, awardIndicators, trips = []):
@@ -60,22 +59,23 @@ def isWinningTweet(text, awardIndicators, trips = []):
         <award> = list of indicators that belong to a given award
     """
     text = text.lower()
-    winIndicators = ['won', 'win', 'congrat', 'goes to', 'went to', 'snag', 'takes home', 'took home']
     missingWordCount = 0
-    for i in winIndicators: #we want an indication of win
-        if i in text:
-            for a in awardIndicators:
-                if a not in text:
-                    # return False # we want an indication of our relevant award
-                    missingWordCount += 1
-            # if float(missingWordCount) / float(len(awardIndicators)) > 0.2:
-            if float(missingWordCount) > 0.5 * float(len(awardIndicators)) - 2: #no missing words allowed from 4-word award, 1 missing word allowed from 6-word award
-                return False # not enough of our award indicator words in tweet
-                #
-            for t in trips:
-                if t in text:
-                    return False # we do not want indication of a tripword
-            return True
+    
+    if indicatesWin(text):
+        for a in awardIndicators:
+            if a not in text:
+                # return False # we want an indication of our relevant award
+                missingWordCount += 1
+
+        if float(missingWordCount) > 0.5 * float(len(awardIndicators)) - 2: #no missing words allowed from 4-word award, 1 missing word allowed from 6-word award
+            return False # not enough of our award indicator words in tweet
+
+        for t in trips:
+            if t in text:
+                return False # we do not want indication of a tripword
+
+        return True
+
     # does not contain an indicator of a winning tweet
     return False
 
@@ -100,13 +100,6 @@ def listDif(lst1, lst2): #lst1 - lst2
 def findTripwords(award, awardList):
     tripwords = set(())
     for b in awardList:
-        # print("A", award.keywords)
-        # print("B", b.keywords)
-        # print(len(award.keywords))
-        # print(len(b.keywords))
-        # print("INT", len(intersection(award.keywords, b.keywords)))
-
-        # print("sharescore:", float(len(intersection(award.keywords,b.keywords))) / float(len(award.keywords)))
         if award.keywords == b.keywords: # avoid comparing
             pass
         elif float(len(intersection(award.keywords,b.keywords))) / float(len(award.keywords)) > .5 or \
@@ -143,6 +136,8 @@ def pass_cap_ratio(sentence, ratio_filter = 0.66, sentence_length = 3):
 def keyword_hits(words, array):
     print("array: ", array)
     return functools.reduce(lambda a, b: (a in array) + (b in array), words)
+
+
 
 # ----------------------------------- parsing functions -----------------------------------
 class award:
@@ -255,16 +250,20 @@ def main():
     and then run gg_api.main(). This is the second thing the TA will
     run when grading. Do NOT change the name of this function or
     what it returns.'''
-    year = 2013 # <------- Change to another year. 
+    year = 2015 # <------- Change to another year. 
     df_tweets = tweet_cleaner(year)
+
     print("\n**************************** hosts ****************************")
     hosts = get_hosts(year)
     print("         ", hosts[0], "\n         ", hosts[1])
+
     print("\n**************************** awards ****************************")
     awards = get_awards(year)
     for i in range(25):
         print(awards[i])
+
     print("\n**************************** Award Winners ****************************")
+    ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
     # create list of award objects
     awardList = []
     for a in answers["award_data"].keys():
@@ -276,13 +275,7 @@ def main():
     for a in awardList:
         a.tripwords = findTripwords(award = a, awardList = awardList)
 
-    # for a in awardList:
-        # print(a.name)
-        # print(a.keywords)
-        # print(a.tripwords)
-    # AWARD WINNERS:
-    # this only finds recipients of awards that go to human beings--actors, directors, etc.
-    # peopleAwards is a subset of awardList
+    #filter to only awards that go to people. this info could go in a config file if we really needed to
     peopleAwards = []
     for ggAward in awardList:
         if 'performance' in ggAward.keywords or 'director' in ggAward.keywords or 'cecil' in ggAward.keywords:
@@ -293,8 +286,13 @@ def main():
     for t in tt:
         if isReasonable(t) and 'RT' not in t:
             ttr.append(t)
+
     # find winner of every award
     for ggAward in peopleAwards:
+        print("----------------------------------------------------------------")
+        print("Award name: ", ggAward.name)
+
+
         # print(ggAward.name)
         winningTweets = []
         # iter over tweets and add tweets that could contain the answer to our question
@@ -303,15 +301,13 @@ def main():
                 winningTweets.append(t)
         # in the case that we've been too restrictive, loosen constraints - no tripwords
         if len(winningTweets) == 0:
-            print('no ideal tweets found for award : ', ggAward.name)
-            print('removing tripword requirement.')
+            print('no ideal tweets found, removing tripword requirement')
             for t in ttr:
                 if isWinningTweet(t, ggAward.keywords):
                     winningTweets.append(t)
         
 
-        print("----------------------------------------------------------------")
-        print("number of winning tweets found for : ", ggAward.name, " : ", len(winningTweets))
+        # print("number of relevant winning tweets found: ", len(winningTweets))
 
         # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
         candWinners = {}
@@ -320,9 +316,6 @@ def main():
 
         for t in winningTweets:
             people = find_persons(t)
-            # print(t)
-            # print(films)
-            # print(people)
             for p in people:
                 if '@' in p or 'RT' in p or 'golden' in p:
                     people = people.remove(p)
@@ -338,24 +331,16 @@ def main():
         # post processing - cleaning
         toDelete = []
         for name in candWinners.keys():
-            if '@' in name:
-                # print("@ found")
-                toDelete.append(name)
-                continue
-            elif 'golden' in name.lower():
-                # print("golden found")
+            if '@' in name or 'golden' in name.lower():
                 toDelete.append(name)
                 continue
             ns = name.lower().split()
             # print("ns", ns)
             nsl = 0
             for i in ns:
-                # print(i, ' in ', ggAward.name, ' ? ')
-                # print(i in ggAward.name)
                 if i in ggAward.name:
                     nsl += 1
             if nsl == len(ns):
-                # print("mistaken award name for recipient")
                 toDelete.append(name)
 
         for d in toDelete:
@@ -367,13 +352,7 @@ def main():
             print("predicted winner: ", winnerCounts[0][0])
         except:
             print("no answer found")
-        # if winnerCounts[0][0] == 'Uzo Aduba':
-        #     print(winningTweets)
-        # if ggAward.name == "best performance by an actress in a mini-series or motion picture made for television":
-        #     print(ggAward.tripwords)
-        #     print(winnerCounts)
-        #     print(winningTweets)
-        # print(winnerCounts)
+    
     print("\n**************************** nominees ****************************")
     nomTweets = []
     nom_keywords = [" nom", "nom ", "nomin", "robb", "hope ", "should", "deserve"]
