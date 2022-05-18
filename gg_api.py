@@ -386,14 +386,13 @@ def main():
                 winningTweets.append(t)
         # in the case that we've been too restrictive, loosen constraints - no tripwords
         if len(winningTweets) == 0:
-            print('no ideal tweets found for award : ', ggAward.name)
-            print('removing tripword requirement.')
+            print('no ideal tweets found, removing tripword requirement.')
             for t in ttr:
                 if isNomTweet(t, ggAward.keywords):
                     winningTweets.append(t)
         
 
-        print("number of potential nominee tweets found: ", len(winningTweets))
+        # print("number of potential nominee tweets found: ", len(winningTweets))
 
         # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
         candWinners = {}
@@ -468,8 +467,7 @@ def main():
                 winningTweets.append(t)
         # in the case that we've been too restrictive, loosen constraints - no tripwords
         if len(winningTweets) == 0:
-            print('no ideal tweets found for award : ', ggAward.name)
-            print('removing tripword requirement.')
+            print('no ideal tweets found, removing tripword requirement.')
             for t in ttr:
                 if isNomTweet(t, ggAward.keywords):
                     winningTweets.append(t)
