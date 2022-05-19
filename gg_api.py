@@ -648,7 +648,6 @@ def main():
 
     print("\n**************************** extras ****************************")
     get_extras(year)
-    return
 
     
     answers_dict = {}
@@ -660,7 +659,7 @@ def main():
         answers_dict["award_data"][award]["winner"] = winners[award]
         answers_dict["award_data"][award]["nominees"] = nominees[award]
 
-    with open('our_answers.json', 'w') as f: 
+    with open('gg2015answers.json', 'w') as f: 
         json.dump(answers_dict, f, indent=2)
         
     return
