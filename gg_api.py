@@ -294,7 +294,7 @@ def get_nominees(year):
         # post processing - cleaning
         toDelete = []
         for name in candWinners.keys():
-            if '@' in name or 'golden' in name.lower():
+            if '@' in name or 'golden' in name.lower() or '.' in name.lower():
                 # print("@ found")
                 toDelete.append(name)
                 continue
@@ -376,7 +376,7 @@ def get_nominees(year):
         # post processing - cleaning
         toDelete = []
         for name in candWinners.keys():
-            if '@' in name or 'golden' in name.lower():
+            if '@' in name or 'golden' in name.lower() or '.' in name:
                 # print("@ found")
                 toDelete.append(name)
                 continue
@@ -612,8 +612,9 @@ def get_presenters(year):
             if i > 3:
                 break
             # print(presenter, presDict[award][presenter])
-            final_presenters_dict[award.name].append(presenter)
-            i+=1
+            if '.' not in presenter and ':' not in presenter:
+                final_presenters_dict[award.name].append(presenter)
+                i+=1
     return final_presenters_dict
 
 def pre_ceremony():
@@ -720,8 +721,10 @@ def main():
     
     print("\n**************************** presenters ****************************")
     presenters = get_presenters(year)
-    for award, presenters in presenters.items():
-        print(award, " PRESENTERS: ", presenters)
+    for award in presenters.keys():
+        print(award, " PRESENTERS: ", presenters[award])
+    # for award, presenters in presenters.items():
+    #     print(award, " PRESENTERS: ", presenters)
 
     print("\n**************************** Award Winners ****************************")
     winners = get_winner(year)
@@ -748,7 +751,7 @@ def main():
         answers_dict["award_data"][award]["nominees"] = nominees[award]
         answers_dict["award_data"][award]["presenters"] = presenters[award]
 
-    with open('gg' + str(year) + '2015answers.json', 'w') as f: 
+    with open('gg' + str(year) + 'answers.json', 'w') as f: 
         json.dump(answers_dict, f, indent=2)
         
     return
