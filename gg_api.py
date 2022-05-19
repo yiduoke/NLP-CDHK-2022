@@ -429,6 +429,7 @@ def get_winner(year):
 
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
     hp = HashtagParser(hp_data)
+    award_names = hp.parse_award_names(hp_data, verbose=False)
 
     ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
     # create list of award objects
