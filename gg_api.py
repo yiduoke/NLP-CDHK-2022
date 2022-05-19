@@ -171,9 +171,10 @@ class AwardObj:
         self.tripwords = tripwords
         self.winner = ""
 
-def get_hosts(tweet_list):
+def get_hosts(year):
     '''Hosts is a list of one or more strings. Do NOT change the name
     of this function or what it returns.'''
+    tweet_list = tweet_cleaner(year)
 
     matches = []
     namePattern = r"[A-Z][a-z]+ [A-Z][a-z]+"
@@ -210,14 +211,323 @@ def get_nominees(year):
     '''Nominees is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change
     the name of this function or what it returns.'''
-    # Your code here
-    return nominees
+    
+    tweet_list = tweet_cleaner(year)
+
+    # AWARD NOMINEES:
+    Nominees = {}
+
+    people_words_hardcode = ['actor', 'actress', 'director', 'cecil']
+
+
+    ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
+    # create list of award objects
+    awardList = []
+    for a in OFFICIAL_AWARDS_1315:
+        # print(a)
+        # print(awardNameToKeywords(a))
+        awardList.append(AwardObj(name=a, keywords=awardNameToKeywords(a)))
+
+    # find tripwords!
+    for a in awardList:
+        a.tripwords = findTripwords(award=a, awardList=awardList)
+
+    #filter to only awards that go to people. this info could go in a config file if we really needed to
+    peopleAwards = []
+    titleAwards = []
+    for ggAward in awardList:
+        if any([people_word in ggAward.keywords for people_word in people_words_hardcode]):
+            peopleAwards.append(ggAward)
+        else:
+            titleAwards.append(ggAward)
+
+
+    ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
+    for t in tweet_list:
+        if isHypothetical(t.lower()):
+            ttr.append(t)
+    # find winner of every award
+    for ggAward in peopleAwards:
+        Nominees[ggAward.name] = []
+        print("----------------------------------------------------------------")
+        print("Award name: ", ggAward.name)
+        winningTweets = []
+        # iter over tweets and add tweets that could contain the answer to our question
+        for t in ttr:
+            if isNomTweet(t, ggAward.keywords, ggAward.tripwords):
+                winningTweets.append(t)
+        # in the case that we've been too restrictive, loosen constraints - no tripwords
+        if len(winningTweets) == 0:
+            print('no ideal tweets found, removing tripword requirement.')
+            for t in ttr:
+                if isNomTweet(t, ggAward.keywords):
+                    winningTweets.append(t)
+        
+
+        # print("number of potential nominee tweets found: ", len(winningTweets))
+
+        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
+        candWinners = {}
+        # set for hash table speed
+        namesSet = set(())
+
+        for t in winningTweets:
+            people = find_persons(t)
+            # print(t)
+            # print(films)
+            # print(people)
+            for p in people:
+                if '@' in p or 'RT' in p or 'golden' in p:
+                    people = people.remove(p)
+            if not people:
+                continue
+            # print(people)
+            # find counts
+            if people:
+                for p in people:
+                    if p in namesSet:
+                        candWinners[p] += 1
+                    else:
+                        candWinners[p] = 1
+                    namesSet.add(p)
+
+        # post processing - cleaning
+        toDelete = []
+        for name in candWinners.keys():
+            if '@' in name or 'golden' in name.lower():
+                # print("@ found")
+                toDelete.append(name)
+                continue
+            ns = name.lower().split()
+            # print("ns", ns)
+            nsl = 0
+            for i in ns:
+                # print(i, ' in ', ggAward.name, ' ? ')
+                # print(i in ggAward.name)
+                if i in ggAward.name:
+                    nsl += 1
+            if nsl == len(ns):
+                # print("mistaken award name for recipient")
+                toDelete.append(name)
+
+        for d in toDelete:
+            candWinners.pop(d)
+        
+        # sort by popularity then print winner
+
+        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
+        try:
+            print("predicted nominees: ")
+            iter = 0
+            for prediction in winnerCounts[:5]:
+                name = prediction[0]
+                if find_persons(name):
+                    print(name)
+                    Nominees[ggAward.name].append(name)
+                    iter += 1
+                if iter > 4:
+                    break
+        except:
+            print("no answer found")
+            Nominees[ggAward.name].append(name)
+
+    # find winner of every award - TITLES
+    for ggAward in titleAwards:
+        print("----------------------------------------------------------------")
+        print("Award name: ", ggAward.name)
+        Nominees[ggAward.name] = []
+
+        winningTweets = []
+        # iter over tweets and add tweets that could contain the answer to our question
+        for t in ttr:
+            if isNomTweet(t, ggAward.keywords, ggAward.tripwords):
+                winningTweets.append(t)
+        # in the case that we've been too restrictive, loosen constraints - no tripwords
+        if len(winningTweets) == 0:
+            print('no ideal tweets found for award, removing tripword requirement.')
+            for t in ttr:
+                if isNomTweet(t, ggAward.keywords):
+                    winningTweets.append(t)
+        
+
+        # print("number of potential nominee tweets found: ", len(winningTweets))
+
+        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
+        candWinners = {}
+        # set for hash table speed
+        namesSet = set(())
+
+        for t in winningTweets:
+            films = find_films(t)
+
+            for f in films:
+                if '@' in f or 'RT' in f or 'golden' in f.lower():
+                    films = films.remove(f)
+            if not films:
+                continue
+            if films:
+                for f in films:
+                    if f in namesSet:
+                        candWinners[f] += 1
+                    else:
+                        candWinners[f] = 1
+                    namesSet.add(f)
+
+        # post processing - cleaning
+        toDelete = []
+        for name in candWinners.keys():
+            if '@' in name or 'golden' in name.lower():
+                # print("@ found")
+                toDelete.append(name)
+                continue
+            ns = name.lower().split()
+            # print("ns", ns)
+            nsl = 0
+            for i in ns:
+                # print(i, ' in ', ggAward.name, ' ? ')
+                # print(i in ggAward.name)
+                if i in ggAward.name:
+                    nsl += 1
+            if nsl > 1:
+                # print("mistaken award name for recipient")
+                toDelete.append(name)
+
+        for d in toDelete:
+            candWinners.pop(d)
+        
+        # sort by popularity then print winner
+        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
+        try:
+            print("predicted nominees: ")
+            iter = 0
+            for prediction in winnerCounts[:5]:
+                name = prediction[0]
+                print(name)
+                Nominees[ggAward.name].append(name)
+                iter += 1
+                if iter > 4:
+                    break
+        except:
+            print("no answer found")
+
+    return Nominees
 
 def get_winner(year):
     '''Winners is a dictionary with the hard coded award
     names as keys, and each entry containing a single string.
     Do NOT change the name of this function or what it returns.'''
-    # Your code here
+    
+    tweet_list = tweet_cleaner(year)
+    people_words_hardcode = ['actor', 'actress', 'director', 'cecil']
+    winners = {}
+
+    hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
+    hp = HashtagParser(hp_data)
+
+    ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
+    # create list of award objects
+    awardList = []
+    for a in OFFICIAL_AWARDS_1315:
+        # print(a)
+        # print(awardNameToKeywords(a))
+        awardList.append(AwardObj(name=a, keywords=awardNameToKeywords(a)))
+
+    # find tripwords!
+    for a in awardList:
+        a.tripwords = findTripwords(award=a, awardList=awardList)
+
+    #filter to only awards that go to people. this info could go in a config file if we really needed to
+    peopleAwards = []
+    titleAwards = []
+    for ggAward in awardList:
+        if any([people_word in ggAward.keywords for people_word in people_words_hardcode]):
+            peopleAwards.append(ggAward)
+        else:
+            titleAwards.append(ggAward.name)
+
+    ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
+    for t in tweet_list:
+        if 'RT' not in t:
+            if isReasonable(t):
+                ttr.append(t)
+
+    award_names = get_awards(hp, hp_data)
+    # find winners of non-people-related awards (hashtag co-occurrence)
+    title_award_winners = hp.get_title_award_to_winner(hp_data, award_names, titleAwards, people_words_hardcode)
+    for canonical_name, found_winner in title_award_winners.items():
+        print("----------------------------------------------------------------")
+        print("Award name: ", canonical_name)
+        print("\tPredicted winner: ", found_winner)
+        winners[canonical_name] = found_winner
+
+    # find winners of people-related awards
+    for ggAward in peopleAwards:
+        print("----------------------------------------------------------------")
+        print("Award name: ", ggAward.name)
+
+
+        # print(ggAward.name)
+        winningTweets = []
+        # iter over tweets and add tweets that could contain the answer to our question
+        for t in ttr:
+            if isWinningTweet(t, ggAward.keywords, ggAward.tripwords):
+                winningTweets.append(t)
+        # in the case that we've been too restrictive, loosen constraints - no tripwords
+        if len(winningTweets) == 0:
+            print('no ideal tweets found, removing tripword requirement')
+            for t in ttr:
+                if isWinningTweet(t, ggAward.keywords):
+                    winningTweets.append(t)
+        
+
+        # print("number of relevant winning tweets found: ", len(winningTweets))
+
+        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
+        candWinners = {}
+        # set for hash table speed
+        namesSet = set(())
+
+        for t in winningTweets:
+            people = find_persons(t)
+            for p in people:
+                if '@' in p or 'RT' in p or 'golden' in p:
+                    people = people.remove(p)
+            if not people:
+                continue
+            for p in people:
+                if p in namesSet:
+                    candWinners[p] += 1
+                else:
+                    candWinners[p] = 1
+                namesSet.add(p)
+
+        # post processing - cleaning
+        toDelete = []
+        for name in candWinners.keys():
+            if '@' in name or 'golden' in name.lower():
+                toDelete.append(name)
+                continue
+            ns = name.lower().split()
+            # print("ns", ns)
+            nsl = 0
+            for i in ns:
+                if i in ggAward.name:
+                    nsl += 1
+            if nsl == len(ns):
+                toDelete.append(name)
+
+        for d in toDelete:
+            candWinners.pop(d)
+        
+        # sort by popularity then print winner
+        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
+        try:
+            print("predicted winner: ", winnerCounts[0][0])
+            winners[ggAward.name] = winnerCounts[0][0]
+        except:
+            print("no answer found")
+            winners[ggAward.name] = "we don't know"
+    
     return winners
 
 def get_presenters(year):
@@ -314,7 +624,7 @@ def main():
 
     
     print("\n**************************** hosts ****************************")
-    hosts = get_hosts(tweet_list)
+    hosts = get_hosts(year)
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
@@ -324,204 +634,14 @@ def main():
     for name in award_names:
         print('\t', name)
     print("\n**************************** Award Winners ****************************")
-    ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
-    # create list of award objects
-    awardList = []
-    for a in OFFICIAL_AWARDS_1315:
-        # print(a)
-        # print(awardNameToKeywords(a))
-        awardList.append(AwardObj(name=a, keywords=awardNameToKeywords(a)))
-
-    # find tripwords!
-    for a in awardList:
-        a.tripwords = findTripwords(award=a, awardList=awardList)
-
-    #filter to only awards that go to people. this info could go in a config file if we really needed to
-    peopleAwards = []
-    titleAwards = []
-    for ggAward in awardList:
-        if any([people_word in ggAward.keywords for people_word in people_words_hardcode]):
-            peopleAwards.append(ggAward)
-        else:
-            titleAwards.append(ggAward.name)
-
-    ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
-    for t in tweet_list:
-        if 'RT' not in t:
-            if isReasonable(t):
-                ttr.append(t)
-
-
-    # find winners of non-people-related awards (hashtag co-occurrence)
-    title_award_winners = hp.get_title_award_to_winner(hp_data, award_names, titleAwards, people_words_hardcode)
-    for canonical_name, found_winner in title_award_winners.items():
-        print("----------------------------------------------------------------")
-        print("Award name: ", canonical_name)
-        print("\tPredicted winner: ", found_winner)
-
-    pplAwardDict = {}
-    # find winners of people-related awards
-    for ggAward in peopleAwards:
-        print("----------------------------------------------------------------")
-        print("Award name: ", ggAward.name)
-
-
-        # print(ggAward.name)
-        winningTweets = []
-        # iter over tweets and add tweets that could contain the answer to our question
-        for t in ttr:
-            if isWinningTweet(t, ggAward.keywords, ggAward.tripwords):
-                winningTweets.append(t)
-        # in the case that we've been too restrictive, loosen constraints - no tripwords
-        if len(winningTweets) == 0:
-            print('no ideal tweets found, removing tripword requirement')
-            for t in ttr:
-                if isWinningTweet(t, ggAward.keywords):
-                    winningTweets.append(t)
-        
-
-        # print("number of relevant winning tweets found: ", len(winningTweets))
-
-        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
-        candWinners = {}
-        # set for hash table speed
-        namesSet = set(())
-
-        for t in winningTweets:
-            people = find_persons(t)
-            for p in people:
-                if '@' in p or 'RT' in p or 'golden' in p:
-                    people = people.remove(p)
-            if not people:
-                continue
-            for p in people:
-                if p in namesSet:
-                    candWinners[p] += 1
-                else:
-                    candWinners[p] = 1
-                namesSet.add(p)
-
-        # post processing - cleaning
-        toDelete = []
-        for name in candWinners.keys():
-            if '@' in name or 'golden' in name.lower():
-                toDelete.append(name)
-                continue
-            ns = name.lower().split()
-            # print("ns", ns)
-            nsl = 0
-            for i in ns:
-                if i in ggAward.name:
-                    nsl += 1
-            if nsl == len(ns):
-                toDelete.append(name)
-
-        for d in toDelete:
-            candWinners.pop(d)
-        
-        # sort by popularity then print winner
-        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
-        try:
-            print("predicted winner: ", winnerCounts[0][0])
-            pplAwardDict[ggAward] = winnerCounts[0][0]
-        except:
-            print("no answer found")
-            pplAwardDict[ggAward] = "we don't know"
+    winners = get_winner(year)
+    for award in winners.keys():
+        print(award, " WINNER : ", winners[award])
 
     
     
     print("\n**************************** nominees ****************************")
-    # AWARD NOMINEES:
-    pplNomDict = {}
-
-    ttr = [] # pruned tweets by reasonability - i.e. not hypothetical and not historic
-    for t in tweet_list:
-        if isHypothetical(t.lower()):
-            ttr.append(t)
-    # find winner of every award
-    for ggAward in peopleAwards:
-        pplNomDict[ggAward] = []
-        print("----------------------------------------------------------------")
-        print("Award name: ", ggAward.name)
-        winningTweets = []
-        # iter over tweets and add tweets that could contain the answer to our question
-        for t in ttr:
-            if isNomTweet(t, ggAward.keywords, ggAward.tripwords):
-                winningTweets.append(t)
-        # in the case that we've been too restrictive, loosen constraints - no tripwords
-        if len(winningTweets) == 0:
-            print('no ideal tweets found, removing tripword requirement.')
-            for t in ttr:
-                if isNomTweet(t, ggAward.keywords):
-                    winningTweets.append(t)
-        
-
-        # print("number of potential nominee tweets found: ", len(winningTweets))
-
-        # candWinners is a dict of counts of co-occurance of each candidate for winning. in the end we return the most popular name from the tweets.
-        candWinners = {}
-        # set for hash table speed
-        namesSet = set(())
-
-        for t in winningTweets:
-            people = find_persons(t)
-            # print(t)
-            # print(films)
-            # print(people)
-            for p in people:
-                if '@' in p or 'RT' in p or 'golden' in p:
-                    people = people.remove(p)
-            if not people:
-                continue
-            # print(people)
-            # find counts
-            if people:
-                for p in people:
-                    if p in namesSet:
-                        candWinners[p] += 1
-                    else:
-                        candWinners[p] = 1
-                    namesSet.add(p)
-
-        # post processing - cleaning
-        toDelete = []
-        for name in candWinners.keys():
-            if '@' in name or 'golden' in name.lower():
-                # print("@ found")
-                toDelete.append(name)
-                continue
-            ns = name.lower().split()
-            # print("ns", ns)
-            nsl = 0
-            for i in ns:
-                # print(i, ' in ', ggAward.name, ' ? ')
-                # print(i in ggAward.name)
-                if i in ggAward.name:
-                    nsl += 1
-            if nsl == len(ns):
-                # print("mistaken award name for recipient")
-                toDelete.append(name)
-
-        for d in toDelete:
-            candWinners.pop(d)
-        
-        # sort by popularity then print winner
-
-        winnerCounts = (sorted(candWinners.items(), key=lambda item: 1/item[1]))
-        try:
-            print("predicted nominees: ")
-            iter = 0
-            for prediction in winnerCounts[:5]:
-
-                name = prediction[0]
-                if find_persons(name):
-                    print(name)
-                    pplNomDict[ggAward].append(name)
-                    iter += 1
-                if iter > 4:
-                    break
-        except:
-            print("no answer found")
+    nominees = get_nominees(year)
 
     print("\n**************************** extras ****************************")
     get_extras(tweet_list)
@@ -532,11 +652,9 @@ def main():
     answers_dict["awards"] = award_names
     answers_dict["award_data"] = {}
 
-    for award in pplAwardDict:
-        answers_dict["award_data"][award]["winner"] = pplAwardDict[award]
-        answers_dict["award_data"][award]["nominees"] = pplNomDict[award]
-    for award in title_award_winners:
-        answers_dict["award_data"][award]["winner"] = title_award_winners[award]
+    for award in winners:
+        answers_dict["award_data"][award]["winner"] = winners[award]
+        answers_dict["award_data"][award]["nominees"] = nominees[award]
 
     with open('our_answers.json', 'w') as f: 
         json.dump(answers_dict, f, indent=2)
