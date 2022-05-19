@@ -457,7 +457,7 @@ def get_winner(year):
             if isReasonable(t):
                 ttr.append(t)
 
-    award_names = get_awards(hp, hp_data)
+    award_names = get_awards(year)
     # find winners of non-people-related awards (hashtag co-occurrence)
     title_award_winners = hp.get_title_award_to_winner(hp_data, award_names, titleAwards, people_words_hardcode)
     for canonical_name, found_winner in title_award_winners.items():
