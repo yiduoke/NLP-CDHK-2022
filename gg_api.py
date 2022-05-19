@@ -329,7 +329,7 @@ def get_nominees(year):
                     break
         except:
             print("no answer found")
-            Nominees[ggAward.name].append(name)
+            Nominees[ggAward.name].append("no answer found")
 
     # find winner of every award - TITLES
     for ggAward in titleAwards:
@@ -409,6 +409,8 @@ def get_nominees(year):
                     break
         except:
             print("no answer found")
+            Nominees[ggAward.name].append(name)
+
 
     return Nominees
 
