@@ -604,14 +604,14 @@ def get_presenters(year):
     for award, presenters in presDict.items():
         if award not in final_presenters_dict:
             final_presenters_dict[award.name] = []
-        print("\n\n", award.name)
+        # print("\n\n", award.name)
         
         i = 0
         presenters = dict(sorted(presenters.items(), key=lambda item: item[1], reverse=True))
         for presenter in presenters:
             if i > 3:
                 break
-            print(presenter, presDict[award][presenter])
+            # print(presenter, presDict[award][presenter])
             final_presenters_dict[award.name].append(presenter)
             i+=1
     return final_presenters_dict
@@ -718,10 +718,10 @@ def main():
     for name in award_names:
         print('\t', name)
     
-    # print("\n**************************** presenters ****************************")
-    # presenters = get_presenters(year)
-    # for award, presenters in presenters.items():
-    #     print(award, " PRESENTERS: ", presenters)
+    print("\n**************************** presenters ****************************")
+    presenters = get_presenters(year)
+    for award, presenters in presenters.items():
+        print(award, " PRESENTERS: ", presenters)
 
     print("\n**************************** Award Winners ****************************")
     winners = get_winner(year)
@@ -742,11 +742,13 @@ def main():
     answers_dict["awards"] = award_names
     answers_dict["award_data"] = {}
 
-    for award in winners:
+    for award in OFFICIAL_AWARDS_1315:
+        answers_dict["award_data"][award] = {}
         answers_dict["award_data"][award]["winner"] = winners[award]
         answers_dict["award_data"][award]["nominees"] = nominees[award]
+        answers_dict["award_data"][award]["presenters"] = presenters[award]
 
-    with open('gg2015answers.json', 'w') as f: 
+    with open('gg' + str(year) + '2015answers.json', 'w') as f: 
         json.dump(answers_dict, f, indent=2)
         
     return
