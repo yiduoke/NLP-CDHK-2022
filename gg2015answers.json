@@ -34,9 +34,9 @@
       "winner": "George Clooney",
       "nominees": [
         "George Clooney",
-        "G http://t.co/bbKn1s4Oug",
         "Barbara Walters",
-        "Amal Clooney"
+        "Amal Clooney",
+        "Charlie"
       ],
       "presenters": [
         "Bill Hader &",
@@ -64,16 +64,15 @@
     "best performance by an actress in a motion picture - drama": {
       "winner": "Julianne Moore",
       "nominees": [
-        "Q. Wallis",
-        "-CB http://t.co/hyNjOu4G0j",
         "Julianne Moore",
-        "Reese Witherspoon"
+        "Reese Witherspoon",
+        "Jack Black"
       ],
       "presenters": [
         "Chris Pratt",
         "Ruth Wilson",
-        "-CB http://t.co/hyNjOu4G0j",
-        "Paul Rudd"
+        "Paul Rudd",
+        "Adam Levine"
       ]
     },
     "best performance by an actor in a motion picture - drama": {
@@ -104,16 +103,16 @@
         "Evelyn",
         "Naomi Watts",
         "Prince",
-        "Robert Downey Jr."
+        "Melissa McCarthy"
       ]
     },
     "best performance by an actress in a motion picture - comedy or musical": {
       "winner": "Amy Adams",
       "nominees": [
-        "Q. Wallis",
         "Amy Adams",
         "Owen Wilson",
-        "Wallis"
+        "Wallis",
+        "Oscar"
       ],
       "presenters": [
         "Ricky Gervais",
@@ -169,11 +168,11 @@
     "best performance by an actress in a supporting role in a motion picture": {
       "winner": "Patricia Arquette",
       "nominees": [
-        "Q. Wallis",
         "Patricia Arquette",
         "Keira Knightley",
         "Jessica Chastain",
-        "Emma Stone"
+        "Emma Stone",
+        "Patricia"
       ],
       "presenters": [
         "Patricia Arquette",
@@ -187,7 +186,8 @@
       "nominees": [
         "Robert Duvall",
         "Mark Ruffalo",
-        "Jennifer Aniston"
+        "Jennifer Aniston",
+        "Michael Keaton"
       ],
       "presenters": [
         "Jennifer Aniston",
@@ -251,8 +251,8 @@
       "presenters": [
         "Prince",
         "John Legend",
-        "http://t.co/ghunNYiSa1",
-        "Sarah Koenig"
+        "Sarah Koenig",
+        "Adnan Syed"
       ]
     },
     "best television series - drama": {
@@ -351,10 +351,10 @@
     "best performance by an actress in a mini-series or motion picture made for television": {
       "winner": "Billy Bob Thornton",
       "nominees": [
-        "Q. Wallis",
         "Amy Adams - Big",
         "Amy Adams",
-        "Helen Mirren"
+        "Helen Mirren",
+        "Wes Anderson"
       ],
       "presenters": []
     },
@@ -391,7 +391,6 @@
       ],
       "presenters": [
         "Katie Holmes",
-        "GoldenGlobes http://t.co/7SZ7xsA9cZ",
         "Matt Bomer"
       ]
     }
