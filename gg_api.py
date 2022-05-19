@@ -546,8 +546,9 @@ def pre_ceremony():
     print("Pre-ceremony processing complete.")
     return
 
-def get_extras(tweet_list):
+def get_extras(year):
 
+    tweet_list = tweet_cleaner(year)
     best_dressed = []
     worse_dressed = []
     funny_jokes = []
@@ -644,7 +645,8 @@ def main():
     nominees = get_nominees(year)
 
     print("\n**************************** extras ****************************")
-    get_extras(tweet_list)
+    get_extras(year)
+    return
 
     
     answers_dict = {}
