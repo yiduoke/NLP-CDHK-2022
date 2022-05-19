@@ -200,10 +200,14 @@ def get_hosts(year):
     hosts.append(counts[1][0].lower())
     return hosts
 
-def get_awards(hashtag_parser, data):
+def get_awards(year):
     '''Awards is a list of strings. Do NOT change the name
     of this function or what it returns.'''
-    award_names = hashtag_parser.parse_award_names(data, verbose=False)
+
+    ### some hashtag parser setup
+    hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
+    hp = HashtagParser(hp_data)
+    award_names = hp.parse_award_names(hp_data, verbose=False)
     return award_names
    
 
@@ -699,10 +703,6 @@ def main():
 
     people_words_hardcode = ['actor', 'actress', 'director', 'cecil']
 
-    ### some hashtag parser setup
-    hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
-    hp = HashtagParser(hp_data)
-
     print("\n**************************** presenters ****************************")
     presenters = get_presenters(year)
     for award, presenters in presenters.items():
@@ -713,7 +713,7 @@ def main():
     print("         ", hosts[0], "\n         ", hosts[1])
 
     print("\n**************************** awards ****************************")
-    award_names = get_awards(hp, hp_data)
+    award_names = get_awards(year)
 
     print('Found ' + str(len(award_names)) + ' award names:')
     for name in award_names:

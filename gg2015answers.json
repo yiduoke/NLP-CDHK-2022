@@ -1,0 +1,399 @@
+{
+  "hosts": [
+    "amy poehler",
+    "tina fey"
+  ],
+  "awards": [
+    "best motion picture, drama",
+    "best actor in a motion picture drama",
+    "best actor in a tv series, drama",
+    "best motion picture musical or comedy",
+    "best animated feature film",
+    "best director, motion picture",
+    "best original song in a motion picture",
+    "best actress in a motion picture, musical or comedy",
+    "best screenplay - motion picture",
+    "best actor, mini-series or tv movie",
+    "best actress in a miniseries or tv movie",
+    "best actor in a motion picture, comedy or musical",
+    "best tv series, drama",
+    "best actress in a motion picture, drama",
+    "best supporting actor in a series, mini-series or tv movie",
+    "best supporting actress in a series, mini-series or tv movie",
+    "best foreign language film",
+    "best supporting actress in a motion picture",
+    "best actress in a tv series, musical or comedy",
+    "best actor in a tv series, musical or comedy",
+    "best actress, tv series, drama",
+    "best supporting actor in a motion picture",
+    "cecil b. demille award",
+    "best original score"
+  ],
+  "award_data": {
+    "cecil b. demille award": {
+      "winner": "George Clooney",
+      "nominees": [
+        "George Clooney",
+        "G http://t.co/bbKn1s4Oug",
+        "Barbara Walters",
+        "Amal Clooney"
+      ],
+      "presenters": [
+        "Bill Hader &",
+        "Kristen Wigg",
+        "John Legend",
+        "Colin Farrell's"
+      ]
+    },
+    "best motion picture - drama": {
+      "winner": "boyhood",
+      "nominees": [
+        "The Affair",
+        "The Imitation Game",
+        "Into the Woods",
+        "Boyhood",
+        "The Theory of Everything"
+      ],
+      "presenters": [
+        "Meryl Streep",
+        "Jack Black",
+        "Austin",
+        "Meryl"
+      ]
+    },
+    "best performance by an actress in a motion picture - drama": {
+      "winner": "Julianne Moore",
+      "nominees": [
+        "Q. Wallis",
+        "-CB http://t.co/hyNjOu4G0j",
+        "Julianne Moore",
+        "Reese Witherspoon"
+      ],
+      "presenters": [
+        "Chris Pratt",
+        "Ruth Wilson",
+        "-CB http://t.co/hyNjOu4G0j",
+        "Paul Rudd"
+      ]
+    },
+    "best performance by an actor in a motion picture - drama": {
+      "winner": "Eddie Redmayne",
+      "nominees": [
+        "David Oyelowo",
+        "Eddie Redmayne",
+        "Kevin Spacey",
+        "Benedict Cumberbatch"
+      ],
+      "presenters": [
+        "David Duchovny",
+        "Gwyneth Paltrow",
+        "Amy Adams",
+        "Michael Keaton"
+      ]
+    },
+    "best motion picture - comedy or musical": {
+      "winner": "the grand budapest hotel",
+      "nominees": [
+        "Black List",
+        "The Grand Budapest Hotel",
+        "Comedy",
+        "Boyhood",
+        "Into The Woods"
+      ],
+      "presenters": [
+        "Evelyn",
+        "Naomi Watts",
+        "Prince",
+        "Robert Downey Jr."
+      ]
+    },
+    "best performance by an actress in a motion picture - comedy or musical": {
+      "winner": "Amy Adams",
+      "nominees": [
+        "Q. Wallis",
+        "Amy Adams",
+        "Owen Wilson",
+        "Wallis"
+      ],
+      "presenters": [
+        "Ricky Gervais",
+        "AMY ADAMS",
+        "Kerri Washington",
+        "Brian Cranston"
+      ]
+    },
+    "best performance by an actor in a motion picture - comedy or musical": {
+      "winner": "Michael Keaton",
+      "nominees": [
+        "Michael Keaton",
+        "Owen Wilson",
+        "Bill Murray",
+        "Oscar"
+      ],
+      "presenters": [
+        "Michael Keaton",
+        "Jane Fonda",
+        "Lily Tomlin",
+        "Amy Adams"
+      ]
+    },
+    "best animated feature film": {
+      "winner": "how to train your dragon 2",
+      "nominees": [
+        "Best Picture Drama",
+        "Best Picture",
+        "The Book of Life\nThe Boxtrolls\nHow to Train Your Dragon 2",
+        "The Imitation Game",
+        "The Theory of Everything"
+      ],
+      "presenters": [
+        "PRINCE",
+        "Salma Hayek",
+        "Kate Hudson",
+        "Jack Black"
+      ]
+    },
+    "best foreign language film": {
+      "winner": "leviathan",
+      "nominees": [
+        "Best Picture Drama",
+        "Best Picture",
+        "The Imitation Game",
+        "The Theory of Everything",
+        "The Hunger Games"
+      ],
+      "presenters": [
+        "Colin Farrell"
+      ]
+    },
+    "best performance by an actress in a supporting role in a motion picture": {
+      "winner": "Patricia Arquette",
+      "nominees": [
+        "Q. Wallis",
+        "Patricia Arquette",
+        "Keira Knightley",
+        "Jessica Chastain",
+        "Emma Stone"
+      ],
+      "presenters": [
+        "Patricia Arquette",
+        "Jamie",
+        "Jared Leto",
+        "Joanne Froggatt"
+      ]
+    },
+    "best performance by an actor in a supporting role in a motion picture": {
+      "winner": "J.K. Simmons",
+      "nominees": [
+        "Robert Duvall",
+        "Mark Ruffalo",
+        "Jennifer Aniston"
+      ],
+      "presenters": [
+        "Jennifer Aniston",
+        "Benedict Cumberbatch",
+        "Jamie Dorman",
+        "Dakota Johnson"
+      ]
+    },
+    "best director - motion picture": {
+      "winner": "Richard Linklater",
+      "nominees": [
+        "Richard Linklater",
+        "Oscar",
+        "Linklater"
+      ],
+      "presenters": [
+        "Richard Linklater",
+        "Harrison Ford"
+      ]
+    },
+    "best screenplay - motion picture": {
+      "winner": "birdman",
+      "nominees": [
+        "Good Will Hunting",
+        "The Imitation Game",
+        "Into the Woods",
+        "Oscar",
+        "the Black List"
+      ],
+      "presenters": [
+        "Bill Hader",
+        "Kristen Wiig",
+        "Kristen Wigg",
+        "Shonda Rhimes"
+      ]
+    },
+    "best original score - motion picture": {
+      "winner": "the theory of everything",
+      "nominees": [
+        "The Theory of Everything",
+        "The Theory of Everything'",
+        "\"The Theory of Everything",
+        "Boyhood"
+      ],
+      "presenters": [
+        "Vince Vaughn",
+        "Sienna Miller",
+        "John Legend",
+        "Latinos"
+      ]
+    },
+    "best original song - motion picture": {
+      "winner": "selma",
+      "nominees": [
+        "Yellow Flicker Beat'",
+        "The Purple Yoda",
+        "Selma",
+        "JohnLegend",
+        "Yellow Flicker Beat"
+      ],
+      "presenters": [
+        "Prince",
+        "John Legend",
+        "http://t.co/ghunNYiSa1",
+        "Sarah Koenig"
+      ]
+    },
+    "best television series - drama": {
+      "winner": "the affair",
+      "nominees": [
+        "The Affair",
+        "Game of Thrones",
+        "True Detective",
+        "Next Top Model",
+        "Best Show Starring An Admitted Child Molester"
+      ],
+      "presenters": [
+        "Adam Levine",
+        "Paul Rudd"
+      ]
+    },
+    "best performance by an actress in a television series - drama": {
+      "winner": "Ruth Wilson",
+      "nominees": [
+        "Julianne Moore",
+        "Ruth Wilson",
+        "Jessica Lange",
+        "Reese Witherspoon",
+        "Viola Davis"
+      ],
+      "presenters": [
+        "Anna Ferris",
+        "Anna Faris",
+        "Chris Pratt"
+      ]
+    },
+    "best performance by an actor in a television series - drama": {
+      "winner": "Kevin Spacey",
+      "nominees": [
+        "Kevin Spacey",
+        "Eddie Redmayne",
+        "James Spader",
+        "Jake Gyllenhaal"
+      ],
+      "presenters": [
+        "Katherine Heigl",
+        "David Duchovni",
+        "David Duchovny"
+      ]
+    },
+    "best television series - comedy or musical": {
+      "winner": "transparent",
+      "nominees": [
+        "Musical",
+        "Comedy",
+        "Best Defensive Center",
+        "Into the Woods",
+        "Best Comedy/Musical"
+      ],
+      "presenters": []
+    },
+    "best performance by an actress in a television series - comedy or musical": {
+      "winner": "Jane the Virgin's Gina Rodriguez",
+      "nominees": [
+        "Amy Adams",
+        "Jane the Virgin",
+        "Wallis",
+        "Jane the Virgin's Gina Rodriguez",
+        "Jane The Virgin"
+      ],
+      "presenters": [
+        "Jane The Virgin",
+        "Represent Latinas"
+      ]
+    },
+    "best performance by an actor in a television series - comedy or musical": {
+      "winner": "Jeffrey Tambor",
+      "nominees": [
+        "Jeffrey Tambor",
+        "Michael Keaton",
+        "Kevin Spacey",
+        "Don Cheadle"
+      ],
+      "presenters": [
+        "Jane Fonda",
+        "Lily Tomlin"
+      ]
+    },
+    "best mini-series or motion picture made for television": {
+      "winner": "fargo",
+      "nominees": [
+        "Boyhood"
+      ],
+      "presenters": [
+        "Jennifer Lopez",
+        "Jeremy Renner",
+        "Jake Peavy",
+        "Lil Sebastian"
+      ]
+    },
+    "best performance by an actress in a mini-series or motion picture made for television": {
+      "winner": "Billy Bob Thornton",
+      "nominees": [
+        "Q. Wallis",
+        "Amy Adams - Big",
+        "Amy Adams",
+        "Helen Mirren"
+      ],
+      "presenters": []
+    },
+    "best performance by an actor in a mini-series or motion picture made for television": {
+      "winner": "Billy Bob Thornton",
+      "nominees": [
+        "Michael Keaton",
+        "Wes Anderson"
+      ],
+      "presenters": [
+        "Jeremy Renner",
+        "Billy Bob Thorton",
+        "Jennifer Lopez"
+      ]
+    },
+    "best performance by an actress in a supporting role in a series, mini-series or motion picture made for television": {
+      "winner": "Joanne Froggatt",
+      "nominees": [
+        "Jennifer Lopez",
+        "Jeremy Renner"
+      ],
+      "presenters": [
+        "Joanne Froggatt",
+        "JOHNSON",
+        "JAIME DORNAN"
+      ]
+    },
+    "best performance by an actor in a supporting role in a series, mini-series or motion picture made for television": {
+      "winner": "Billy Bob Thornton",
+      "nominees": [
+        "Jennifer Lopez",
+        "Jeremy Renner",
+        "Billy Bob Thornton"
+      ],
+      "presenters": [
+        "Katie Holmes",
+        "GoldenGlobes http://t.co/7SZ7xsA9cZ",
+        "Matt Bomer"
+      ]
+    }
+  }
+}
