@@ -206,7 +206,7 @@ def get_awards(year):
 
     ### some hashtag parser setup
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
-    hp = HashtagParser(hp_data)
+    hp = HashtagParser(hp_data, year=year)
     award_names = hp.parse_award_names(hp_data, verbose=False)
     return award_names
    
@@ -428,7 +428,7 @@ def get_winner(year):
     winners = {}
 
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
-    hp = HashtagParser(hp_data)
+    hp = HashtagParser(hp_data, year=year)
     award_names = hp.parse_award_names(hp_data, verbose=False)
 
     ############### KEEP THE HASHTAG SOLUTIONS FOR AWARDS THAT GO TO MOVIES, USE THIS FOR PEOPLE AWARDS
@@ -699,7 +699,7 @@ def main():
     and then run gg_api.main(). This is the second thing the TA will
     run when grading. Do NOT change the name of this function or
     what it returns.'''
-    year = 2015 # <------- Change to another year. 
+    year = 2013 # <------- Change to another year. 
     tweet_list = tweet_cleaner(year)
 
     people_words_hardcode = ['actor', 'actress', 'director', 'cecil']

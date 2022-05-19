@@ -192,7 +192,7 @@ class HashtagLogger(object):
 
 
 class HashtagParser(object):
-    def __init__(self, data=None, hashtag_parser_config_path='hashtag_parser_config.json',
+    def __init__(self, data=None, year='2015', hashtag_parser_config_path='hashtag_parser_config',
                  award_word_config_path='award_word_config.json'):
 
         # ---------- internal data structs ----------
@@ -237,6 +237,7 @@ class HashtagParser(object):
 
 
         # ---------- Hashtag filtering config ----------
+        hashtag_parser_config_path += '_' + str(year) + '.json'
         with open(hashtag_parser_config_path) as f:
             parser_config = json.load(f)
 
@@ -470,6 +471,7 @@ class HashtagParser(object):
                     if award not in award_hashtags:
                         award_hashtags[award] = Counter()
                     award_hashtags[award].update(hashtags)
+            
 
         # filter through candidate award strings
         award_counter = sorted(award_phrase_counter.items(), key=lambda item: item[1], reverse=True)
@@ -501,6 +503,10 @@ class HashtagParser(object):
                 if tweet_to_alphanumeric(k_) == k_reduce or k_set_ == k_set:
                     reject = True
                     kept_awards[jx][1] += freq
+                    if k not in award_hashtags:
+                        award_hashtags[k] = Counter()
+                    if k_ not in award_hashtags:
+                        award_hashtags[k_] = Counter()
                     award_hashtags[k_] += award_hashtags[k]
                     break
 
@@ -515,7 +521,10 @@ class HashtagParser(object):
         for k, _ in kept_awards:
             temp_hashtags = {}
             children_to_parent = {}
-            temp_award_hashtags = sorted(award_hashtags[k].items(), key=lambda item: item[1], reverse=True)
+            try:
+                temp_award_hashtags = sorted(award_hashtags[k].items(), key=lambda item: item[1], reverse=True)
+            except KeyError:
+                temp_award_hashtags = []
             for tag, freq in temp_award_hashtags:
                 # check if hashtag is a child of another hashtag
                 if tag in children_to_parent:
@@ -664,7 +673,10 @@ class HashtagParser(object):
         canonical_to_hashtag = {}
         for f, c in found_to_canonical.items():
             co_occurring_hashtags = self.award_name_to_hashtags[f]
-            top_hash = max(co_occurring_hashtags, key=co_occurring_hashtags.get)
+            try:
+                top_hash = max(co_occurring_hashtags, key=co_occurring_hashtags.get)
+            except ValueError:
+                top_hash = 'None'
             canonical_to_hashtag[c] = top_hash
             if top_hash not in hashtags_to_resolve:
                 hashtags_to_resolve.append(top_hash)
@@ -693,7 +705,10 @@ class HashtagParser(object):
                 hashtags = list(set(hashtags))
                 c_hashtags.update(hashtags)
 
-            top_hash = max(c_hashtags, key=c_hashtags.get)
+            try:
+                top_hash = max(c_hashtags, key=c_hashtags.get)
+            except ValueError:
+                top_hash = 'None'
             canonical_to_hashtag[c] = top_hash
             if top_hash not in hashtags_to_resolve:
                 hashtags_to_resolve.append(top_hash)

@@ -1,0 +1,12 @@
+{
+    "stopword_proportion_threshold": "0.01",
+    "frequent_hashtag_threshold": "1",
+    "frequent_hashtag_len_min": "4",
+    "infrequent_hashtag_threshold": "0",
+    "infrequent_hashtag_len_min": "7",
+    "keep_hashtag_subset_ratio": "100",
+    "frequent_utterance_threshold": "100",
+    "keep_hashtag_nl_ratio": "10",
+    "award_winner_candidate_threshold_capture": "0",
+    "award_winner_candidate_threshold_filter": "0"
+}
