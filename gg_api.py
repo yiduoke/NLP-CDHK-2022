@@ -536,8 +536,85 @@ def get_presenters(year):
     '''Presenters is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change the
     name of this function or what it returns.'''
-    # Your code here
-    return presenters
+    pres_keywords = ["present", "announces", "announcing", "announced"]
+    not_pres_keywords = ["win", "@", ]
+
+    presDict = {}
+
+    awardList = []
+    for a in OFFICIAL_AWARDS_1315:
+        # print(a)
+        # print(awardNameToKeywords(a))
+        awardList.append(AwardObj(name=a, keywords=awardNameToKeywords(a)))
+
+    for ggAward in awardList:
+        presDict[ggAward] = {}
+        not_pres_keywords = not_pres_keywords + ggAward.keywords
+        try:
+            ggAward.keywords.remove("best")
+    #         print("removed best")
+        except:
+            continue
+              
+    for tweet in tweet_cleaner(year):
+        candPresenters = []
+        tweet = tweet.replace('\n', ' ')
+        
+        if any(keyword in tweet for keyword in pres_keywords) and "best" in tweet.lower():
+            people = find_persons(tweet)
+            people = [person for person in people if not any(keyword in person.lower() for keyword in not_pres_keywords)]
+            candPresenters = candPresenters + people
+            
+            doc = nlp(tweet)
+            noun_phrases = [noun_chunk.text.strip('"').strip("''").lower() for noun_chunk in doc.noun_chunks if 'RT @' not in noun_chunk.text]
+            
+            
+            mostRelevantAward = awardList[0]
+            highestRelevancy = 0
+            for ggAward in awardList:
+                currentAwardRelevancy = 0
+                
+                
+                for noun_phrase in noun_phrases:
+                    for word in noun_phrase.split(" "):
+                        if any(word in award for award in ggAward.keywords if len(word)>2):
+                            currentAwardRelevancy += 1
+                            
+                if currentAwardRelevancy > highestRelevancy or (currentAwardRelevancy == highestRelevancy and len(ggAward.keywords) < len(mostRelevantAward.keywords)):
+                    mostRelevantAward = ggAward
+                    highestRelevancy = currentAwardRelevancy
+                    
+                
+            if (highestRelevancy>0):
+    #             print("most relevant nomination for ", mostRelevantAward.name)
+                for candPresenter in candPresenters:
+                    try:
+                        presDict[mostRelevantAward][candPresenter] += 1
+    #                     print("add " , presDict[mostRelevantAward])
+        #                     print("award for this tweet: ", mostRelevantAward.name)
+                    except:
+                        presDict[mostRelevantAward][candPresenter] = 1
+    #                     print("create " , presDict[mostRelevantAward])
+            else:
+    #             print("no award from this tweet")
+                    continue
+
+    # print(presDict)
+    final_presenters_dict = {}
+    for award, presenters in presDict.items():
+        if award not in final_presenters_dict:
+            final_presenters_dict[award.name] = []
+        print("\n\n", award.name)
+        
+        i = 0
+        presenters = dict(sorted(presenters.items(), key=lambda item: item[1], reverse=True))
+        for presenter in presenters:
+            if i > 3:
+                break
+            print(presenter, presDict[award][presenter])
+            final_presenters_dict[award.name].append(presenter)
+            i+=1
+    return final_presenters_dict
 
 def pre_ceremony():
     '''This function loads/fetches/processes any data your program
@@ -625,6 +702,10 @@ def main():
     hp_data = load_tweet_text_from_json('gg' + str(year) + '.json')
     hp = HashtagParser(hp_data)
 
+    print("\n**************************** presenters ****************************")
+    presenters = get_presenters(year)
+    for award, presenters in presenters.items():
+        print(award, " PRESENTERS: ", presenters)
     
     print("\n**************************** hosts ****************************")
     hosts = get_hosts(year)
@@ -636,15 +717,21 @@ def main():
     print('Found ' + str(len(award_names)) + ' award names:')
     for name in award_names:
         print('\t', name)
+    
+    # print("\n**************************** presenters ****************************")
+    # presenters = get_presenters(year)
+    # for award, presenters in presenters.items():
+    #     print(award, " PRESENTERS: ", presenters)
+
     print("\n**************************** Award Winners ****************************")
     winners = get_winner(year)
     for award in winners.keys():
         print(award, " WINNER : ", winners[award])
 
     
-    
     print("\n**************************** nominees ****************************")
     nominees = get_nominees(year)
+
 
     print("\n**************************** extras ****************************")
     get_extras(year)
